@@ -10,7 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Roomie_2">
         <activity
+            android:name=".AddNewAppartment"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FirstRegisteredEntry"
             android:exported="false" />
         <activity
             android:name=".WelcomeActivity"
