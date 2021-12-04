@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Roomie_2">
         <activity
+            android:name=".ForgetPasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddNewAppartment"
             android:exported="false" />
         <activity

@@ -38,14 +38,18 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         mAuth = FirebaseAuth.getInstance();
+
         banner = (TextView) findViewById(R.id.banner);
         banner.setOnClickListener(this);
+
         registerUser = (Button) findViewById(R.id.registerUser);
         registerUser.setOnClickListener(this);
+
         editTextFullName = (EditText) findViewById(R.id.fullName);
         editTextAge = (EditText) findViewById(R.id.age);
         editTextEmail = (EditText) findViewById(R.id.email);
         editTextPassword = (EditText) findViewById(R.id.password);
+
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
     }
 
@@ -56,10 +60,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(new Intent(this, LoginActivity.class));
                 break;
             case R.id.registerUser:
-                Intent myIntent = new Intent(RegisterActivity.this, FirstRegisteredEntry.class);
+                Intent myIntent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(myIntent);
-//                registerUser();
-//                Log.i("after","after register");
+                registerUser();
                 break;
         }
 
@@ -102,75 +105,58 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return;
         }
 
-//        progressBar.setVisibility(View.VISIBLE);
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(task -> {
-                    User user = new User(fullName, age, email);
-                    root.child(String.valueOf(user.id)).setValue(user).addOnCompleteListener(task1 -> {
-                        Log.i("after","in callback");
-                        Intent myIntent = new Intent(this, FirstRegisteredEntry.class);
-                        startActivity(myIntent);
 
 
-                    });
-                    Log.i("after","out callback");
 
+        progressBar.setVisibility(View.VISIBLE);
+        mAuth.createUserWithEmailAndPassword(email,password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            User user = new User(fullName, age, email);
+                            root.child(String.valueOf(user.id)).setValue(user)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(RegisterActivity.this, "User has been registered successfully", Toast.LENGTH_LONG).show();
+                                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                    }else{
+                                        Toast.makeText(RegisterActivity.this, "Registered failed :( , Please try again", Toast.LENGTH_LONG).show();
+                                    }
+                                    progressBar.setVisibility(View.GONE);
+                                }
+                            });
 
+                        }else{
+                            Toast.makeText(RegisterActivity.this, "Registered failed :(", Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.GONE);
+                        }
+                    }
                 });
+
+
+//        mAuth.createUserWithEmailAndPassword(email, password)
+//                .addOnCompleteListener(task -> {
+//                    User user = new User(fullName, age, email);
+//                    root.child(String.valueOf(user.id)).setValue(user).addOnCompleteListener(task1 -> {
+//                        Log.i("after","in callback");
+//                        Intent myIntent = new Intent(this, FirstRegisteredEntry.class);
+//                        startActivity(myIntent);
+//
+//
+//                    });
+//                    Log.i("after","out callback");
+//
+//
+//                });
     }
 }
-//                            if(task1.isSuccessful()){
-//
-//
-//                                Toast.makeText(RegisterActivity.this, "User has been registered successfully", Toast.LENGTH_LONG).show();
-//                                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-//                                progressBar.setVisibility(View.GONE);
-//
-//                            }else{
-//                                Toast.makeText(RegisterActivity.this, "Registered failed :( , Please try again", Toast.LENGTH_LONG).show();
-//                                progressBar.setVisibility(View.GONE);
-//                            }
-//
-//                        });
-//                    }else{
-//                        Toast.makeText(RegisterActivity.this, "Failed to registered!", Toast.LENGTH_LONG).show();
-//                        progressBar.setVisibility(View.GONE);
-//                    }
-//                });
 
 
 
 
-
-
-//    @Override
-//    public void onComplete(@NonNull Task<AuthResult> task){
-//        if (task.isSuccessful()) {
-//            User user = new User (fullName, age, email);
-//
-//            FirebaseDatabase.getInstance().getReference("Users")
-//                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-//                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-//
-//                @Override
-//                public void onComplete(@NonNull Task<Void> task) {
-//                    if (task.isSuccessful()) {
-//                        Toast.makeText(RegisterActivity.this, "User has been registered successfully", Toast.LENGTH_LONG).show();
-//                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-//                        progressBar.setVisibility(View.GONE);
-//                    }else{
-//                        Toast.makeText(RegisterActivity.this, "Registered failed :( , Please try again", Toast.LENGTH_LONG).show();
-//                        progressBar.setVisibility(View.GONE);
-//                    }
-//                }
-//            });
-//        }else {
-//            // If sign in fails, display a message to the user.
-//            Toast.makeText(RegisterActivity.this, "Failed to registered!", Toast.LENGTH_LONG).show();
-//            progressBar.setVisibility(View.GONE);
-//        }
-//    }
-//});
 
 
 

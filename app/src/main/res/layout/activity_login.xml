@@ -58,7 +58,6 @@
         android:textSize="26sp"
         android:textStyle="bold"
         android:backgroundTint="#0E0D0D"
-        android:onClick="login"
         android:text="LOGIN"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +21,11 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView register;
+    private TextView register, forgetPassword;
+    private EditText editTextEmail, editTextPassword;
+    private Button signIn;
+    private ProgressBar progressBar;
+
     private FirebaseAuth mAuth;
 
 
@@ -27,8 +34,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
+
         register = (TextView) findViewById(R.id.register);
         register.setOnClickListener(this);
+
+        signIn = (Button) findViewById(R.id.singIn);
+        signIn.setOnClickListener(this);
+
+        editTextEmail = (EditText) findViewById(R.id.email);
+        editTextPassword = (EditText) findViewById(R.id.password);
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        forgetPassword = (TextView) findViewById(R.id.forgotPassword);
+        forgetPassword.setOnClickListener(this);
     }
 
     @Override
@@ -36,7 +55,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
+        if(currentUser != null && currentUser.isEmailVerified()){
             startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));
         }
     }
@@ -44,32 +63,67 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.register:
-                startActivity(new Intent(this,FirstRegisteredEntry.class));
+                startActivity(new Intent(this,RegisterActivity.class));
                 break;
+
+            case R.id.forgotPassword:
+                startActivity(new Intent(this,ForgetPasswordActivity.class));
+                break;
+
+            case R.id.singIn:
+                userLogin();
+                break;
+
         }
 
     }
 
-    public void login(View view) {
-        EditText emailEditText = findViewById(R.id.email);
-        EditText passwordEditText = findViewById(R.id.password);
+    private void userLogin(){
+        String email = editTextEmail.getText().toString().trim();
+        String password = editTextPassword.getText().toString().trim();
 
-        mAuth.signInWithEmailAndPassword(emailEditText.getText().toString(), passwordEditText.getText().toString())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information.
-                            startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));
+        if (email.isEmpty()) {
+            editTextEmail.setError("Email is required!");
+            editTextEmail.requestFocus();
+            return;
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            editTextEmail.setError("Please enter valid Email!");
+            editTextEmail.requestFocus();
+            return;
+        }
+        if (password.isEmpty()) {
+            editTextPassword.setError("Password is required!");
+            editTextPassword.requestFocus();
+            return;
+        }
+        if (password.length() < 6) {
+            editTextPassword.setError("Password should be at least 6 characters");
+            editTextPassword.requestFocus();
+            return;
+        }
 
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(LoginActivity.this,"login faild :(",Toast.LENGTH_LONG).show();
+        progressBar.setVisibility(View.VISIBLE);
 
-                        }
+        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                if(task.isSuccessful()){
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                    if(user.isEmailVerified()){
+                        startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));
+                    }else{
+                        user.sendEmailVerification();
+                        Toast.makeText(LoginActivity.this, "Check your Email, and verify your Email!",Toast.LENGTH_LONG).show();
                     }
-                });
-    }
+                }else{
+                    Toast.makeText(LoginActivity.this, "Failed to Login ! Please check Your Email or Password", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
+    }
 
 }
