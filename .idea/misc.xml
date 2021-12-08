@@ -3,11 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/user/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_bills.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_launcher_background.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Roomie/app/src/main/res/drawable/round_button.xml" value="0.2703125" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_forget_password.xml" value="0.17395833333333333" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_welcome.xml" value="0.176" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_welcome.xml" value="0.2" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Roomie_2/app/src/main/res/layout/activity_forget_password.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Roomie_2/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Roomie_2/app/src/main/res/layout/activity_main.xml" value="0.2" />
