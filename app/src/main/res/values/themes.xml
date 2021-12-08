@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Roomie_2" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimary">#8A8787</item>
         <item name="colorPrimaryVariant">#010002</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
