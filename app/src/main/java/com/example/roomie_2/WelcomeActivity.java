@@ -34,7 +34,7 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        logout = (Button) findViewById(R.id.singOut);
+        logout = (Button) findViewById(R.id.signOut);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,7 +47,7 @@ public class WelcomeActivity extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference("Users");
         userID = user.getUid();
 
-        final TextView greetingTextView = (TextView) findViewById(R.id.greeting);
+        //final TextView greetingTextView = (TextView) findViewById(R.id.greeting);
 
 
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -58,7 +58,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 if(profileUser != null){
                     String fullName = profileUser.fullName;
 
-                    greetingTextView.setText("Welcome, " + fullName + "!");
+                    //greetingTextView.setText("Welcome, " + fullName + "!");
                 }
             }
 
