@@ -3,18 +3,20 @@ package com.example.roomie_2;
 public class User {
 
     public String fullName, age, email;
-    protected int id;
+    protected String id;
     private static int[] userIndex = new int[100];
+    Boolean hasAppartment;
 
     public User(){
 
     }
 
-    public User(String fullName , String age , String email){
+    public User(String fullName , String age , String email,String id){
         this.fullName = fullName;
         this.age = age;
         this.email = email;
-        this.id = get_user_id();
+        this.id = id;
+        hasAppartment = false;
     }
 
     private int get_user_id(){

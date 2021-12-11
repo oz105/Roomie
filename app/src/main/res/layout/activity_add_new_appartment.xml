@@ -7,46 +7,69 @@
     android:background="@drawable/login_background"
     tools:context=".AddNewAppartment">
 
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="620dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Roomie"
+        android:textAlignment="center"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/Password"
         android:layout_width="235dp"
         android:layout_height="53dp"
+        android:layout_marginTop="76dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="enter join password"
-        tools:layout_editor_absoluteX="69dp"
-        tools:layout_editor_absoluteY="329dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Address"
         tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/Address"
         android:layout_width="235dp"
         android:layout_height="53dp"
+        android:layout_marginTop="76dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="enter Appartment Address"
-        tools:layout_editor_absoluteX="69dp"
-        tools:layout_editor_absoluteY="224dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Name"
         tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/Name"
         android:layout_width="235dp"
         android:layout_height="53dp"
+        android:layout_marginTop="80dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="enter Appartment Name"
-        tools:layout_editor_absoluteX="69dp"
-        tools:layout_editor_absoluteY="116dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/create"
         android:layout_width="150dp"
         android:layout_height="91dp"
+        android:layout_marginTop="76dp"
         android:text="CREATE APPARTMENT"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="440dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Password"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

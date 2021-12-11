@@ -16,7 +16,6 @@ public class FirstRegisteredEntry extends AppCompatActivity implements View.OnCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.i("hananell","create first registerentry");
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_registered_entry);
         newAppartment = (TextView) findViewById(R.id.Create);
@@ -39,6 +38,7 @@ public class FirstRegisteredEntry extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.Create:
+                Log.i("hananell","start create new appartment");
                 startActivity(new Intent(this,AddNewAppartment.class));
                 break;
 //            case R.id.join:
