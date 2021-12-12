@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Appartment {
-    String name;
-    String address;
-    String Password;
-    int appartmentId;
-    String adminId;
+    public String name,address,Password;
+    public int appartmentId;
+    public String adminId;
     List<String> appartmentUsers = new ArrayList<>();
     private static int[] appartmentIndex = new int[100];
 

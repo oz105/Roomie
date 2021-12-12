@@ -5,7 +5,8 @@ public class User {
     public String fullName, age, email;
     protected String id;
     private static int[] userIndex = new int[100];
-    Boolean hasAppartment;
+    public Boolean hasAppartment;
+    public int appartmentId;
 
     public User(){
 

@@ -75,6 +75,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.register:
+                Log.i("hananell Login","register");
                 startActivity(new Intent(this,RegisterActivity.class));
                 break;
 
@@ -83,6 +84,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.singIn:
+                Log.i("hananell Login","try log in");
                 userLogin();
                 break;
 
@@ -120,11 +122,43 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                Log.i("hananell Login","onComplete");
+
 
                 if(task.isSuccessful()){
+                    Log.i("hananell Login","success log in");
+
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));
-                    progressBar.setVisibility(View.GONE);
+                    DatabaseReference ref = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app").getReference().child("Users").child(user.getUid()).child("hasAppartment");
+                    ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                                Log.i("hananell Login","find if has appartment");
+                                boolean hasAppartment = Boolean.parseBoolean(dataSnapshot.getValue().toString());
+                                if(hasAppartment){
+                                    Log.i("hananell Login","has appartment");
+
+                                    startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));
+                                    progressBar.setVisibility(View.GONE);
+                                }
+                                else{
+                                    Log.i("hananell Login","has not appartment");
+
+                                    startActivity(new Intent(LoginActivity.this, FirstRegisteredEntry.class));
+                                    progressBar.setVisibility(View.GONE);
+                                }
+                            }
+
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+
+
 
 //                    if(user.isEmailVerified()){
 //                        startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));

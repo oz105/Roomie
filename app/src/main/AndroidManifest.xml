@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Roomie_2">
         <activity
+            android:name=".JoinAppartmentActivity"
+            android:exported="false" />
+        <activity
             android:name=".BillsActivity"
             android:exported="false" />
         <activity

@@ -43,9 +43,9 @@ public class AddNewAppartment extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.create:
-                Log.i("hananell","after press create");
+                Log.i("hananell_addNewAppartment","after press create");
                 checkValidation();
-                add_appartment(AppName.toString(),AppAddress.toString(),AppPassword.toString());
+                add_appartment(AppName.getText().toString(),AppAddress.getText().toString(),AppPassword.getText().toString());
 
                 break;
 
@@ -60,20 +60,23 @@ public class AddNewAppartment extends AppCompatActivity implements View.OnClickL
 
         String adminId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         Appartment myApp = new Appartment(AppName,AppAddress,AppPassword,adminId);
-        Log.i("hananell","befor save in data base");
+        Log.i("hananell_addNewAppartment","befor save in data base");
 
-        root.setValue(myApp).addOnCompleteListener(new OnCompleteListener<Void>() {
+        root.child(String.valueOf(myApp.appartmentId)).setValue(myApp).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
+                Log.i("hananell_addNewAppartment","complate try set value");
                 if(task.isSuccessful()){
-                    Log.i("hananell","success");
-
+                    Log.i("hananell_addNewAppartment","success");
                     Toast.makeText(AddNewAppartment.this, "Creating new appartment failed :( , Please try again", Toast.LENGTH_LONG).show();
+                    db.getReference().child("Users").child(adminId).child("hasAppartment").setValue("True");
+                    db.getReference().child("Users").child(adminId).child("appartmentId").setValue(myApp.appartmentId);
 
+                    startActivity(new Intent(AddNewAppartment.this, WelcomeActivity.class));
 
 
                 }else{
-                    Log.i("hananell","failed");
+                    Log.i("hananell_addNewAppartment","failed");
 
                     Toast.makeText(AddNewAppartment.this, "Creating new appartment failed :( , Please try again", Toast.LENGTH_LONG).show();
                 }
@@ -84,7 +87,7 @@ public class AddNewAppartment extends AppCompatActivity implements View.OnClickL
     }
 
     public void checkValidation(){
-        Log.i("hananell","check validation");
+        Log.i("hananell_addNewAppartment","check validation");
 
         if(AppName.getText().toString().isEmpty() ){
             AppName.setError("Full name is required!");
