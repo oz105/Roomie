@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,103 +23,119 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
-public class BillsActivity extends AppCompatActivity {
+public class BillsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseDatabase db;
     private DatabaseReference root;
     private FirebaseAuth auth;
     String UserID;
-    List<String> debt;
+    String appartmentID = "0";
+    List<Bill> owe,owed;
     long totalAmount=0;
     TextView showBills;
+    Button addBill,payment;
+    Map<String,String> appartmentUsers;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         db = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");
-        root = db.getReference().child("Bills");
-        UserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        auth = FirebaseAuth.getInstance();
-        debt = load_debt();
         setContentView(R.layout.activity_bills);
+
+        UserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        root = db.getReference().child("Users").child(UserID);
+        addBill = (Button) findViewById(R.id.newBill);
+        payment = (Button) findViewById(R.id.payment);
+        addBill.setOnClickListener(this);
+        payment.setOnClickListener(this);
+//        root.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                appartmentID =  snapshot.child("appartmentId").getValue(String.class);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+
+
+        auth = FirebaseAuth.getInstance();
+        owe = new ArrayList<>();
+        owed = new ArrayList<>();
+        load_debt(owe,owed);
+
+
+
         showBills= findViewById(R.id.showBills);
         StringBuilder sb = new StringBuilder();
-        for(String str:debt){
-            sb.append(str).append("\n");
+        int total = 0;
+        for(Bill bill:owe){
+            String name = appartmentUsers.get(bill.from);
+            sb.append("you owes "+name+" "+bill.amount+" NIS\n");
+            total-=bill.amount;
         }
+        for(Bill bill:owed){
+            String name = appartmentUsers.get(bill.from);
+            sb.append(name+ " owes you "+bill.amount+" NIS\n");
+            total+=bill.amount;
+        }
+        if(total<0){
+            sb.append("you owe "+total+" NIS");
+        }
+        else if(total>0){
+            sb.append("you owed "+total+" NIS");
+
+        }
+        else{
+            sb.append("you has no debt");
+        }
+
         showBills.setText(sb.toString());
 
     }
 
-    public ArrayList<String> load_debt(){
-        ArrayList<String> ans = new ArrayList<>();
-        DatabaseReference usersdRef = db.getReference().child("Users");
-        DatabaseReference billsOwe = db.getReference().child("Bills");
-        DatabaseReference billsOwed = db.getReference().child("Bills");
 
-        Map<String,String> idToName = new HashMap<>();
-        ValueEventListener eventListener = new ValueEventListener() {
+
+
+
+
+
+
+
+    public void load_debt(List owe,List owed){
+        DatabaseReference billsRef = db.getReference().child("Appartments").child(appartmentID).child("billsList");
+        billsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-
-                    String id = (String) ds.child("id").getValue();
-                    String name = (String) ds.child("fullName").getValue();
-                    idToName.put(id,name);
+                List<Bill> list = dataSnapshot.getValue(List.class);
+                for(Bill bill:list){
+                    String x = bill.from;
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        };
-        usersdRef.addListenerForSingleValueEvent(eventListener);
-        // i owe
-        ValueEventListener billsOweListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-
-                    String id = (String) ds.child("id").getValue();
-                    long amount = (long) ds.child("amount").getValue();
-                    totalAmount-=amount;
-                    String messege = "You owe "+idToName.get(id)+" "+amount+" NIS";
-                    ans.add(messege);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        };
-
-        billsOwe.addListenerForSingleValueEvent(billsOweListener);
-
-        ValueEventListener billsOwedListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-
-                    String id = (String) ds.child("id").getValue();
-                    long amount = (long) ds.child("amount").getValue();
-                    totalAmount+=amount;
-                    String messege = idToName.get(id)+" owes you "+amount+" NIS";
-                    ans.add(messege);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        };
-        billsOwed.addListenerForSingleValueEvent(billsOwedListener);
-
-        return ans;
+        });
     }
 
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case (R.id.newBill):
+
+
+            case R.id.payment:
+
+
+        }
+
+
+    }
 }

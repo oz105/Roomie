@@ -40,17 +40,13 @@ public class JoinAppartmentActivity extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View v) {
-
-
         String currentAppId = appartmentID.getText().toString();
         String currentPassword = password.getText().toString();
-
         Appartment.child(currentAppId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot appartment) {
                 Log.i("hananell join new appartment","enter callback");
                 if(appartment.exists()){
-
 
                     Appartment.child(currentAppId).child("Password").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -58,10 +54,30 @@ public class JoinAppartmentActivity extends AppCompatActivity implements View.On
 
                             if(snapshot.getValue(String.class).equals(currentPassword)){
                                 Log.i("hananell join new appartment","currect password");
-
                                 String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                                db.getReference().child("Users").child(userId).child("appartmentId").setValue(currentAppId);
-                                db.getReference().child("Users").child(userId).child("hasAppartment").setValue("True");
+
+                                db.getReference().child("Users").child(userId).child("fullName").addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        String fullName = snapshot.getValue(String.class);
+                                        db.getReference().child("Users").child(userId).child("appartmentId").setValue(currentAppId);
+                                        db.getReference().child("Users").child(userId).child("hasAppartment").setValue("True");
+                                        db.getReference().child("Appartments").child(currentAppId).child("appartmentUsers").child(userId).setValue(fullName);
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
+
+
+
+
+
+
+
                                 startActivity(new Intent(JoinAppartmentActivity.this,WelcomeActivity.class));
                             }
                             else{

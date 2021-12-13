@@ -3,9 +3,11 @@ package com.example.roomie_2;
 public class User {
 
     public String fullName, age, email;
-    protected String id;
+    public String id;
     private static int[] userIndex = new int[100];
     public Boolean hasAppartment;
+    public Boolean isAdmin;
+
     public int appartmentId;
 
     public User(){
@@ -18,6 +20,7 @@ public class User {
         this.email = email;
         this.id = id;
         hasAppartment = false;
+        isAdmin = false;
     }
 
     private int get_user_id(){

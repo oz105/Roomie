@@ -18,14 +18,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class WelcomeActivity extends AppCompatActivity {
+public class WelcomeActivity  extends AppCompatActivity implements View.OnClickListener{
 
     private FirebaseUser user;
     private DatabaseReference reference;
 
     private String userID;
 
-    private Button logout ;
+    private Button logout,bills ;
 
 
 
@@ -33,7 +33,8 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-
+        bills = (Button) findViewById(R.id.bills);
+        bills.setOnClickListener(this);
         logout = (Button) findViewById(R.id.signOut);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,4 +70,12 @@ public class WelcomeActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.bills:
+                startActivity(new Intent(WelcomeActivity.this, BillsActivity.class));
+        }
+
+    }
 }

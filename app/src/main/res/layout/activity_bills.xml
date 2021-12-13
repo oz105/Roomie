@@ -66,20 +66,23 @@
 
     <Button
         android:id="@+id/payment"
-        android:layout_width="119dp"
-        android:layout_height="62dp"
-        android:text="PAYMENT"
-        app:layout_constraintTop_toBottomOf="@+id/line1"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="45dp" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="68dp"
+        android:text="PAYMENT\n"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showBills" />
 
     <Button
         android:id="@+id/newBill"
-        android:layout_width="119dp"
-        android:layout_height="62dp"
-        android:text="ADD NEW BILL"
-        app:layout_constraintTop_toBottomOf="@+id/line1"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="231dp" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="44dp"
+        android:text="ADD \nNEW BILL"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showBills" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
