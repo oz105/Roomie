@@ -29,6 +29,10 @@ import java.util.Iterator;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private FirebaseUser user;
+    private DatabaseReference reference;
+    private String userID;
+
     private TextView register, forgetPassword;
     private EditText editTextEmail, editTextPassword;
     private Button signIn;
@@ -88,7 +92,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Log.i("hananell Login","try log in");
                 userLogin();
                 break;
-
         }
 
     }
@@ -124,42 +127,42 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 Log.i("hananell Login","onComplete");
-
-
                 if(task.isSuccessful()){
                     Log.i("hananell Login","success log in");
 
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    DatabaseReference ref = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app").getReference().child("Users").child(user.getUid()).child("hasAppartment");
-                    ref.addListenerForSingleValueEvent(new ValueEventListener() {
+//                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//                    DatabaseReference ref = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app").getReference().child("Users").child(user.getUid()).child("hasAppartment");
+//                    ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    user = FirebaseAuth.getInstance().getCurrentUser();
+                    reference = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Users");
+                    userID = user.getUid();
+
+                    reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
 
-                                Log.i("hananell Login","find if has appartment");
-                                boolean hasAppartment = Boolean.parseBoolean(dataSnapshot.getValue().toString());
-                                if(hasAppartment){
-                                    Log.i("hananell Login","has appartment");
+                            Log.i("hananell Login","find if has appartment");
+                            User profileUser = dataSnapshot.getValue(User.class);
+                            //boolean hasApartment = Boolean.parseBoolean(dataSnapshot.getValue().toString());
+                            boolean hasApartment = profileUser.hasApartment;
+                            if(hasApartment){
+                                Log.i("hananell Login","has appartment");
 
-                                    startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));
-                                    progressBar.setVisibility(View.GONE);
-                                }
-                                else{
-                                    Log.i("hananell Login","has not appartment");
-
-                                    startActivity(new Intent(LoginActivity.this, FirstRegisteredEntry.class));
-                                    progressBar.setVisibility(View.GONE);
-                                }
+                                startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));
                             }
+                            else{
+                                Log.i("hananell Login","has not appartment");
 
+                                startActivity(new Intent(LoginActivity.this, FirstRegisteredEntry.class));
+                            }
+                            progressBar.setVisibility(View.GONE);
+                        }
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
-
+                            Toast.makeText(LoginActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
                         }
                     });
-
-
-
 
 //                    if(user.isEmailVerified()){
 //                        startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));
@@ -169,6 +172,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //                    }
                 }else{
                     Toast.makeText(LoginActivity.this, "Failed to Login! Please check Your Email or Password", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
                 }
             }
         });

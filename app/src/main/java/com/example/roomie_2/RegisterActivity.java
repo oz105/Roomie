@@ -60,8 +60,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(new Intent(this, LoginActivity.class));
                 break;
             case R.id.registerUser:
-                Intent myIntent = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(myIntent);
+                //Intent myIntent = new Intent(RegisterActivity.this, LoginActivity.class);
+                //startActivity(myIntent);
                 registerUser();
                 break;
         }
@@ -132,26 +132,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                         }else{
                             Toast.makeText(RegisterActivity.this, "Registered failed :(", Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                             progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
 
-
-//        mAuth.createUserWithEmailAndPassword(email, password)
-//                .addOnCompleteListener(task -> {
-//                    User user = new User(fullName, age, email);
-//                    root.child(String.valueOf(user.id)).setValue(user).addOnCompleteListener(task1 -> {
-//                        Log.i("after","in callback");
-//                        Intent myIntent = new Intent(this, FirstRegisteredEntry.class);
-//                        startActivity(myIntent);
-//
-//
-//                    });
-//                    Log.i("after","out callback");
-//
-//
-//                });
     }
 }
 

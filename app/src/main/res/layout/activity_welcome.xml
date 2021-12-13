@@ -33,7 +33,7 @@
             android:layout_gravity="center_horizontal|center"
             android:layout_weight="1"
             android:drawableTop="@drawable/ic_shopping_cart"
-            android:text="Shooping" />
+            android:text="Shopping" />
 
         <Button
             android:id="@+id/tasks"

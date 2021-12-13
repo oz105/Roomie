@@ -5,10 +5,10 @@ public class User {
     public String fullName, age, email;
     public String id;
     private static int[] userIndex = new int[100];
-    public Boolean hasAppartment;
+    public Boolean hasApartment, manager;
     public Boolean isAdmin;
 
-    public int appartmentId;
+    public int apartmentId;
 
     public User(){
 
@@ -19,7 +19,8 @@ public class User {
         this.age = age;
         this.email = email;
         this.id = id;
-        hasAppartment = false;
+        hasApartment = false;
+        manager = false ;
         isAdmin = false;
     }
 
