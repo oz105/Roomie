@@ -105,9 +105,9 @@ public class AddNewAppartment extends AppCompatActivity implements View.OnClickL
                         if(task.isSuccessful()){
                             Log.i("hananell_addNewAppartment","success");
                             Toast.makeText(AddNewAppartment.this, "Appartment has created successsfuly, Please try again", Toast.LENGTH_LONG).show();
-                            db.getReference().child("Users").child(adminId).child("hasAppartment").setValue("True");
+                            db.getReference().child("Users").child(adminId).child("hasApartment").setValue("True");
                             db.getReference().child("Users").child(adminId).child("isAdmin").setValue("True");
-                            db.getReference().child("Users").child(adminId).child("appartmentId").setValue(myApp.appartmentId);
+                            db.getReference().child("Users").child(adminId).child("apartmentId").setValue(myApp.appartmentId);
                             startActivity(new Intent(AddNewAppartment.this, WelcomeActivity.class));
 
 

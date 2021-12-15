@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/midLayout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/topLayout">
+    <TextView android:layout_width="100px" android:layout_height="200px" android:layout_gravity="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Name: "
+            android:textSize="18sp"
+            />
+        <TextView android:layout_width="60px" android:layout_height="200px" android:layout_gravity="center"/>
+        <TextView
+            android:id="@+id/curName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Apples"
+            android:textSize="18sp"
+            />
+        <TextView android:layout_width="80px" android:layout_height="wrap_content" android:layout_gravity="center" />
+        <TextView
+            android:id="@+id/tamir"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Quantity: "
+            android:textSize="18sp" />
+
+        <TextView android:layout_width="50px" android:layout_height="wrap_content" android:layout_gravity="center" />
+        <TextView
+            android:id="@+id/curQty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="5.8"
+            android:textSize="18sp"
+            />
+    <TextView android:layout_width="40px" android:layout_height="wrap_content" android:layout_gravity="center" />
+<!--    <Button android:id="@+id/editB" android:text="Edit" android:textSize="12sp" android:layout_width="170px" android:layout_height="wrap_content" android:layout_gravity="center" />-->
+
+    </LinearLayout>

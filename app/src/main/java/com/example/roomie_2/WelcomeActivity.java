@@ -25,7 +25,7 @@ public class WelcomeActivity  extends AppCompatActivity implements View.OnClickL
 
     private String userID;
 
-    private Button logout,bills, management;
+    private Button logout,bills, management, ShoppingBut;
 
 
 
@@ -35,7 +35,20 @@ public class WelcomeActivity  extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_welcome);
         management = (Button) findViewById(R.id.management);
         bills = (Button) findViewById(R.id.bills);
-        bills.setOnClickListener(this);
+        bills.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(WelcomeActivity.this, BillsActivity.class));
+            }
+        });
+        ShoppingBut = (Button) findViewById(R.id.shoppingList);
+        ShoppingBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("tamir","starting shoplist");
+                startActivity(new Intent(WelcomeActivity.this, ShoppingList.class));
+            }
+        });
         logout = (Button) findViewById(R.id.signOut);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,31 +62,28 @@ public class WelcomeActivity  extends AppCompatActivity implements View.OnClickL
         reference = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Users");
         userID = user.getUid();
 
-        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User profileUser = snapshot.getValue(User.class);
-                if(!profileUser.manager){
-                    management.setVisibility(View.GONE);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(WelcomeActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
-
-            }
-        });
+//        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                User profileUser = snapshot.getValue(User.class);
+//                if(!profileUser.manager){
+//                    management.setVisibility(View.GONE);
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                Toast.makeText(WelcomeActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
 
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.bills:
-                startActivity(new Intent(WelcomeActivity.this, BillsActivity.class));
-        }
+
 
     }
 }

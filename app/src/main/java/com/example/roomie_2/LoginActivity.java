@@ -144,6 +144,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             Log.i("hananell Login","find if has appartment");
                             User profileUser = dataSnapshot.getValue(User.class);
                             //boolean hasApartment = Boolean.parseBoolean(dataSnapshot.getValue().toString());
+//                            boolean hasApartment = profileUser.hasApartment;
                             boolean hasApartment = profileUser.hasApartment;
                             if(hasApartment){
                                 Log.i("hananell Login","has appartment");
