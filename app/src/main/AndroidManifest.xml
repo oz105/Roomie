@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Roomie_2">
         <activity
-            android:name=".JoinAppartmentActivity"
+            android:name=".JoinApartmentActivity"
             android:exported="false" />
         <activity
             android:name=".BillsActivity"
@@ -19,7 +19,7 @@
             android:name=".ForgetPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".AddNewAppartment"
+            android:name=".AddNewApartment"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
@@ -31,7 +31,7 @@
             android:name=".WelcomeActivity"
             android:exported="false" />
         <activity
-            android:name=".ShoppingList"
+            android:name=".ShoppingListActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"

@@ -25,7 +25,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -63,6 +67,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         forgetPassword.setOnClickListener(this);
 
         FirebaseDatabase db = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");
+
+
+
+
 
 
     }
@@ -141,18 +149,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
 
-                            Log.i("hananell Login","find if has appartment");
+                            Log.i("hananell Login","find if has apartment");
                             User profileUser = dataSnapshot.getValue(User.class);
                             //boolean hasApartment = Boolean.parseBoolean(dataSnapshot.getValue().toString());
 //                            boolean hasApartment = profileUser.hasApartment;
                             boolean hasApartment = profileUser.hasApartment;
                             if(hasApartment){
-                                Log.i("hananell Login","has appartment");
+                                Log.i("hananell Login","has apartment");
 
                                 startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));
                             }
                             else{
-                                Log.i("hananell Login","has not appartment");
+                                Log.i("hananell Login","has not apartment");
 
                                 startActivity(new Intent(LoginActivity.this, FirstRegisteredEntry.class));
                             }

@@ -8,19 +8,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseUser;
-
 public class FirstRegisteredEntry extends AppCompatActivity implements View.OnClickListener {
-    TextView newAppartment,join;
+    TextView newApartment,join;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.i("hananell first entry","create first registerentry");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_registered_entry);
-        newAppartment = (TextView) findViewById(R.id.Create);
+        newApartment = (TextView) findViewById(R.id.Create);
         join = (TextView) findViewById(R.id.join);
-        newAppartment.setOnClickListener(this);
+        newApartment.setOnClickListener(this);
         join.setOnClickListener(this);
     }
 
@@ -38,11 +36,11 @@ public class FirstRegisteredEntry extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.Create:
-                Log.i("hananell first entry","create first appartment");
-                startActivity(new Intent(this,AddNewAppartment.class));
+                Log.i("hananell first entry","create first apartment");
+                startActivity(new Intent(this, AddNewApartment.class));
                 break;
             case R.id.join:
-                startActivity(new Intent(this,JoinAppartmentActivity.class));
+                startActivity(new Intent(this, JoinApartmentActivity.class));
         }
 
     }

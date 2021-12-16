@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,12 +24,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
-public class ShoppingList extends AppCompatActivity {
+public class ShoppingListActivity extends AppCompatActivity {
     FirebaseDatabase db = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");
     DatabaseReference root = db.getReference();
     ListView L;
@@ -47,10 +43,11 @@ public class ShoppingList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.i("oncreate Shop","start Shoplist");
+
+        Log.i("oncreate Shop","Shpinglis CREATE");
         String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        root.child("Users").child(user).child("appartmentId").addValueEventListener(new ValueEventListener() {
+        root.child("Users").child(user).child("apartmentId").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.i("datasnapCheckAPT",dataSnapshot.getValue().toString());
@@ -58,7 +55,7 @@ public class ShoppingList extends AppCompatActivity {
                 aptNum = Math.toIntExact(x);
                 Log.i("datasnap","aptnum is :"+aptNum);
 
-                root.child("Appartments").child(""+aptNum).child("shoppingList").addListenerForSingleValueEvent(new ValueEventListener(){
+                root.child("Apartments").child(""+aptNum).child("shoppingList").addListenerForSingleValueEvent(new ValueEventListener(){
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for(DataSnapshot ds:dataSnapshot.getChildren()){
@@ -78,7 +75,7 @@ public class ShoppingList extends AppCompatActivity {
                         AdapterView.OnItemClickListener tamir = new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                Toast.makeText(ShoppingList.this, "Pressed item pos: "+position,
+                                Toast.makeText(ShoppingListActivity.this, "Pressed item pos: "+position,
                                         Toast.LENGTH_SHORT).show();
                                 Log.i("Tamir shopping","ONintemCLICK"+position);
                                 Log.i("Tamir shopping","afterClick"+position);
@@ -101,6 +98,7 @@ public class ShoppingList extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 System.out.println("The read from shoplist failed: " + databaseError.getCode());
+
             }
         });
 
@@ -131,11 +129,14 @@ public class ShoppingList extends AppCompatActivity {
 
     }
 
+
+
     @Override
     protected void onStart() {
         super.onStart();
-        Toast.makeText(ShoppingList.this,"ON START", Toast.LENGTH_SHORT).show();
+        Toast.makeText(ShoppingListActivity.this,"ON START", Toast.LENGTH_SHORT).show();
         Log.i("Tamir shopping","ONSTART");
+
     }
 
     public void click(ListView lv, AdapterView.OnItemClickListener ot){
@@ -143,7 +144,7 @@ public class ShoppingList extends AppCompatActivity {
     }
 
     public void editItem(String oldItem, final int index){
-        final Dialog editDialog = new Dialog(ShoppingList.this);
+        final Dialog editDialog = new Dialog(ShoppingListActivity.this);
         editDialog.setTitle("editing "+oldItem);
         editDialog.setContentView(R.layout.editbox);
         TextView msg = (TextView) editDialog.findViewById(R.id.updateDialog);
@@ -159,13 +160,13 @@ public class ShoppingList extends AppCompatActivity {
             public void onClick(View v) {
                 if(Float.valueOf(editQ.getText().toString())<=0)
                 {
-                    Toast.makeText(ShoppingList.this, "cant set this to a Value!",
+                    Toast.makeText(ShoppingListActivity.this, "cant set this to a Value!",
                             Toast.LENGTH_SHORT).show();
                 }
                 else{
                     ShopItem cur = new ShopItem(ListDB.get(index).name,Float.valueOf(editQ.getText().toString()));
                     ListDB.set(index,cur);
-                    Toast.makeText(ShoppingList.this, "Successful, "+cur.name+" Updated Quantity: "+cur.qty,
+                    Toast.makeText(ShoppingListActivity.this, "Successful, "+cur.name+" Updated Quantity: "+cur.qty,
                             Toast.LENGTH_SHORT).show();
                     editDialog.dismiss();
                     sAdapter.notifyDataSetChanged();
@@ -178,7 +179,7 @@ public class ShoppingList extends AppCompatActivity {
                 String curname = ListDB.get(index).name;
                 ListDB.remove(index);
                 sAdapter.notifyDataSetChanged();
-                Toast.makeText(ShoppingList.this, curname+" deleted Successfuly! ",
+                Toast.makeText(ShoppingListActivity.this, curname+" deleted Successfuly! ",
                         Toast.LENGTH_SHORT).show();
                 editDialog.dismiss();
             }
@@ -187,7 +188,7 @@ public class ShoppingList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(ShoppingList.this, "Dismissed.",
+                Toast.makeText(ShoppingListActivity.this, "Dismissed.",
                         Toast.LENGTH_SHORT).show();
                 editDialog.dismiss();
             }
@@ -195,7 +196,7 @@ public class ShoppingList extends AppCompatActivity {
     }
 
     public void UpdateFireBase(){
-        final Dialog LoadingDialog = new Dialog(ShoppingList.this);
+        final Dialog LoadingDialog = new Dialog(ShoppingListActivity.this);
         LoadingDialog.setContentView(R.layout.updating_data_dialog);
         LoadingDialog.show();
         root.child("Appartments").child(""+aptNum).child("shoppingList").setValue(ListDB).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -203,13 +204,13 @@ public class ShoppingList extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful())
                 {
-                    Toast.makeText(ShoppingList.this, "Database Updated Successfully",
+                    Toast.makeText(ShoppingListActivity.this, "Database Updated Successfully",
                             Toast.LENGTH_SHORT).show();
                     LoadingDialog.dismiss();
                 }
                 else
                 {
-                    Toast.makeText(ShoppingList.this, "Update Failed! "+task.toString(),
+                    Toast.makeText(ShoppingListActivity.this, "Update Failed! "+task.toString(),
                             Toast.LENGTH_SHORT).show();
                     LoadingDialog.dismiss();
                 }
@@ -218,7 +219,7 @@ public class ShoppingList extends AppCompatActivity {
     }
 
     public void newItem(){
-        final Dialog AddDialog = new Dialog(ShoppingList.this);
+        final Dialog AddDialog = new Dialog(ShoppingListActivity.this);
         AddDialog.setContentView(R.layout.add_item);
         AddDialog.show();
 
@@ -233,13 +234,13 @@ public class ShoppingList extends AppCompatActivity {
             public void onClick(View v) {
                 if(Float.valueOf(newQ.getText().toString())<=0)
                 {
-                    Toast.makeText(ShoppingList.this, "cant set this to a Value!",
+                    Toast.makeText(ShoppingListActivity.this, "cant set this to a Value!",
                             Toast.LENGTH_SHORT).show();
                 }
                 else{
                     ShopItem cur = new ShopItem(newN.getText().toString(),Float.valueOf(newQ.getText().toString()));
                     ListDB.add(cur);
-                    Toast.makeText(ShoppingList.this, "Item added Successfully :"+cur.name,
+                    Toast.makeText(ShoppingListActivity.this, "Item added Successfully :"+cur.name,
                             Toast.LENGTH_SHORT).show();
                     AddDialog.dismiss();
                     sAdapter.notifyDataSetChanged();
@@ -251,7 +252,7 @@ public class ShoppingList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(ShoppingList.this, "Dismissed.",
+                Toast.makeText(ShoppingListActivity.this, "Dismissed.",
                         Toast.LENGTH_SHORT).show();
                 AddDialog.dismiss();
             }

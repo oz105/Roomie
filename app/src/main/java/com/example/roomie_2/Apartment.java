@@ -6,34 +6,34 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class Appartment {
+public class Apartment {
     public String name,address,Password;
-    public int appartmentId;
+    public int apartmentId;
     public String adminId;
     public List<ShopItem> shoppingList;
     public List<Bill> billsList = new ArrayList<>();
-    public Map<String,String> appartmentUsers = new HashMap<>();
-    private static int[] appartmentIndex = new int[100];
+    public Map<String,String> apartmentUsers = new HashMap<>();
+    private static int[] apartmentIndex = new int[100];
 
 
-    public Appartment(String name,String address, String password,String adminId){
+    public Apartment(String name, String address, String password, String adminId){
         this.name=name;
         this.address=address;
         this.Password= password;
         this.adminId = adminId;
-        appartmentId=get_appartment_id();
+        apartmentId=get_apartment_id();
         shoppingList = new LinkedList<ShopItem>();
         shoppingList.add(new ShopItem("test Item",5.5f));
     }
 
     public void insert_name_and_id(String id,String name){
-        appartmentUsers.put(id,name);
+        apartmentUsers.put(id,name);
     }
 
-    private int get_appartment_id(){
-        for (int i = 0; i < appartmentIndex.length; i++) {
-            if(appartmentIndex[i]==0){
-                appartmentIndex[i]=1;
+    private int get_apartment_id(){
+        for (int i = 20; i < apartmentIndex.length; i++) {
+            if(apartmentIndex[i]==0){
+                apartmentIndex[i]=1;
                 return i;
             }
         }
