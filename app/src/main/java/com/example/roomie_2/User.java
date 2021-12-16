@@ -5,7 +5,7 @@ public class User {
     public String fullName, age, email;
     public String id;
     private static int[] userIndex = new int[100];
-    public Boolean hasApartment, manager;
+    public Boolean hasApartment;
     public Boolean isAdmin;
 
     public int apartmentId;
@@ -20,7 +20,6 @@ public class User {
         this.email = email;
         this.id = id;
         hasApartment = false;
-        manager = false ;
         isAdmin = false;
     }
 
