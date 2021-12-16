@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -47,6 +48,8 @@ public class BillsActivity extends AppCompatActivity implements View.OnClickList
     BillParticipateAdapter billAdapt;
     List<String> names = new ArrayList<>();
     Dialog AddDialog;
+    EditText editText;
+    List<Bill> currentBils;
 
 
 
@@ -54,6 +57,8 @@ public class BillsActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        Log.i("Bills activity","ON CREATE");
+
         db = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");
         setContentView(R.layout.activity_bills);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -70,19 +75,13 @@ public class BillsActivity extends AppCompatActivity implements View.OnClickList
         progressBar.setVisibility(View.VISIBLE);
         load_debt();
 
-
-
-
-
     }
 
-
-
-
-
-
-
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i("Bills activity","ON START");
+    }
 
     public void load_debt(){
         DatabaseReference billsRef = db.getReference().child("Apartments").child(apartmentID);
@@ -96,10 +95,12 @@ public class BillsActivity extends AppCompatActivity implements View.OnClickList
 
                 owe = new ArrayList<>();
                 owed = new ArrayList<>();
+                currentBils = new ArrayList<>();
 
                 for(DataSnapshot ds:dataSnapshot.child("billsList").getChildren() ){
                     Bill temp = ds.getValue(Bill.class);
                     if(temp.from.equals(UserID)){
+                        currentBils.add(temp);
                         owed.add(temp);
                     }
                     else if(temp.to.equals(UserID)){
@@ -154,12 +155,14 @@ public class BillsActivity extends AppCompatActivity implements View.OnClickList
                 AddDialog.setContentView(R.layout.add_bill);
 
                 Log.i("hananell","on click new bill after dialog");
-
+                names.clear();
                 names.addAll(apartmentUsers.values());
                 names.remove(apartmentUsers.get(UserID));
                 billAdapt = new BillParticipateAdapter(getApplicationContext(),names);
                 TextView t = AddDialog.findViewById(R.id.paidBy);
-                t.setText(apartmentUsers.get(UserID));
+                editText = (EditText) AddDialog.findViewById(R.id.amount);
+
+                t.setText("Paid by "+apartmentUsers.get(UserID)+" THE KONG!!!***");
                 listView = (ListView) AddDialog.findViewById(R.id.participateList);
                 listView.setAdapter(billAdapt);
                 AddDialog.show();
@@ -175,22 +178,47 @@ public class BillsActivity extends AppCompatActivity implements View.OnClickList
 
 
             case R.id.payment:
-
-
-
             case R.id.doneParticipate:
-                Log.i("hananell","on click DONE participate");
+                List<String> participateId = new ArrayList<>();
 
                 for (int i = 0; i < listView.getCount(); i++) {
-                    View view =(View) listView.getItemAtPosition(i);
-                    CheckBox cb = view.findViewById(R.id.check);
+                   String str = listView.getItemAtPosition(i).toString();
+                    CheckBox cb = (CheckBox)listView.getChildAt(i).findViewById(R.id.check);
                     if(cb.isChecked()){
-
-                        Log.i("haanell","itemSelect");
+                        for(Map.Entry<String, String> entry : apartmentUsers.entrySet()) {
+                            if(str.equals(entry.getValue())){
+                                participateId.add(entry.getKey());
+                            }
+                        }
                     }
-
                 }
-                AddDialog.dismiss();
+                double amountEach = Double.valueOf(editText.getText().toString())/participateId.size()+1;
+                for(String uid:participateId){
+                    boolean exist = false;
+                    for(Bill b:currentBils){
+                        if(b.to.equals(uid)){
+                            exist=true;
+                            b.amount+=amountEach;
+                        }
+                    }
+                    if(!exist){
+                        Bill newBill = new Bill(UserID,uid,amountEach);
+                        currentBils.add(newBill);
+                    }
+                }
+                db.getReference().child("Apartments").child(apartmentID).child("billsList").setValue(currentBils).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Log.i("","");
+                            AddDialog.dismiss();
+//                            finish();
+//                            startActivity(getIntent());
+                        }
+                    }
+                });
+
+
 
                 //AddDialog.dismiss();
 
