@@ -22,8 +22,10 @@ import java.util.Map;
 
 public class BillParticipateAdapter  extends ArrayAdapter<String> {
         public CheckBox checkBox;
-        public BillParticipateAdapter(Context context, List<String> data) {
+        private int layoutId;
+        public BillParticipateAdapter(Context context, List<String> data,int layoutId) {
             super(context, 0, data);
+            this.layoutId = layoutId;
         }
 
         @Override
@@ -32,7 +34,8 @@ public class BillParticipateAdapter  extends ArrayAdapter<String> {
             String name = getItem(position);
 
             if (convertView == null) {
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.add_bill_participate, parent, false);
+
+                convertView = LayoutInflater.from(getContext()).inflate(layoutId, parent, false);
             }
 
             TextView textViewItemName = (TextView)

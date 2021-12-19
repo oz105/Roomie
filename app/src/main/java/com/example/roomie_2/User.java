@@ -2,8 +2,8 @@ package com.example.roomie_2;
 
 public class User {
 
-    public String fullName, age, email;
-    public String id;
+    public String fullName, age, email,id;
+
     private static int[] userIndex = new int[100];
     public Boolean hasApartment, manager;
     public Boolean isAdmin;

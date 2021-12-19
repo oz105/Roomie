@@ -13,15 +13,14 @@ public class Apartment {
     public List<ShopItem> shoppingList;
     public List<Bill> billsList = new ArrayList<>();
     public Map<String,String> apartmentUsers = new HashMap<>();
-    private static int[] apartmentIndex = new int[100];
 
 
-    public Apartment(String name, String address, String password, String adminId){
+    public Apartment(String name, String address, String password, String adminId,int apartmentId){
         this.name=name;
         this.address=address;
         this.Password= password;
         this.adminId = adminId;
-        apartmentId=get_apartment_id();
+        this.apartmentId=apartmentId;
         shoppingList = new LinkedList<ShopItem>();
         shoppingList.add(new ShopItem("test Item",5.5f));
     }
@@ -30,15 +29,7 @@ public class Apartment {
         apartmentUsers.put(id,name);
     }
 
-    private int get_apartment_id(){
-        for (int i = 20; i < apartmentIndex.length; i++) {
-            if(apartmentIndex[i]==0){
-                apartmentIndex[i]=1;
-                return i;
-            }
-        }
-        return -1;
-    }
+
 
 
 

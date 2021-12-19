@@ -20,6 +20,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AddNewApartment extends AppCompatActivity implements View.OnClickListener {
     FirebaseDatabase db = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");
     DatabaseReference root = db.getReference().child("Apartments");
@@ -86,30 +89,59 @@ public class AddNewApartment extends AppCompatActivity implements View.OnClickLi
         db.getReference().child("Users").child(adminId).child("fullName").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String adminName = snapshot.getValue(String.class);
-                Apartment myApp = new Apartment(AppName,AppAddress,AppPassword,adminId);
-                myApp.insert_name_and_id(adminId,adminName);
-                root.child(String.valueOf(myApp.apartmentId)).setValue(myApp).addOnCompleteListener(new OnCompleteListener<Void>() {
+                db.getReference().child("apartmentIds").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Log.i("hananell_addNewApartment","complate try set value");
-                        if(task.isSuccessful()){
-                            Log.i("hananell_addNewApartment","success");
-                            Toast.makeText(AddNewApartment.this, "Apartment has created successsfuly :)", Toast.LENGTH_LONG).show();
-                            db.getReference().child("Users").child(adminId).child("hasApartment").setValue(true);
-                            db.getReference().child("Users").child(adminId).child("isAdmin").setValue(true);
-                            db.getReference().child("Users").child(adminId).child("apartmentId").setValue(myApp.apartmentId);
-                            startActivity(new Intent(AddNewApartment.this, WelcomeActivity.class));
-
-
-                        }else{
-                            Log.i("hananell_addNewApartment","failed");
-
-                            Toast.makeText(AddNewApartment.this, "Creating new apartment failed :( , Please try again", Toast.LENGTH_LONG).show();
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        List<Integer> apartmentIdwList=null;
+                        int newApartmentId;
+                        if(snapshot.exists()){
+                            apartmentIdwList =(List<Integer>) (snapshot.getValue());
+                            newApartmentId = find_available_appartment_id(apartmentIdwList);
                         }
+                        else {
+                            apartmentIdwList = new ArrayList<>();
+                            newApartmentId = 0;
+                            apartmentIdwList.add(newApartmentId);
+
+
+                        }
+
+
+
+                        String adminName = snapshot.getValue(String.class);
+                        Apartment myApp = new Apartment(AppName,AppAddress,AppPassword,adminId,newApartmentId);
+                        myApp.insert_name_and_id(adminId,adminName);
+                        db.getReference().child("apartmentIds").setValue(apartmentIdwList);
+                        root.child(String.valueOf(myApp.apartmentId)).setValue(myApp).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Log.i("hananell_addNewApartment","complate try set value");
+                                if(task.isSuccessful()){
+                                    Log.i("hananell_addNewApartment","success");
+                                    Toast.makeText(AddNewApartment.this, "Apartment has created successsfuly :)", Toast.LENGTH_LONG).show();
+                                    db.getReference().child("Users").child(adminId).child("hasApartment").setValue(true);
+                                    db.getReference().child("Users").child(adminId).child("isAdmin").setValue(true);
+                                    db.getReference().child("Users").child(adminId).child("apartmentId").setValue(myApp.apartmentId);
+                                    startActivity(new Intent(AddNewApartment.this, WelcomeActivity.class));
+
+
+                                }else{
+                                    Log.i("hananell_addNewApartment","failed");
+
+                                    Toast.makeText(AddNewApartment.this, "Creating new apartment failed :( , Please try again", Toast.LENGTH_LONG).show();
+                                }
+
+                            }
+                        });
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
                     }
                 });
+
             }
 
             @Override
@@ -117,6 +149,19 @@ public class AddNewApartment extends AppCompatActivity implements View.OnClickLi
 
             }
         });
+    }
+
+    public int find_available_appartment_id(List<Integer> apartmentId){
+        int lastId = apartmentId.get(0);
+        for (int i = 1; i < apartmentId.size(); i++) {
+            if(apartmentId.get(i)!=lastId+1){
+                apartmentId.add(i-1,lastId+1);
+                return lastId+1;
+            }
+            lastId = apartmentId.get(i);
+        }
+        apartmentId.add(lastId+1);
+        return lastId+1;
     }
 
     public void checkValidation(){

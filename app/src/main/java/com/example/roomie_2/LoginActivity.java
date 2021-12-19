@@ -26,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -43,6 +44,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
+    List<Integer> list;
 
 
     @Override
@@ -67,6 +69,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         forgetPassword.setOnClickListener(this);
 
         FirebaseDatabase db = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");
+
+
+
 
 
 
