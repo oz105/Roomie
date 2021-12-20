@@ -4,7 +4,6 @@ public class User {
 
     public String fullName, age, email,id;
 
-    private static int[] userIndex = new int[100];
     public Boolean hasApartment;
     public Boolean isAdmin;
 
@@ -22,17 +21,5 @@ public class User {
         hasApartment = false;
         isAdmin = false;
     }
-
-    private int get_user_id(){
-        for (int i = 0; i < userIndex.length; i++) {
-            if(userIndex[i]==0){
-                userIndex[i]=1;
-                return i;
-            }
-        }
-        return -1;
-    }
-
-
 
 }

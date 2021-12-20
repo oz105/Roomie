@@ -25,12 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
+
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -69,14 +65,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         forgetPassword.setOnClickListener(this);
 
         FirebaseDatabase db = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");
-
-
-
-
-
-
-
-
 
     }
 
@@ -143,9 +131,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if(task.isSuccessful()){
                     Log.i("hananell Login","success log in");
 
-//                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//                    DatabaseReference ref = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app").getReference().child("Users").child(user.getUid()).child("hasAppartment");
-//                    ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     user = FirebaseAuth.getInstance().getCurrentUser();
                     reference = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Users");
                     userID = user.getUid();
@@ -156,17 +141,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                             Log.i("hananell Login","find if has apartment");
                             User profileUser = dataSnapshot.getValue(User.class);
-                            //boolean hasApartment = Boolean.parseBoolean(dataSnapshot.getValue().toString());
-//                            boolean hasApartment = profileUser.hasApartment;
                             boolean hasApartment = profileUser.hasApartment;
                             if(hasApartment){
                                 Log.i("hananell Login","has apartment");
-
                                 startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));
                             }
                             else{
                                 Log.i("hananell Login","has not apartment");
-
                                 startActivity(new Intent(LoginActivity.this, FirstRegisteredEntry.class));
                             }
                             progressBar.setVisibility(View.GONE);
@@ -177,6 +158,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             Toast.makeText(LoginActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
                         }
                     });
+
+                    // check if user verify his email
 
 //                    if(user.isEmailVerified()){
 //                        startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));

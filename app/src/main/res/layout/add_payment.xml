@@ -12,7 +12,7 @@
         android:padding="24dp"
         android:textSize="23sp"
         android:textAlignment="center"
-        android:text="Adding new item:"
+        android:text="Adding new Payment:"
         />
     <LinearLayout
         android:layout_width="match_parent"
