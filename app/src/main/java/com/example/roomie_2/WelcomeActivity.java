@@ -79,7 +79,7 @@ public class WelcomeActivity  extends AppCompatActivity implements View.OnClickL
 
             case R.id.info:
                 Log.i("tamir","starting shoplist");
-                startActivity(new Intent(WelcomeActivity.this, ShowInfoActivity.class));
+                startActivity(new Intent(WelcomeActivity.this, EditInfoActivity.class));
                 break;
 
             case R.id.signOut:

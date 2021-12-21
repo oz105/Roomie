@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:ems="10"
-        android:textSize="20sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:text="Info"
@@ -39,6 +39,7 @@
 
     <EditText
         android:id="@+id/address"
+        android:textColorHint="@color/white"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
@@ -54,6 +55,7 @@
 
     <EditText
         android:id="@+id/rooms"
+        android:textColorHint="@color/white"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -68,6 +70,7 @@
 
     <EditText
         android:id="@+id/details"
+        android:textColorHint="@color/white"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -88,6 +91,7 @@
 
     <EditText
         android:id="@+id/priceRent"
+        android:textColorHint="@color/white"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
