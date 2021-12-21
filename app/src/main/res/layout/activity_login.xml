@@ -51,7 +51,7 @@
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <Button
-        android:id="@+id/singIn"
+        android:id="@+id/signIn"
         android:layout_width="380dp"
         android:layout_height="70dp"
         android:layout_marginTop="24dp"
@@ -73,7 +73,7 @@
         android:layout_marginLeft="50dp"
         android:layout_marginTop="25dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/singIn"
+        app:layout_constraintTop_toBottomOf="@+id/signIn"
         />
     <TextView
         android:id="@+id/register"

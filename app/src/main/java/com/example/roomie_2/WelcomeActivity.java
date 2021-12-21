@@ -25,7 +25,7 @@ public class WelcomeActivity  extends AppCompatActivity implements View.OnClickL
 
     private String userID;
 
-    private Button logout,bills, management, ShoppingBut;
+    private Button logout,bills, ShoppingBut, info;
 
 
 
@@ -33,30 +33,17 @@ public class WelcomeActivity  extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        management = (Button) findViewById(R.id.management);
         bills = (Button) findViewById(R.id.bills);
-        bills.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(WelcomeActivity.this, BillsActivity.class));
-            }
-        });
+        bills.setOnClickListener(this);
+
         ShoppingBut = (Button) findViewById(R.id.shoppingList);
-        ShoppingBut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("tamir","starting shoplist");
-                startActivity(new Intent(WelcomeActivity.this, ShoppingListActivity.class));
-            }
-        });
+        ShoppingBut.setOnClickListener(this);
+
+        info = (Button) findViewById(R.id.info);
+        info.setOnClickListener(this);
+
         logout = (Button) findViewById(R.id.signOut);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
-            }
-        });
+        logout.setOnClickListener(this);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Users");
@@ -67,9 +54,6 @@ public class WelcomeActivity  extends AppCompatActivity implements View.OnClickL
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User profileUser = snapshot.getValue(User.class);
                 Log.i("manger","success is  "+profileUser.isAdmin);
-                if(!profileUser.isAdmin){
-                    management.setVisibility(View.GONE);
-                }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -82,6 +66,27 @@ public class WelcomeActivity  extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.bills:
+                Log.i("hananell Login","in bills");
+                startActivity(new Intent(WelcomeActivity.this, BillsActivity.class));
+                break;
+
+            case R.id.shoppingList:
+                Log.i("tamir","starting shoplist");
+                startActivity(new Intent(WelcomeActivity.this, ShoppingListActivity.class));
+                break;
+
+            case R.id.info:
+                Log.i("tamir","starting shoplist");
+                startActivity(new Intent(WelcomeActivity.this, ShowInfoActivity.class));
+                break;
+
+            case R.id.signOut:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+                break;
+        }
 
 
     }

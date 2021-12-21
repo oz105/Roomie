@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         register = (TextView) findViewById(R.id.register);
         register.setOnClickListener(this);
 
-        signIn = (Button) findViewById(R.id.singIn);
+        signIn = (Button) findViewById(R.id.signIn);
         signIn.setOnClickListener(this);
 
         editTextEmail = (EditText) findViewById(R.id.email);
@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(new Intent(this,ForgetPasswordActivity.class));
                 break;
 
-            case R.id.singIn:
+            case R.id.signIn:
                 Log.i("hananell Login","try log in");
                 userLogin();
                 break;
