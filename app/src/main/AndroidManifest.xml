@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Roomie_2">
         <activity
+            android:name=".AdminUpdateInfo"
+            android:exported="false" />
+        <activity
             android:name=".ShowInfoActivity"
             android:exported="false" />
         <activity
@@ -34,7 +37,10 @@
             android:name=".FirstRegisteredEntry"
             android:exported="false" />
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".WelcomeUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WelcomeAdminActivity"
             android:exported="false" />
         <activity
             android:name=".ShoppingListActivity"

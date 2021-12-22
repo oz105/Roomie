@@ -27,7 +27,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
-
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseUser user;
@@ -45,26 +44,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
-
         register = (TextView) findViewById(R.id.register);
         register.setOnClickListener(this);
-
         signIn = (Button) findViewById(R.id.signIn);
         signIn.setOnClickListener(this);
-
         editTextEmail = (EditText) findViewById(R.id.email);
         editTextPassword = (EditText) findViewById(R.id.password);
-
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
         forgetPassword = (TextView) findViewById(R.id.forgotPassword);
         forgetPassword.setOnClickListener(this);
-
         FirebaseDatabase db = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");
+
 
     }
 
@@ -74,7 +67,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null && currentUser.isEmailVerified()){
-            startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));
+            startActivity(new Intent(LoginActivity.this, WelcomeUserActivity.class));
         }
     }
     @Override
@@ -131,6 +124,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if(task.isSuccessful()){
                     Log.i("hananell Login","success log in");
 
+//                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//                    DatabaseReference ref = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app").getReference().child("Users").child(user.getUid()).child("hasAppartment");
+//                    ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     user = FirebaseAuth.getInstance().getCurrentUser();
                     reference = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Users");
                     userID = user.getUid();
@@ -138,17 +134,46 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.exists()) {
+                                Log.i("roomie Login", "find if has apartment");
+                                User profileUser = dataSnapshot.getValue(User.class);
+                                boolean isAdmin = profileUser.isAdmin;
+                                boolean hasApartment = profileUser.hasApartment;
+                                String apartmentId = String.valueOf(profileUser.apartmentId);
 
-                            Log.i("hananell Login","find if has apartment");
-                            User profileUser = dataSnapshot.getValue(User.class);
-                            boolean hasApartment = profileUser.hasApartment;
-                            if(hasApartment){
-                                Log.i("hananell Login","has apartment");
-                                startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));
+                                if (isAdmin) {
+                                    Log.i("roomie Login", "Admin");
+                                    if (hasApartment) {
+                                        Log.i("roomie Login", "has apartment");
+                                        // admin welcome here...
+                                        Intent intent = new Intent(LoginActivity.this, WelcomeAdminActivity.class);
+                                        intent.putExtra("currentApartmentId", apartmentId);
+                                        startActivity(intent);
+                                    } else {
+
+                                        Log.i("roomie Login", "has no apartment");
+                                        // admin add new apartment
+                                        startActivity(new Intent(LoginActivity.this, AddNewApartment.class));
+                                    }
+
+                                } else {
+                                    Log.i("roomie Login", "User");
+
+                                    if (hasApartment) {
+                                        Log.i("hananell Login", "has apartment");
+                                        // user welcome here...
+                                        startActivity(new Intent(LoginActivity.this, WelcomeUserActivity.class));
+                                    } else {
+                                        Log.i("hananell Login", "has not apartment");
+                                        // user join apartment
+                                        startActivity(new Intent(LoginActivity.this, FirstRegisteredEntry.class));
+                                    }
+
+                                }
                             }
                             else{
-                                Log.i("hananell Login","has not apartment");
-                                startActivity(new Intent(LoginActivity.this, FirstRegisteredEntry.class));
+                                Toast.makeText(LoginActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+
                             }
                             progressBar.setVisibility(View.GONE);
                         }
@@ -158,8 +183,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             Toast.makeText(LoginActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
                         }
                     });
-
-                    // check if user verify his email
 
 //                    if(user.isEmailVerified()){
 //                        startActivity(new Intent(LoginActivity.this, WelcomeActivity.class));

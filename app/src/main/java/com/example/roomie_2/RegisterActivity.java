@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,8 +29,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private FirebaseAuth mAuth;
     private TextView banner, registerUser;
+    private RadioGroup type;
     private EditText editTextFullName, editTextAge, editTextEmail, editTextPassword;
     private ProgressBar progressBar;
+    private boolean isAdmin = false;
     FirebaseDatabase db = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");
     DatabaseReference root = db.getReference().child("Users");
 
@@ -38,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         mAuth = FirebaseAuth.getInstance();
-
+        type = (RadioGroup) findViewById(R.id.type);
         banner = (TextView) findViewById(R.id.banner);
         banner.setOnClickListener(this);
 
@@ -51,6 +55,21 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         editTextPassword = (EditText) findViewById(R.id.password);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        type.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton checked = (RadioButton) group.findViewById(checkedId);
+
+                if(checked.getId()==R.id.admin){
+                    isAdmin = true;
+                }
+
+
+            }
+        });
+
+
     }
 
     @Override
@@ -115,8 +134,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             String id = mAuth.getCurrentUser().getUid();
-                            User user = new User(fullName, age, email,id);
-                            root.child(String.valueOf(user.id)).setValue(user)
+                            User user = new User(fullName, age, email,id,isAdmin);
+                            db.getReference().child("Users").child(id).setValue(user)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {

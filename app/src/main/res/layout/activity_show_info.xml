@@ -80,7 +80,6 @@
         android:inputType="text"
         android:minHeight="250dp"
         android:textSize="24sp"
-        android:background="@drawable/shape_edit_text"
         android:lines="10"
         android:minLines="5"
         android:gravity="top|left"

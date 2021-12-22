@@ -18,7 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class WelcomeActivity  extends AppCompatActivity implements View.OnClickListener{
+public class WelcomeUserActivity extends AppCompatActivity implements View.OnClickListener{
 
     private FirebaseUser user;
     private DatabaseReference reference;
@@ -32,7 +32,7 @@ public class WelcomeActivity  extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+        setContentView(R.layout.activity_welcome_user);
         bills = (Button) findViewById(R.id.bills);
         bills.setOnClickListener(this);
 
@@ -57,7 +57,7 @@ public class WelcomeActivity  extends AppCompatActivity implements View.OnClickL
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(WelcomeActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(WelcomeUserActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -69,22 +69,22 @@ public class WelcomeActivity  extends AppCompatActivity implements View.OnClickL
         switch (v.getId()){
             case R.id.bills:
                 Log.i("hananell Login","in bills");
-                startActivity(new Intent(WelcomeActivity.this, BillsActivity.class));
+                startActivity(new Intent(WelcomeUserActivity.this, BillsActivity.class));
                 break;
 
             case R.id.shoppingList:
                 Log.i("tamir","starting shoplist");
-                startActivity(new Intent(WelcomeActivity.this, ShoppingListActivity.class));
+                startActivity(new Intent(WelcomeUserActivity.this, ShoppingListActivity.class));
                 break;
 
             case R.id.info:
                 Log.i("tamir","starting shoplist");
-                startActivity(new Intent(WelcomeActivity.this, EditInfoActivity.class));
+                startActivity(new Intent(WelcomeUserActivity.this, EditInfoActivity.class));
                 break;
 
             case R.id.signOut:
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+                startActivity(new Intent(WelcomeUserActivity.this, LoginActivity.class));
                 break;
         }
 

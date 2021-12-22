@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,46 +22,51 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class AddNewApartment extends AppCompatActivity implements View.OnClickListener {
+public class AddNewApartment extends AppCompatActivity {
     FirebaseDatabase db = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");
     DatabaseReference root = db.getReference().child("Apartments");
-    EditText AppName,AppAddress,AppPassword;
-    TextView create;
+    EditText AppAddress,AppPassword,details,numOfRooms,price;
+    Button updateInfo;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_new_apartment);
-        AppName = (EditText) findViewById(R.id.Name);
-        AppAddress = (EditText) findViewById(R.id.Address);
-        AppPassword = (EditText) findViewById(R.id.Password);
-        create = (TextView) findViewById(R.id.create);
-        create.setOnClickListener(this);
-//        Submite = (Button) findViewById(R.id.create);
-//        Submite.setOnClickListener(this);
+        setContentView(R.layout.activity_edit_info);
+        AppAddress = (EditText) findViewById(R.id.address);
+        AppPassword = (EditText) findViewById(R.id.password);
+        numOfRooms = (EditText) findViewById(R.id.rooms);
+        details = (EditText) findViewById(R.id.details);
+        price = (EditText) findViewById(R.id.priceRent);
 
-    }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.create:
-                Log.i("hananell_addNewApartment","after press create");
+
+        updateInfo = (Button) findViewById(R.id.updateData);
+        updateInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 checkValidation();
-                try {
-                    add_apartment(AppName.getText().toString(),AppAddress.getText().toString(),AppPassword.getText().toString());
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                Map<String,Object> apartmentInfo = new HashMap<>();
+                apartmentInfo.put("address",AppAddress.getText().toString());
+                apartmentInfo.put("numOfRoom",numOfRooms.getText().toString());
+                apartmentInfo.put("price",price.getText().toString());
+                apartmentInfo.put("password",AppPassword.getText().toString());
+                apartmentInfo.put("details",details.getText().toString());
+                add_apartment(apartmentInfo);
 
-                break;
 
-        }
+            }
+        });
+
 
     }
+
+
     public String get_name_by_id(String id) throws InterruptedException {
         final String[] name = new String[1];
 
@@ -82,63 +88,41 @@ public class AddNewApartment extends AppCompatActivity implements View.OnClickLi
 
     }
 
-    public void add_apartment(String AppName,String AppAddress,String AppPassword) throws InterruptedException {
+    public void add_apartment(Map<String,Object> details)  {
 
         String adminId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        db.getReference().child("Users").child(adminId).child("fullName").addListenerForSingleValueEvent(new ValueEventListener() {
+
+        db.getReference().child("apartmentIds").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                db.getReference().child("apartmentIds").addListenerForSingleValueEvent(new ValueEventListener() {
+                List<Integer> apartmentIdwList = null;
+                int newApartmentId;
+                if (snapshot.exists()) {
+                    apartmentIdwList = (List<Integer>) (snapshot.getValue());
+                    newApartmentId = find_available_appartment_id(apartmentIdwList);
+                } else {
+                    apartmentIdwList = new ArrayList<>();
+                    newApartmentId = 0;
+                    apartmentIdwList.add(newApartmentId);
+                }
+
+                Apartment myApp = new Apartment(details, newApartmentId);
+                db.getReference().child("apartmentIds").setValue(apartmentIdwList);
+                root.child(String.valueOf(newApartmentId)).setValue(myApp).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        List<Integer> apartmentIdwList=null;
-                        int newApartmentId;
-                        if(snapshot.exists()){
-                            apartmentIdwList =(List<Integer>) (snapshot.getValue());
-                            newApartmentId = find_available_appartment_id(apartmentIdwList);
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Log.i("hananell_addNewApartment", "complate try set value");
+                        if (task.isSuccessful()) {
+                            Log.i("hananell_addNewApartment", "success");
+                            Toast.makeText(AddNewApartment.this, "Apartment has created successsfuly :)", Toast.LENGTH_LONG).show();
+                            db.getReference().child("Users").child(adminId).child("hasApartment").setValue(true);
+                            db.getReference().child("Users").child(adminId).child("apartmentId").setValue(newApartmentId);
+                            startActivity(new Intent(AddNewApartment.this, WelcomeAdminActivity.class));
+                        } else {
+                            Log.i("hananell_addNewApartment", "failed");
+                            Toast.makeText(AddNewApartment.this, "Creating new apartment failed :( , Please try again", Toast.LENGTH_LONG).show();
                         }
-                        else {
-                            apartmentIdwList = new ArrayList<>();
-                            newApartmentId = 0;
-                            apartmentIdwList.add(newApartmentId);
-
-
-                        }
-
-
-
-                        String adminName = snapshot.getValue(String.class);
-                        Apartment myApp = new Apartment(AppName,AppAddress,AppPassword,adminId,newApartmentId);
-                        myApp.insert_name_and_id(adminId,adminName);
-                        db.getReference().child("apartmentIds").setValue(apartmentIdwList);
-                        root.child(String.valueOf(myApp.apartmentId)).setValue(myApp).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Log.i("hananell_addNewApartment","complate try set value");
-                                if(task.isSuccessful()){
-                                    Log.i("hananell_addNewApartment","success");
-                                    Toast.makeText(AddNewApartment.this, "Apartment has created successsfuly :)", Toast.LENGTH_LONG).show();
-                                    db.getReference().child("Users").child(adminId).child("hasApartment").setValue(true);
-                                    db.getReference().child("Users").child(adminId).child("isAdmin").setValue(true);
-                                    db.getReference().child("Users").child(adminId).child("apartmentId").setValue(myApp.apartmentId);
-                                    startActivity(new Intent(AddNewApartment.this, WelcomeActivity.class));
-
-
-                                }else{
-                                    Log.i("hananell_addNewApartment","failed");
-
-                                    Toast.makeText(AddNewApartment.this, "Creating new apartment failed :( , Please try again", Toast.LENGTH_LONG).show();
-                                }
-
-                            }
-                        });
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
                     }
                 });
 
@@ -150,6 +134,8 @@ public class AddNewApartment extends AppCompatActivity implements View.OnClickLi
             }
         });
     }
+
+
 
     public int find_available_appartment_id(List<Integer> apartmentId){
         int lastId = apartmentId.get(0);
@@ -165,22 +151,34 @@ public class AddNewApartment extends AppCompatActivity implements View.OnClickLi
     }
 
     public void checkValidation(){
-        Log.i("hananell_addNewApartment","check validation");
+        Log.i("roomie_addNewApartment","check validation");
 
-        if(AppName.getText().toString().isEmpty() ){
-            AppName.setError("Full name is required!");
-            AppName.requestFocus();
-            return;
-        }
+
         if(AppPassword.getText().toString().isEmpty() ){
-            AppPassword.setError("Full name is required!");
+            AppPassword.setError("join password is required!");
             AppPassword.requestFocus();
             return;
         }
         if(AppAddress.getText().toString().isEmpty() ){
-            AppAddress.setError("Full name is required!");
+            AppAddress.setError("apartment address is required!");
             AppAddress.requestFocus();
             return;
         }
+        if(details.getText().toString().isEmpty() ){
+            AppAddress.setError("details is required!");
+            AppAddress.requestFocus();
+            return;
+        }
+        if(price.getText().toString().isEmpty() ){
+            AppAddress.setError("price is required!");
+            AppAddress.requestFocus();
+            return;
+        }
+        if(numOfRooms.getText().toString().isEmpty() ){
+            AppAddress.setError("number of rooms is required!");
+            AppAddress.requestFocus();
+            return;
+        }
+
     }
 }

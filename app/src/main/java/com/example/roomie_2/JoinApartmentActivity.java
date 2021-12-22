@@ -77,7 +77,7 @@ public class JoinApartmentActivity extends AppCompatActivity implements View.OnC
 
 
 
-                                startActivity(new Intent(JoinApartmentActivity.this,WelcomeActivity.class));
+                                startActivity(new Intent(JoinApartmentActivity.this, WelcomeUserActivity.class));
                             }
                             else{
                                 Log.i("hananell new apartment","wrong password "+snapshot.getValue().toString());

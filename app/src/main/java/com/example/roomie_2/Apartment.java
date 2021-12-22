@@ -7,35 +7,70 @@ import java.util.List;
 import java.util.Map;
 
 public class Apartment {
-    public String name,address,Password;
-    public int apartmentId;
-    public String adminId;
-    public List<ShopItem> shoppingList;
-    public List<Bill> billsList = new ArrayList<>();
-    public Map<String,String> apartmentUsers = new HashMap<>();
+    private Map<String,Object> details;
+    private int apartmentId;
+    protected String adminId;
+    protected List<ShopItem> shoppingList;
+    protected List<Bill> billsList = new ArrayList<>();
+    protected Map<String,String> apartmentUsers = new HashMap<>();
 
 
-    public Apartment(String name, String address, String password, String adminId,int apartmentId){
-        this.name=name;
-        this.address=address;
-        this.Password= password;
-        this.adminId = adminId;
+    public Apartment(Map<String,Object> details,int apartmentId){
+
+        this.details = details;
         this.apartmentId=apartmentId;
         shoppingList = new LinkedList<ShopItem>();
-        shoppingList.add(new ShopItem("test Item",5.5f));
     }
 
     public void insert_name_and_id(String id,String name){
         apartmentUsers.put(id,name);
     }
 
+    public Map<String, Object> getDetails() {
+        return details;
+    }
 
+    public void setDetails(Map<String, Object> details) {
+        this.details = details;
+    }
 
+    public int getApartmentId() {
+        return apartmentId;
+    }
 
+    public void setApartmentId(int apartmentId) {
+        this.apartmentId = apartmentId;
+    }
 
+    public String getAdminId() {
+        return adminId;
+    }
 
+    public void setAdminId(String adminId) {
+        this.adminId = adminId;
+    }
 
+    public List<ShopItem> getShoppingList() {
+        return shoppingList;
+    }
 
+    public void setShoppingList(List<ShopItem> shoppingList) {
+        this.shoppingList = shoppingList;
+    }
 
+    public List<Bill> getBillsList() {
+        return billsList;
+    }
 
+    public void setBillsList(List<Bill> billsList) {
+        this.billsList = billsList;
+    }
+
+    public Map<String, String> getApartmentUsers() {
+        return apartmentUsers;
+    }
+
+    public void setApartmentUsers(Map<String, String> apartmentUsers) {
+        this.apartmentUsers = apartmentUsers;
+    }
 }

@@ -13,12 +13,13 @@ public class EditInfoActivity extends AppCompatActivity {
 
     private FirebaseUser user;
     private DatabaseReference reference;
+    private String apartmentId="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_info);
-
+        apartmentId = getIntent().getStringExtra("currentApartmentId");
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Users");
 
