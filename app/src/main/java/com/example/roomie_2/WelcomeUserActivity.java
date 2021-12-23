@@ -79,7 +79,7 @@ public class WelcomeUserActivity extends AppCompatActivity implements View.OnCli
 
             case R.id.info:
                 Log.i("tamir","starting shoplist");
-                startActivity(new Intent(WelcomeUserActivity.this, EditInfoActivity.class));
+                startActivity(new Intent(WelcomeUserActivity.this, ShowInfoActivity.class));
                 break;
 
             case R.id.signOut:

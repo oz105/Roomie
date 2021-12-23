@@ -26,6 +26,7 @@ public class AdminUpdateInfo extends AppCompatActivity {
     EditText AppAddress,AppPassword,details,numOfRooms,price;
     TextView id;
     Button updateInfo;
+    private Button addPhotos;
     private String apartmentId="";
     private Map<String,Object> apartmentInfo;
 
@@ -37,13 +38,14 @@ public class AdminUpdateInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_info);
         apartmentId = getIntent().getStringExtra("currentApartmentId");
-        id = (TextView)findViewById(R.id.appartmentId) ;
-        id.setText("Appartment ID: "+apartmentId);
+        id = (TextView) findViewById(R.id.appartmentId);
+        id.setText("Appartment ID: " + apartmentId);
         AppAddress = (EditText) findViewById(R.id.address);
         AppPassword = (EditText) findViewById(R.id.password);
         numOfRooms = (EditText) findViewById(R.id.rooms);
         details = (EditText) findViewById(R.id.details);
         price = (EditText) findViewById(R.id.priceRent);
+        addPhotos = (Button) findViewById(R.id.addPhotos);
         updateInfo = (Button) findViewById(R.id.updateData);
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -66,31 +68,24 @@ public class AdminUpdateInfo extends AppCompatActivity {
         });
 
 
-
-
-
-
-
-
-
         updateInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(!AppPassword.getText().toString().isEmpty() ){
-                    apartmentInfo.put("password",AppPassword.getText().toString());
+                if (!AppPassword.getText().toString().isEmpty()) {
+                    apartmentInfo.put("password", AppPassword.getText().toString());
                 }
-                if(!AppAddress.getText().toString().isEmpty() ){
-                    apartmentInfo.put("address",AppAddress.getText().toString());
+                if (!AppAddress.getText().toString().isEmpty()) {
+                    apartmentInfo.put("address", AppAddress.getText().toString());
                 }
-                if(!details.getText().toString().isEmpty() ){
-                    apartmentInfo.put("details",details.getText().toString());
+                if (!details.getText().toString().isEmpty()) {
+                    apartmentInfo.put("details", details.getText().toString());
                 }
-                if(!price.getText().toString().isEmpty() ){
-                    apartmentInfo.put("price",price.getText().toString());
+                if (!price.getText().toString().isEmpty()) {
+                    apartmentInfo.put("price", price.getText().toString());
                 }
-                if(!numOfRooms.getText().toString().isEmpty() ){
-                    apartmentInfo.put("numOfRoom",numOfRooms.getText().toString());
+                if (!numOfRooms.getText().toString().isEmpty()) {
+                    apartmentInfo.put("numOfRoom", numOfRooms.getText().toString());
                 }
                 root.child(apartmentId).child("details").setValue(apartmentInfo);
                 Intent intent = new Intent(AdminUpdateInfo.this, WelcomeAdminActivity.class);
@@ -98,16 +93,16 @@ public class AdminUpdateInfo extends AppCompatActivity {
                 startActivity(intent);
 
 
-
             }
 
-
-
+        });
+        addPhotos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminUpdateInfo.this, ApartmentPhotosActivity.class);
+                startActivity(intent);
+            }
         });
 
-
     }
-
-
-
 }
