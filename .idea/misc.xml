@@ -3,19 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/costum_input.xml" value="0.22395833333333334" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_bills.xml" value="0.24270833333333333" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_email.xml" value="0.2205128205128205" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_home.xml" value="0.24270833333333333" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_info.xml" value="0.24270833333333333" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_logout.xml" value="0.24270833333333333" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_money.xml" value="0.24270833333333333" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_notification.xml" value="0.24270833333333333" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_password.xml" value="0.22395833333333334" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_room.xml" value="0.24270833333333333" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_add_new_apartment.xml" value="0.4" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_add_new_appartment.xml" value="0.264" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_bills.xml" value="0.4" />
-        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_edit_info.xml" value="0.4" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_edit_info.xml" value="0.2907268170426065" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_first_registered_entry.xml" value="0.23177083333333334" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_forget_password.xml" value="0.2359375" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_join_apartment.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_join_appartment.xml" value="0.28541666666666665" />
-        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_login.xml" value="0.23177083333333334" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_login.xml" value="0.38731218697829717" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_main.xml" value="0.21770833333333334" />
-        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_register.xml" value="0.2" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_register.xml" value="0.264" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_shop_item.xml" value="0.23854166666666668" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_shopping_list.xml" value="0.23854166666666668" />
-        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_show_info.xml" value="0.1" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_show_info.xml" value="0.4" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_welcome.xml" value="0.27807971014492755" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_welcome_admin.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_welcome_user.xml" value="0.2859375" />

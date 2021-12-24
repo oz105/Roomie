@@ -90,6 +90,8 @@
             android:layout_weight="1"
             android:layout_gravity="center_horizontal|center"
             android:textSize="12dp"
+            android:drawableTop="@drawable/ic_info"
+
             android:text="Info" />
     </LinearLayout>
 

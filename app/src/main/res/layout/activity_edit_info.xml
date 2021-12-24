@@ -24,12 +24,16 @@
 
     <EditText
         android:id="@+id/password"
+        android:drawableStart="@drawable/ic_password"
+        android:drawablePadding="5dp"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="92dp"
         android:ems="10"
         android:hint="join apartment password"
         android:inputType="number"
+        android:background="@drawable/costum_input"
+
         android:minHeight="48dp"
         android:textColorHint="@color/white"
         android:textSize="24sp"
@@ -74,10 +78,14 @@
 
     <EditText
         android:id="@+id/address"
+        android:drawableStart="@drawable/ic_home"
+        android:drawablePadding="5dp"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Address"
+        android:background="@drawable/costum_input"
+
         android:inputType="textPostalAddress"
         android:minHeight="48dp"
         android:textColorHint="@color/white"
@@ -89,11 +97,15 @@
 
     <EditText
         android:id="@+id/rooms"
+        android:drawableStart="@drawable/ic_room"
+        android:drawablePadding="5dp"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Num of Rooms"
+        android:background="@drawable/costum_input"
+
         android:inputType="number"
         android:minHeight="48dp"
         android:textColorHint="@color/white"
@@ -112,6 +124,8 @@
         android:gravity="top|left"
         android:hint=" Details(limit 500 Characters)"
         android:inputType="text"
+        android:background="@drawable/costum_input"
+
         android:lines="10"
         android:maxLength="500"
         android:maxLines="15"
@@ -126,11 +140,15 @@
     <EditText
         android:id="@+id/priceRent"
         android:textColorHint="@color/white"
+        android:drawableStart="@drawable/ic_money"
+        android:drawablePadding="5dp"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Price"
+        android:background="@drawable/costum_input"
+
         android:inputType="number"
         android:minHeight="48dp"
         android:textSize="24sp"

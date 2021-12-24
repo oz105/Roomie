@@ -24,6 +24,7 @@ public class WelcomeUserActivity extends AppCompatActivity implements View.OnCli
     private DatabaseReference reference;
 
     private String userID;
+    private long currentApartmetId;
 
     private Button logout,bills, ShoppingBut, info;
 
@@ -48,19 +49,19 @@ public class WelcomeUserActivity extends AppCompatActivity implements View.OnCli
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Users");
         userID = user.getUid();
-
-        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.child(userID).child("apartmentId").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User profileUser = snapshot.getValue(User.class);
-                Log.i("manger","success is  "+profileUser.isAdmin);
+                currentApartmetId = (long)snapshot.getValue();
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(WelcomeUserActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
 
             }
         });
+
+
 
     }
 
@@ -68,18 +69,21 @@ public class WelcomeUserActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.bills:
-                Log.i("hananell Login","in bills");
+                Log.i("roomie_welcome","starting bills");
                 startActivity(new Intent(WelcomeUserActivity.this, BillsActivity.class));
                 break;
 
             case R.id.shoppingList:
-                Log.i("tamir","starting shoplist");
+                Log.i("roomie_welcome","starting shoplist");
                 startActivity(new Intent(WelcomeUserActivity.this, ShoppingListActivity.class));
                 break;
 
             case R.id.info:
-                Log.i("tamir","starting shoplist");
-                startActivity(new Intent(WelcomeUserActivity.this, EditInfoActivity.class));
+                Log.i("roomie_welcome","starting info");
+                Intent intent = new Intent(WelcomeUserActivity.this, ShowInfoActivity.class);
+                intent.putExtra("currentApartmentId", String.valueOf(currentApartmetId));
+                startActivity(intent);
+
                 break;
 
             case R.id.signOut:

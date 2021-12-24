@@ -166,7 +166,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     } else {
                                         Log.i("hananell Login", "has not apartment");
                                         // user join apartment
-                                        startActivity(new Intent(LoginActivity.this, FirstRegisteredEntry.class));
+                                        startActivity(new Intent(LoginActivity.this, JoinApartmentActivity.class));
                                     }
 
                                 }

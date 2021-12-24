@@ -63,11 +63,7 @@ public class ShoppingListActivity extends AppCompatActivity {
                             ListDB.add(c);
                         }
 
-//                Log.i("datasnap","data is : "+ListDB.isEmpty());
-                        Log.i("datasnap","listDb [0] is : "+ListDB.get(0));
-                        //refreshAdapter(ListDB);
-
-                        Log.i("!!!ShoplistAdapter!!!","list size is "+ListDB.size());
+//
                         sAdapter = new ShopListAdapter(getApplicationContext(),ListDB);
                         ListView listView = (ListView) findViewById(R.id.list);
 
@@ -199,7 +195,7 @@ public class ShoppingListActivity extends AppCompatActivity {
         final Dialog LoadingDialog = new Dialog(ShoppingListActivity.this);
         LoadingDialog.setContentView(R.layout.updating_data_dialog);
         LoadingDialog.show();
-        root.child("Appartments").child(""+aptNum).child("shoppingList").setValue(ListDB).addOnCompleteListener(new OnCompleteListener<Void>() {
+        root.child("Apartments").child(""+aptNum).child("shoppingList").setValue(ListDB).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful())

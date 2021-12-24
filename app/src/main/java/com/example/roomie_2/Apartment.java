@@ -8,14 +8,14 @@ import java.util.Map;
 
 public class Apartment {
     private Map<String,Object> details;
-    private int apartmentId;
+    private long apartmentId;
     protected String adminId;
     protected List<ShopItem> shoppingList;
     protected List<Bill> billsList = new ArrayList<>();
     protected Map<String,String> apartmentUsers = new HashMap<>();
 
 
-    public Apartment(Map<String,Object> details,int apartmentId){
+    public Apartment(Map<String,Object> details,long apartmentId){
 
         this.details = details;
         this.apartmentId=apartmentId;
@@ -34,7 +34,7 @@ public class Apartment {
         this.details = details;
     }
 
-    public int getApartmentId() {
+    public long getApartmentId() {
         return apartmentId;
     }
 

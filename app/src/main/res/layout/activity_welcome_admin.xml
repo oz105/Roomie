@@ -37,6 +37,8 @@
         <Button
             android:id="@+id/info"
             style="?android:attr/buttonStyleSmall"
+            android:drawableTop="@drawable/ic_info"
+
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_weight="1"

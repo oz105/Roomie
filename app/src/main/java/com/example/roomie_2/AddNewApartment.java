@@ -96,10 +96,10 @@ public class AddNewApartment extends AppCompatActivity {
         db.getReference().child("apartmentIds").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                List<Integer> apartmentIdwList = null;
-                int newApartmentId;
+                List<Long> apartmentIdwList = null;
+                long newApartmentId;
                 if (snapshot.exists()) {
-                    apartmentIdwList = (List<Integer>) (snapshot.getValue());
+                    apartmentIdwList = (List<Long>) (snapshot.getValue());
                     newApartmentId = find_available_appartment_id(apartmentIdwList);
                 } else {
                     apartmentIdwList = new ArrayList<>();
@@ -137,8 +137,8 @@ public class AddNewApartment extends AppCompatActivity {
 
 
 
-    public int find_available_appartment_id(List<Integer> apartmentId){
-        int lastId = apartmentId.get(0);
+    public long find_available_appartment_id(List<Long> apartmentId){
+        long lastId = apartmentId.get(0);
         for (int i = 1; i < apartmentId.size(); i++) {
             if(apartmentId.get(i)!=lastId+1){
                 apartmentId.add(i-1,lastId+1);

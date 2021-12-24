@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="620dp"
         android:text="Roomie"
+
         android:textSize="60sp"
         android:textAlignment="center"
         android:textStyle="bold"
@@ -43,6 +44,8 @@
         android:layout_marginTop="60dp"
         android:ems="10"
         android:hint="Full Name"
+        android:background="@drawable/costum_input"
+
         android:inputType="text"
         android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -56,6 +59,8 @@
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Age"
+        android:background="@drawable/costum_input"
+
         android:inputType="number"
         android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -69,6 +74,8 @@
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Email"
+        android:background="@drawable/costum_input"
+
         android:inputType="textEmailAddress"
         android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -83,6 +90,8 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        android:background="@drawable/costum_input"
+
         android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

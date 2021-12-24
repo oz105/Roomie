@@ -19,13 +19,10 @@ import com.google.firebase.database.ValueEventListener;
 
 public class JoinApartmentActivity extends AppCompatActivity implements View.OnClickListener {
 
-    EditText apartmentID,password;
-    Button join;
-    FirebaseDatabase db = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");
-    DatabaseReference Apartment = db.getReference().child("Apartments");
-
-
-
+    private EditText apartmentID,password;
+    private Button join;
+    private FirebaseDatabase db = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");
+    private DatabaseReference Apartment = db.getReference().child("Apartments");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,74 +36,41 @@ public class JoinApartmentActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View v) {
-        String currentAppId = apartmentID.getText().toString();
+        long currentAppId = Long.valueOf(apartmentID.getText().toString());
         String currentPassword = password.getText().toString();
-        Apartment.child(currentAppId).addValueEventListener(new ValueEventListener() {
+        Apartment.child(String.valueOf(currentAppId)).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot apartment) {
                 Log.i("hananell new apartment","enter callback");
                 if(apartment.exists()){
-
-                    Apartment.child(currentAppId).child("Password").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                            if(snapshot.getValue(String.class).equals(currentPassword)){
-                                Log.i("hananell new apartment","currect password");
-                                String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-                                db.getReference().child("Users").child(userId).child("fullName").addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        String fullName = snapshot.getValue(String.class);
-                                        db.getReference().child("Users").child(userId).child("apartmentId").setValue(currentAppId);
-                                        db.getReference().child("Users").child(userId).child("hasApartment").setValue(true);
-                                        db.getReference().child("Apartments").child(currentAppId).child("apartmentUsers").child(userId).setValue(fullName);
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
-
-
-
-
-
-
-
-
+                    if(currentPassword.equals(apartment.child("details").child("password").getValue())) {
+                        Log.i("hananell new apartment", "currect password");
+                        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                        db.getReference().child("Users").child(userId).child("fullName").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                String fullName = snapshot.getValue(String.class);
+                                db.getReference().child("Users").child(userId).child("apartmentId").setValue(currentAppId);
+                                db.getReference().child("Users").child(userId).child("hasApartment").setValue(true);
+                                db.getReference().child("Apartments").child(String.valueOf(currentAppId)).child("apartmentUsers").child(userId).setValue(fullName);
                                 startActivity(new Intent(JoinApartmentActivity.this, WelcomeUserActivity.class));
                             }
-                            else{
-                                Log.i("hananell new apartment","wrong password "+snapshot.getValue().toString());
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
 
                             }
-
-
-
-
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-
-
-
-
-
+                        });
+                    }
+                    else{
+                        Log.i("hananell new apartment","wrong password ");
+                    }
                 }
                 else{
                     Log.i("hananell new apartment","apartment does not exist");
                     // incorrect apartment id
 
                 }
-
             }
 
             @Override

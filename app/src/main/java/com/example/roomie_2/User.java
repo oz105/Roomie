@@ -5,7 +5,7 @@ public class User {
     protected String fullName, age, email,id;
     protected Boolean hasApartment;
     protected Boolean isAdmin;
-    protected int apartmentId;
+    protected long apartmentId;
 
     public User(){
 
@@ -68,7 +68,7 @@ public class User {
         isAdmin = admin;
     }
 
-    public int getApartmentId() {
+    public long getApartmentId() {
         return apartmentId;
     }
 
