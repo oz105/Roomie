@@ -28,62 +28,63 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-import android.os.Bundle;
 import android.widget.Toast;
 
 public class UploadPhotosActivity extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
 
-    private Button mButtonChooseImage;
-    private Button mButtonUpload;
-    private TextView mTextViewShowUploads;
-    private EditText mEditTextFileName;
-    private ImageView mImageView;
-    private ProgressBar mProgressBar;
+    private Button ButtonChooseImage;
+    private Button ButtonUpload;
+    private TextView TextViewShowUploads;
+    private EditText EditTextFileName;
+    private ImageView ImageView;
+    private ProgressBar ProgressBar;
 
-    private Uri mImageUri;
+    private Uri ImageUri;
 
-    private StorageReference mStorageRef;
-    private DatabaseReference mDatabaseRef;
+    private StorageReference StorageRef;
+    private DatabaseReference DatabaseRef;
 
-    private StorageTask mUploadTask;
+    private StorageTask UploadTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_photos);
 
-        mButtonChooseImage = findViewById(R.id.button_choose_image);
-        mButtonUpload = findViewById(R.id.button_upload);
-        mTextViewShowUploads = findViewById(R.id.text_view_show_uploads);
-        mEditTextFileName = findViewById(R.id.edit_text_file_name);
-        mImageView = findViewById(R.id.image_view);
-        mProgressBar = findViewById(R.id.progress_bar);
+        ButtonChooseImage = findViewById(R.id.choose_image);
+        ButtonUpload = findViewById(R.id.upload);
+        TextViewShowUploads = findViewById(R.id.show_uploads);
+        EditTextFileName = findViewById(R.id.file_name);
+        ImageView = findViewById(R.id.image_view);
+        ProgressBar = findViewById(R.id.progress_bar);
 
-        mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+        StorageRef = FirebaseStorage.getInstance().getReference("uploads");
+        DatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
 
 
-        mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
+        ButtonChooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openFileChooser();
             }
         });
-        mButtonUpload.setOnClickListener(new View.OnClickListener() {
+        ButtonUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mUploadTask != null && mUploadTask.isInProgress()) {
+                if (UploadTask != null && UploadTask.isInProgress()) {
                     Toast.makeText(UploadPhotosActivity.this, "Upload in progress", Toast.LENGTH_SHORT).show();
                 } else {
                     uploadFile();
                 }
             }
         });
-        mTextViewShowUploads.setOnClickListener(new View.OnClickListener() {
+        TextViewShowUploads.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(UploadPhotosActivity.this, ImagesActivity.class);
+                startActivity(intent);
 
             }
         });
@@ -107,9 +108,9 @@ public class UploadPhotosActivity extends AppCompatActivity {
 
         if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
                 && data != null && data.getData() != null) {
-            mImageUri = data.getData();
+            ImageUri = data.getData();
 
-            Picasso.with(this).load(mImageUri).into(mImageView);
+            Picasso.with(this).load(ImageUri).into(ImageView);
         }
     }
 
@@ -120,11 +121,11 @@ public class UploadPhotosActivity extends AppCompatActivity {
     }
 
     private void uploadFile() {
-        if (mImageUri != null) {
-            StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
-                    + "." + getFileExtension(mImageUri));
+        if (ImageUri != null) {
+            StorageReference fileReference = StorageRef.child(System.currentTimeMillis()
+                    + "." + getFileExtension(ImageUri));
 
-            mUploadTask = fileReference.putFile(mImageUri)
+            UploadTask = fileReference.putFile(ImageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -132,15 +133,15 @@ public class UploadPhotosActivity extends AppCompatActivity {
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    mProgressBar.setProgress(0);
+                                    ProgressBar.setProgress(0);
                                 }
                             }, 500);
 
                             Toast.makeText(UploadPhotosActivity.this, "Upload successful", Toast.LENGTH_LONG).show();
-                            Upload upload = new Upload(mEditTextFileName.getText().toString().trim(),
+                            Upload upload = new Upload(EditTextFileName.getText().toString().trim(),
                                     fileReference.getDownloadUrl().toString());
-                            String uploadId = mDatabaseRef.push().getKey();
-                            mDatabaseRef.child(uploadId).setValue(upload);
+                            String uploadId = DatabaseRef.push().getKey();
+                            DatabaseRef.child(uploadId).setValue(upload);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -153,7 +154,7 @@ public class UploadPhotosActivity extends AppCompatActivity {
                         @Override
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                            mProgressBar.setProgress((int) progress);
+                            ProgressBar.setProgress((int) progress);
                         }
                     });
         } else {

@@ -14,7 +14,9 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_bills.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_edit_info.xml" value="0.264" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_forget_password.xml" value="0.1" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_images.xml" value="0.264" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_info.xml" value="0.1" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_join_apartment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_register.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_shop_item.xml" value="0.11927083333333334" />
@@ -25,6 +27,7 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_welcome_admin.xml" value="0.16979166666666667" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Roomie/app/src/main/res/layout/add_bill.xml" value="0.17395833333333333" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Roomie/app/src/main/res/layout/add_payment.xml" value="0.17395833333333333" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Roomie/app/src/main/res/layout/image_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Roomie_2/app/src/main/res/layout/activity_forget_password.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Roomie_2/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Roomie_2/app/src/main/res/layout/activity_main.xml" value="0.2" />

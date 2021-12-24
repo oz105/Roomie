@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Roomie_2">
         <activity
+            android:name=".ImagesActivity"
+            android:exported="false" />
+        <activity
             android:name=".UploadPhotosActivity"
             android:exported="false" />
         <activity
