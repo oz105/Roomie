@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.roomie_2">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,13 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Roomie_2">
         <activity
+            android:name=".ImagesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UploadPhotosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ApartmentPhotosActivity"
+            android:exported="false" />
+        <activity
             android:name=".AdminUpdateInfo"
             android:exported="false" />
         <activity
             android:name=".ShowInfoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".EditInfoActivity"
             android:exported="false" />
         <activity
             android:name=".JoinApartmentActivity"

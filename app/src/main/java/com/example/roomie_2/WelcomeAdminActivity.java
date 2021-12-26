@@ -48,7 +48,5 @@ public class WelcomeAdminActivity extends AppCompatActivity implements View.OnCl
 
 
         }
-
-
     }
 }
