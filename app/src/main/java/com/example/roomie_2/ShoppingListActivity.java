@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,24 +29,25 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShoppingListActivity extends AppCompatActivity {
+public class ShoppingListActivity extends AppCompatActivity implements View.OnClickListener {
     FirebaseDatabase db = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");
     DatabaseReference root = db.getReference();
     ListView L;
-    EditText editQuantity;
-    EditText editName;
+    EditText editQuantity,newN,newQ,editName;
     Button updateData;
     Button BackHome;
     Button addItem;
     public int aptNum;
     public List<ShopItem> ListDB = new ArrayList<>();
     public ShopListAdapter sAdapter;
-
-
+    private BottomNavigationView bn;
+    private  Dialog AddDialog,editDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_shopping_list);
+        bn = (BottomNavigationView) findViewById(R.id.bottom_nav);
         Log.i("oncreate Shop","Shpinglis CREATE");
         String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -62,8 +66,6 @@ public class ShoppingListActivity extends AppCompatActivity {
                             ShopItem c = ds.getValue(ShopItem.class);
                             ListDB.add(c);
                         }
-
-//
                         sAdapter = new ShopListAdapter(getApplicationContext(),ListDB);
                         ListView listView = (ListView) findViewById(R.id.list);
 
@@ -81,52 +83,44 @@ public class ShoppingListActivity extends AppCompatActivity {
                         listView.setOnItemClickListener(tamir);
                         Log.i("warning","dataChanged of Shoplist");
                     }
-
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
                         // Getting Post failed, log a message
                         Log.i("Shoplifter", "cant load list", databaseError.toException());
                     }
                 });
-
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 System.out.println("The read from shoplist failed: " + databaseError.getCode());
-
             }
         });
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shopping_list);
+        bn.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.nav_info:
+                        Log.i("roomie_welcome","starting bills");
+                        startActivity(new Intent(ShoppingListActivity.this, ShowInfoActivity.class));
+                    case R.id.nav_bills:
+                        Log.i("roomie_welcome","starting bills");
+                        startActivity(new Intent(ShoppingListActivity.this, BillsActivity.class));
+                        break;
+                    case R.id.nav_home:
+                        startActivity(new Intent(ShoppingListActivity.this, WelcomeUserActivity.class));
+                        break;
+                }
+                return false;
+            }
+        });
         updateData = (Button)  findViewById(R.id.updateData);
-        updateData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                UpdateFireBase();
-            }
-        });
+        updateData.setOnClickListener(this);
         BackHome = (Button)  findViewById(R.id.backButton);
-        BackHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        BackHome.setOnClickListener(this);
         addItem = (Button)  findViewById(R.id.addItem);
-        addItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                newItem();
-            }
-        });
+        addItem.setOnClickListener(this);
         Log.i("newRoot"," root contewnts are :"+root.child("Users").toString());
-
     }
-
-
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -140,7 +134,7 @@ public class ShoppingListActivity extends AppCompatActivity {
     }
 
     public void editItem(String oldItem, final int index){
-        final Dialog editDialog = new Dialog(ShoppingListActivity.this);
+        editDialog = new Dialog(ShoppingListActivity.this);
         editDialog.setTitle("editing "+oldItem);
         editDialog.setContentView(R.layout.editbox);
         TextView msg = (TextView) editDialog.findViewById(R.id.updateDialog);
@@ -180,15 +174,7 @@ public class ShoppingListActivity extends AppCompatActivity {
                 editDialog.dismiss();
             }
         });
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Toast.makeText(ShoppingListActivity.this, "Dismissed.",
-                        Toast.LENGTH_SHORT).show();
-                editDialog.dismiss();
-            }
-        });
+        cancelButton.setOnClickListener(this);
     }
 
     public void UpdateFireBase(){
@@ -215,19 +201,27 @@ public class ShoppingListActivity extends AppCompatActivity {
     }
 
     public void newItem(){
-        final Dialog AddDialog = new Dialog(ShoppingListActivity.this);
+        AddDialog = new Dialog(ShoppingListActivity.this);
         AddDialog.setContentView(R.layout.add_item);
         AddDialog.show();
-
         Button doneAdd = (Button) AddDialog.findViewById(R.id.doneAdd);
         Button cancelButton = (Button) AddDialog.findViewById(R.id.cancelAdd);
-        final EditText newN = (EditText) AddDialog.findViewById(R.id.newName);
-        final EditText newQ = (EditText) AddDialog.findViewById(R.id.newQty);
+        newN = (EditText) AddDialog.findViewById(R.id.newName);
+        newQ = (EditText) AddDialog.findViewById(R.id.newQty);
+        doneAdd.setOnClickListener(this);
+        cancelButton.setOnClickListener(this);
 
+    }
 
-        doneAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.cancelAdd:
+                Toast.makeText(ShoppingListActivity.this, "Dismissed.",
+                        Toast.LENGTH_SHORT).show();
+                AddDialog.dismiss();
+                break;
+            case R.id.doneAdd:
                 if(Float.valueOf(newQ.getText().toString())<=0)
                 {
                     Toast.makeText(ShoppingListActivity.this, "cant set this to a Value!",
@@ -241,20 +235,21 @@ public class ShoppingListActivity extends AppCompatActivity {
                     AddDialog.dismiss();
                     sAdapter.notifyDataSetChanged();
                 }
-            }
-        });
-
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+                break;
+            case R.id.cancelEdit:
                 Toast.makeText(ShoppingListActivity.this, "Dismissed.",
                         Toast.LENGTH_SHORT).show();
-                AddDialog.dismiss();
-            }
-        });
-
+                editDialog.dismiss();
+                break;
+            case R.id.addItem:
+                newItem();
+                break;
+            case R.id.updateData:
+                UpdateFireBase();
+                break;
+            case R.id.backButton:
+                finish();
+                break;
+        }
     }
-
-
 }

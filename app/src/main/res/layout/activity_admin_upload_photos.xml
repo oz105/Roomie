@@ -4,10 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UploadPhotosActivity">
+    tools:context=".AdminUploadPhotosActivity">
+
+
+
+    <!--    <Button-->
+    <!--        android:id="@+id/pick"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        android:text="Pick Photo" />-->
+
+    <!--    <ImageView-->
+    <!--        android:id="@+id/capturedImage"-->
+    <!--        android:layout_width="250dp"-->
+    <!--        android:layout_height="250dp"-->
+    <!--        android:layout_centerInParent="true"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:layout_marginTop="20dp"/>-->
 
     <Button
-        android:id="@+id/choose_image"
+        android:id="@+id/pick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Choose file" />
@@ -17,19 +34,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_toEndOf="@+id/choose_image"
+        android:layout_toEndOf="@+id/pick"
         android:hint="Enter file name" />
 
     <ImageView
-        android:id="@+id/image_view"
+        android:id="@+id/capturedImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/progress_bar"
+        android:layout_above="@id/progress_line_bar"
         android:layout_below="@id/file_name"
         android:layout_marginTop="16dp" />
 
     <ProgressBar
-        android:id="@+id/progress_bar"
+        android:id="@+id/progress_line_bar"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,17 +61,5 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="Upload" />
-
-    <TextView
-        android:id="@+id/show_uploads"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/upload"
-        android:layout_alignBottom="@+id/upload"
-        android:layout_marginStart="25dp"
-        android:layout_toEndOf="@+id/upload"
-        android:gravity="center"
-        android:text="Show Uploads"
-        android:textSize="16sp" />
 
 </RelativeLayout>

@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.roomie_2">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -12,19 +15,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Roomie_2">
         <activity
-            android:name=".ImagesActivity"
+            android:name=".AdminUploadPhotosActivity"
             android:exported="false" />
         <activity
-            android:name=".UploadPhotosActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ApartmentPhotosActivity"
+            android:name=".ApartmentView"
             android:exported="false" />
         <activity
             android:name=".AdminUpdateInfo"
             android:exported="false" />
         <activity
             android:name=".ShowInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditInfoActivity"
             android:exported="false" />
         <activity
             android:name=".JoinApartmentActivity"
@@ -62,6 +65,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
     </application>
 
 </manifest>

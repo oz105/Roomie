@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -48,6 +51,7 @@ public class BillsActivity extends AppCompatActivity implements View.OnClickList
     private List<String> names = null;
     private Dialog addBillDialog,paymentDialog;
     private EditText editText;
+    private BottomNavigationView bn;
 
 
 
@@ -64,6 +68,7 @@ public class BillsActivity extends AppCompatActivity implements View.OnClickList
         root = db.getReference().child("Users").child(UserID);
         addBill = (Button) findViewById(R.id.newBill);
         payment = (Button) findViewById(R.id.payment);
+        bn = (BottomNavigationView) findViewById(R.id.bottom_nav);
 
         addBill.setOnClickListener(this);
         payment.setOnClickListener(this);
@@ -82,6 +87,32 @@ public class BillsActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+//        bn.setSelectedItemId(R.id.nav_bills);
+        bn.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.nav_info:
+                        Log.i("roomie_welcome","starting bills");
+                        startActivity(new Intent(BillsActivity.this, ShowInfoActivity.class));
+                    case R.id.nav_bills:
+
+                        break;
+                    case R.id.nav_shoppong:
+                        Log.i("roomie_welcome","starting Shopping list");
+                        startActivity(new Intent(BillsActivity.this, ShoppingListActivity.class));
+                        break;
+
+                    case R.id.nav_home:
+                        startActivity(new Intent(BillsActivity.this, WelcomeUserActivity.class));
+                        break;
+
+                }
+
+                return false;
             }
         });
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/all_background"
+    android:background="@drawable/login_background"
     tools:context=".EditInfoActivity">
 
     <TextView
@@ -157,23 +157,10 @@
         app:layout_constraintTop_toBottomOf="@+id/details" />
 
     <Button
-        android:id="@+id/addPhotos"
-        android:layout_width="380dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="70dp"
-        android:backgroundTint="#0E0D0D"
-        android:text="Add Photos"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        app:layout_constraintHorizontal_bias="0.548"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/priceRent" />
-    <Button
         android:id="@+id/updateData"
         android:layout_width="380dp"
         android:layout_height="50dp"
-        android:layout_marginTop="-5dp"
+        android:layout_marginTop="96dp"
         android:backgroundTint="#0E0D0D"
         android:text="UPDATE"
         android:textSize="26sp"
@@ -181,7 +168,7 @@
         app:layout_constraintHorizontal_bias="0.548"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/addPhotos" />
+        app:layout_constraintTop_toBottomOf="@id/priceRent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

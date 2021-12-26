@@ -147,7 +147,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                         Log.i("roomie Login", "has apartment");
                                         // admin welcome here...
                                         Intent intent = new Intent(LoginActivity.this, WelcomeAdminActivity.class);
-                                        //Intent intent = new Intent(LoginActivity.this, UploadPhotosActivity.class);
                                         intent.putExtra("currentApartmentId", apartmentId);
                                         startActivity(intent);
                                     } else {

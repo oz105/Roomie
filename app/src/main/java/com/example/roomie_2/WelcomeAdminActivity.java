@@ -28,6 +28,7 @@ public class WelcomeAdminActivity extends AppCompatActivity implements View.OnCl
         notfications.setOnClickListener(this);
         logout.setOnClickListener(this);
 
+
     }
 
     @Override
@@ -48,5 +49,7 @@ public class WelcomeAdminActivity extends AppCompatActivity implements View.OnCl
 
 
         }
+
+
     }
 }

@@ -3,11 +3,16 @@ package com.example.roomie_2;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,7 +28,7 @@ public class ShowInfoActivity extends AppCompatActivity {
     DatabaseReference root = db.getReference().child("Apartments");
     TextView AppAddress,AppPassword,details,numOfRooms,price,id;
 
-
+    private BottomNavigationView bn;
     private String apartmentId="";
     private Map<String,Object> apartmentInfo;
 
@@ -34,6 +39,7 @@ public class ShowInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_info);
+        bn = (BottomNavigationView) findViewById(R.id.bottom_nav);
 
         apartmentId = getIntent().getStringExtra("currentApartmentId");
         id = (TextView)findViewById(R.id.appartmentId) ;
@@ -43,6 +49,31 @@ public class ShowInfoActivity extends AppCompatActivity {
         numOfRooms = (TextView) findViewById(R.id.rooms);
         details = (TextView) findViewById(R.id.details);
         price = (TextView) findViewById(R.id.priceRent);
+//        bn.setSelectedItemId(R.id.nav_info);
+        bn.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.nav_info:
+                        Log.i("roomie_welcome","starting bills");
+                        startActivity(new Intent(ShowInfoActivity.this, ShowInfoActivity.class));
+                        break;
+                    case R.id.nav_bills:
+                        break;
+                    case R.id.nav_shoppong:
+                        Log.i("roomie_welcome","starting bills");
+                        startActivity(new Intent(ShowInfoActivity.this, ShoppingListActivity.class));
+                        break;
+                    case R.id.nav_home:
+                        startActivity(new Intent(ShowInfoActivity.this, WelcomeUserActivity.class));
+                        break;
+
+
+                }
+
+                return false;
+            }
+        });
 
         root.child(apartmentId).child("details").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
