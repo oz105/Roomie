@@ -104,7 +104,7 @@ public class ShoppingListActivity extends AppCompatActivity implements View.OnCl
                         startActivity(new Intent(ShoppingListActivity.this, ShowInfoActivity.class));
                     case R.id.nav_bills:
                         Log.i("roomie_welcome","starting bills");
-                        startActivity(new Intent(ShoppingListActivity.this, BillsActivity.class));
+                        startActivity(new Intent(ShoppingListActivity.this, BillsViewActivity.class));
                         break;
                     case R.id.nav_home:
                         startActivity(new Intent(ShoppingListActivity.this, WelcomeUserActivity.class));

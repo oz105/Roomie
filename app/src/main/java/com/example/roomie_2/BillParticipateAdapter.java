@@ -20,10 +20,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BillParticipateAdapter  extends ArrayAdapter<String> {
+public class BillParticipateAdapter  extends ArrayAdapter<NameAndUid> {
         public CheckBox checkBox;
         private int layoutId;
-        public BillParticipateAdapter(Context context, List<String> data,int layoutId) {
+        public BillParticipateAdapter(Context context, List<NameAndUid> data,int layoutId) {
             super(context, 0, data);
             this.layoutId = layoutId;
         }
@@ -31,17 +31,14 @@ public class BillParticipateAdapter  extends ArrayAdapter<String> {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
-            String name = getItem(position);
+            NameAndUid name = getItem(position);
 
             if (convertView == null) {
 
                 convertView = LayoutInflater.from(getContext()).inflate(layoutId, parent, false);
             }
-
-            TextView textViewItemName = (TextView)
-                    convertView.findViewById(R.id.name);
-
-            textViewItemName.setText(name);
+            TextView textViewItemName = (TextView) convertView.findViewById(R.id.name);
+            textViewItemName.setText(name.name);
 
             // Return the completed view to render on screen
             Log.i("Tamir check","get view adapter");

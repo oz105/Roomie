@@ -53,7 +53,7 @@ public class WelcomeUserActivity extends AppCompatActivity implements View.OnCli
                         break;
                     case R.id.nav_bills:
                         Log.i("roomie_welcome","starting bills");
-                        startActivity(new Intent(WelcomeUserActivity.this, BillsActivity.class));
+                        startActivity(new Intent(WelcomeUserActivity.this, BillsViewActivity.class));
                         break;
                     case R.id.nav_shoppong:
                         Log.i("roomie_welcome","starting bills");
