@@ -43,7 +43,7 @@ public class WelcomeAdminActivity extends AppCompatActivity implements View.OnCl
 
             case (R.id.logout):
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(WelcomeAdminActivity.this, LoginActivity.class));
+                startActivity(new Intent(WelcomeAdminActivity.this, LoginViewActivity.class));
                 break;
 
 

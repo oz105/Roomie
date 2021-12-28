@@ -115,7 +115,7 @@ public class WelcomeUserActivity extends AppCompatActivity implements View.OnCli
 
             case R.id.signOut:
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(WelcomeUserActivity.this, LoginActivity.class));
+                startActivity(new Intent(WelcomeUserActivity.this, LoginViewActivity.class));
                 break;
         }
 

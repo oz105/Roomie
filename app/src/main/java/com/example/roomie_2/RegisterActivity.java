@@ -68,15 +68,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
             }
         });
-
-
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.banner:
-                startActivity(new Intent(this, LoginActivity.class));
+                startActivity(new Intent(this, LoginViewActivity.class));
                 break;
             case R.id.registerUser:
                 //Intent myIntent = new Intent(RegisterActivity.this, LoginActivity.class);
@@ -141,7 +139,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
                                         Toast.makeText(RegisterActivity.this, "User has been registered successfully", Toast.LENGTH_LONG).show();
-                                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                        startActivity(new Intent(RegisterActivity.this, LoginViewActivity.class));
                                     }else{
                                         Toast.makeText(RegisterActivity.this, "Registered failed :( , Please try again", Toast.LENGTH_LONG).show();
                                     }
@@ -151,7 +149,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                         }else{
                             Toast.makeText(RegisterActivity.this, "Registered failed :(", Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                            startActivity(new Intent(RegisterActivity.this, LoginViewActivity.class));
                             progressBar.setVisibility(View.GONE);
                         }
                     }
