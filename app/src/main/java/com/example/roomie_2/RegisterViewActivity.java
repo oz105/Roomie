@@ -24,7 +24,7 @@ public class RegisterViewActivity extends AppCompatActivity implements View.OnCl
     private boolean isAdmin = false;
 
 
-    public RegisterController registerController;
+    private RegisterController registerController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

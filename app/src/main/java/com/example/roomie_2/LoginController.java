@@ -31,6 +31,7 @@ public class LoginController {
                 break;
             case 1:
                 Intent intent = new Intent(loginView, WelcomeAdminActivity.class);
+                //Intent intent = new Intent(loginView, AdminPhotosViewActivity.class);
                 loginView.startActivity(intent);
                 break;
             case 2:

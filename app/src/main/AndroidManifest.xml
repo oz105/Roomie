@@ -35,6 +35,9 @@
             android:name=".AdminUploadPhotosActivity"
             android:exported="false" />
         <activity
+            android:name=".AdminPhotosViewActivity"
+            android:exported="false" />
+        <activity
             android:name=".ApartmentView"
             android:exported="false" />
         <activity

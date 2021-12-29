@@ -67,6 +67,7 @@ public class LoginViewActivity extends AppCompatActivity implements View.OnClick
         switch (v.getId()){
             case R.id.register:
                 startActivity(new Intent(this,RegisterViewActivity.class));
+                //startActivity(new Intent(this,AdminPhotosViewActivity.class));
                 break;
 
             case R.id.forgotPassword:
