@@ -77,6 +77,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(new Intent(this, LoginViewActivity.class));
                 break;
             case R.id.registerUser:
+                Log.i("roomie Register", "switch");
                 //Intent myIntent = new Intent(RegisterActivity.this, LoginActivity.class);
                 //startActivity(myIntent);
                 registerUser();
@@ -121,8 +122,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             editTextPassword.requestFocus();
             return;
         }
-
-
 
 
         progressBar.setVisibility(View.VISIBLE);

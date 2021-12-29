@@ -11,17 +11,20 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginViewActivity extends AppCompatActivity implements View.OnClickListener {
 
     public FirebaseDatabase db;
+    private FirebaseAuth mAuth;
 
 
-    public TextView register, forgetPassword;
-    public EditText editTextEmail, editTextPassword;
-    public Button signIn;
-    public ProgressBar progressBar;
+    private TextView register, forgetPassword;
+    private EditText editTextEmail, editTextPassword;
+    private Button signIn;
+    private ProgressBar progressBar;
 
 
 
@@ -33,6 +36,7 @@ public class LoginViewActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_view);
         db = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");
+        mAuth = FirebaseAuth.getInstance();
         signIn = (Button) findViewById(R.id.signIn);
         register = (TextView) findViewById(R.id.register);
         editTextEmail = (EditText) findViewById(R.id.email);
@@ -47,22 +51,22 @@ public class LoginViewActivity extends AppCompatActivity implements View.OnClick
         loginController = new LoginController(this);
     }
 
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        // Check if user is signed in (non-null) and update UI accordingly.
-//        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        if(currentUser != null && currentUser.isEmailVerified()){
-//            startActivity(new Intent(LoginActivity.this, WelcomeUserActivity.class));
-//        }
-//    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null && currentUser.isEmailVerified()){
+            startActivity(new Intent(LoginViewActivity.this, WelcomeUserActivity.class));
+        }
+    }
 
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.register:
-                startActivity(new Intent(this,RegisterActivity.class));
+                startActivity(new Intent(this,RegisterViewActivity.class));
                 break;
 
             case R.id.forgotPassword:
@@ -75,31 +79,22 @@ public class LoginViewActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
-    public void Make_toast(String message){
+    public void make_toast(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 
     }
+
+    public EditText getEditTextEmail() {
+        return editTextEmail;
+    }
+
+
+    public EditText getEditTextPassword() {
+        return editTextPassword;
+    }
+
+
+    public ProgressBar getProgressBar() {
+        return progressBar;
+    }
 }
-
-
-
-//
-//public class LoginViewActivity extends AppCompatActivity implements View.OnClickListener {
-//
-//
-
-//
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_login);
-
-//
-//    }
-//
-
-//
-
-//
-//}

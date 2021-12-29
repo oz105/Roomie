@@ -7,7 +7,7 @@ import android.widget.Toast;
 public class LoginController {
 
     private LoginModel loginModel;
-    public LoginViewActivity loginView;
+    private LoginViewActivity loginView;
 
     public LoginController (LoginViewActivity login){
         this.loginView = login;
@@ -16,16 +16,16 @@ public class LoginController {
 
 
     public void getEmailAndPassword(){
-        String email = loginView.editTextEmail.getText().toString().trim();
-        String password = loginView.editTextPassword.getText().toString().trim();
-        loginView.progressBar.setVisibility(View.VISIBLE);
+        String email = loginView.getEditTextEmail().getText().toString().trim();
+        String password = loginView.getEditTextPassword().getText().toString().trim();
+        loginView.getProgressBar().setVisibility(View.VISIBLE);
         loginModel.userLogin(email,password);
 
     }
 
 
     public void decide_screen(int state) {
-        loginView.progressBar.setVisibility(View.GONE);
+        loginView.getProgressBar().setVisibility(View.GONE);
         switch (state){
             case 0:
                 break;
@@ -45,7 +45,14 @@ public class LoginController {
     }
 
     public void make_toast(String message){
-        Toast.makeText(this.loginView, message, Toast.LENGTH_SHORT).show();
+        this.loginView.make_toast(message);
     }
 
+    public LoginViewActivity getLoginView() {
+        return loginView;
+    }
+
+    public void goneProgressBar() {
+        loginView.getProgressBar().setVisibility(View.GONE);
+    }
 }

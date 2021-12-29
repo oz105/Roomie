@@ -18,11 +18,11 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginModel {
 
-    public DatabaseReference reference;
-    public FirebaseAuth mAuth;
-    public FirebaseUser user;
-    public User profileUser;
-    public String userID;
+    private DatabaseReference reference;
+    private FirebaseAuth mAuth;
+    private FirebaseUser user;
+    private User profileUser;
+    private String userID;
 
 
     LoginController loginController;
@@ -64,6 +64,7 @@ public class LoginModel {
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
                             loginController.make_toast("Something went wrong!");
+                            loginController.goneProgressBar();
                         }
                     });
 
@@ -75,6 +76,7 @@ public class LoginModel {
 //                    }
                 }else{
                     loginController.make_toast("Failed to Login! Please check Your Email or Password");
+                    loginController.goneProgressBar();
                 }
             }
         });
@@ -112,23 +114,23 @@ public class LoginModel {
 
     private void verify_data(String email, String password) {
         if (email.isEmpty()) {
-            loginController.loginView.editTextEmail.setError("Email is required!");
-            loginController.loginView.editTextEmail.requestFocus();
+            loginController.getLoginView().getEditTextEmail().setError("Email is required!");
+            loginController.getLoginView().getEditTextEmail().requestFocus();
             return;
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            loginController.loginView.editTextEmail.setError("Please enter valid Email!");
-            loginController.loginView.editTextEmail.requestFocus();
+            loginController.getLoginView().getEditTextEmail().setError("Please enter valid Email!");
+            loginController.getLoginView().getEditTextEmail().requestFocus();
             return;
         }
         if (password.isEmpty()) {
-            loginController.loginView.editTextPassword.setError("Password is required!");
-            loginController.loginView.editTextPassword.requestFocus();
+            loginController.getLoginView().getEditTextPassword().setError("Password is required!");
+            loginController.getLoginView().getEditTextPassword().requestFocus();
             return;
         }
         if (password.length() < 6) {
-            loginController.loginView.editTextPassword.setError("Password should be at least 6 characters");
-            loginController.loginView.editTextPassword.requestFocus();
+            loginController.getLoginView().getEditTextPassword().setError("Password should be at least 6 characters");
+            loginController.getLoginView().getEditTextPassword().requestFocus();
             return;
         }
     }
