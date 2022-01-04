@@ -6,6 +6,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import Bills.Bill;
+import ShoppingList.ShopItem;
+
 public class Apartment {
     private Map<String,Object> details;
     private long apartmentId;

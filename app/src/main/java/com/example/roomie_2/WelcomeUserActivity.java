@@ -11,16 +11,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+
+import Bills.BillsViewActivity;
+import Login.LoginViewActivity;
+import ShoppingList.ShoppingListViewActivity;
+import ShowInfo.ShowInfoView;
 
 public class WelcomeUserActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -46,25 +45,28 @@ public class WelcomeUserActivity extends AppCompatActivity implements View.OnCli
         bn.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+
                 switch (item.getItemId()){
                     case R.id.nav_info:
                         Log.i("roomie_welcome","starting bills");
-                        startActivity(new Intent(WelcomeUserActivity.this, ShowInfoActivity.class));
-                        break;
+                        startActivity(new Intent(WelcomeUserActivity.this, ShowInfoView.class));
+                        return true;
                     case R.id.nav_bills:
                         Log.i("roomie_welcome","starting bills");
                         startActivity(new Intent(WelcomeUserActivity.this, BillsViewActivity.class));
-                        break;
+                        return true;
                     case R.id.nav_shoppong:
                         Log.i("roomie_welcome","starting bills");
-                        startActivity(new Intent(WelcomeUserActivity.this, ShoppingListActivity.class));
-                        break;
+                        startActivity(new Intent(WelcomeUserActivity.this, ShoppingListViewActivity.class));
+                        return true;
                     case R.id.nav_home:
-                        break;
+                        return true;
+                    default:
+                        return false;
                 }
-                Toast.makeText(WelcomeUserActivity.this, "FINISH",
-                        Toast.LENGTH_SHORT).show();
-                return false;
+
+
             }
         });
 
@@ -97,6 +99,14 @@ public class WelcomeUserActivity extends AppCompatActivity implements View.OnCli
 
 
 
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        bn.setSelectedItemId(R.id.nav_home);
+        Toast.makeText(this,"welcon START",Toast.LENGTH_SHORT).show();
     }
 
     @Override

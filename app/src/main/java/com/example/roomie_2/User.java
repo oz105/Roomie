@@ -6,6 +6,7 @@ public class User {
     protected Boolean hasApartment;
     protected Boolean isAdmin;
     protected long apartmentId;
+    private String profile;
 
     public User(){
 
@@ -18,6 +19,10 @@ public class User {
         this.id = id;
         hasApartment = false;
         this.isAdmin = isAdmin;
+    }
+
+    public void setProfile(String profile){
+        this.profile = profile;
     }
 
     public String getFullName() {
@@ -66,6 +71,10 @@ public class User {
 
     public void setAdmin(Boolean admin) {
         isAdmin = admin;
+    }
+
+    public String getProfile(){
+        return profile;
     }
 
     public long getApartmentId() {

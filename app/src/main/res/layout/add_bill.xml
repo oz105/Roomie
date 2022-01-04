@@ -77,7 +77,7 @@
 
         android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="300dp">
+        android:layout_height="150dp">
         <ListView
             android:id="@+id/participateList"
             android:layout_width="match_parent"

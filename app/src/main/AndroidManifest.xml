@@ -15,10 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Roomie_2">
         <activity
-            android:name=".RegisterViewActivity"
+            android:name="ShoppingList.ShoppingListViewActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginViewActivity"
+            android:name="ShowInfo.ShowInfoView"
+            android:exported="false" />
+        <activity
+            android:name="Register.RegisterViewActivity"
+            android:exported="false" />
+        <activity
+            android:name="Login.LoginViewActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,10 +35,13 @@
         <!-- android:name=".LoginViewActivity" -->
         <!-- android:exported="false" /> -->
         <activity
-            android:name=".BillsViewActivity"
+            android:name="Info.EditInfoView"
             android:exported="false" />
         <activity
-            android:name=".AdminUploadPhotosActivity"
+            android:name="AddApartment.AddApartmentView"
+            android:exported="false" />
+        <activity
+            android:name="Bills.BillsViewActivity"
             android:exported="false" />
         <activity
             android:name=".AdminPhotosViewActivity"
@@ -42,9 +51,6 @@
             android:exported="false" />
         <activity
             android:name=".AdminUpdateInfo"
-            android:exported="false" />
-        <activity
-            android:name=".ShowInfoActivity"
             android:exported="false" />
         <activity
             android:name=".EditInfoActivity"
@@ -59,13 +65,7 @@
             android:name=".ForgetPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".AddNewApartment"
-            android:exported="false" />
-        <activity
             android:name=".RegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".FirstRegisteredEntry"
             android:exported="false" />
         <activity
             android:name=".WelcomeUserActivity"
@@ -73,9 +73,7 @@
         <activity
             android:name=".WelcomeAdminActivity"
             android:exported="false" />
-        <activity
-            android:name=".ShoppingListActivity"
-            android:exported="false" /> <!-- <activity -->
+        <!-- <activity -->
         <!-- android:name=".LoginActivity" -->
         <!-- android:exported="true"> -->
         <!-- <intent-filter> -->
@@ -86,6 +84,10 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

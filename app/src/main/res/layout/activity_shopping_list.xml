@@ -7,7 +7,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         tools:context=".ShoppingListActivity"
-    android:orientation="vertical"
+        android:orientation="vertical"
+    android:background="@drawable/shoppingback"
     >
         <LinearLayout
             android:id="@+id/titleLayout"
@@ -27,7 +28,11 @@
                 android:layout_height="wrap_content"
                 android:text="Shopping List"
                 android:textAlignment="center"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:textColor="@color/black"
+                android:background="#92FFFFFF"
+                />
+
 
                 <Button
                     app:backgroundTint="#00FF00"
@@ -42,17 +47,17 @@
 
         </LinearLayout>
 
-        <LinearLayout android:id="@+id/topLayout"
-
-            android:orientation="vertical"
+        <LinearLayout
+            android:id="@+id/topLayout"
             android:layout_width="wrap_content"
             android:layout_height="480dp"
-            android:layout_below="@+id/titleLayout">
+            android:layout_below="@+id/titleLayout"
+            android:orientation="vertical">
+
                 <ListView
                     android:id="@+id/list"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                </ListView>
+                    android:layout_height="match_parent"></ListView>
 
         </LinearLayout>
         <LinearLayout

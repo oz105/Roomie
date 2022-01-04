@@ -65,14 +65,6 @@ public class AdminUpdateInfo extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
-
-
         updateInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,12 +89,7 @@ public class AdminUpdateInfo extends AppCompatActivity {
                 intent.putExtra("currentApartmentId", apartmentId);
                 startActivity(intent);
 
-
-
             }
-
-
-
         });
 
 

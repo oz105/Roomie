@@ -27,6 +27,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
+import Register.RegisterViewActivity;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseUser user;
@@ -75,7 +77,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()){
             case R.id.register:
                 Log.i("hananell Login","register");
-                startActivity(new Intent(this,RegisterActivity.class));
+                startActivity(new Intent(this, RegisterViewActivity.class));
                 break;
 
             case R.id.forgotPassword:

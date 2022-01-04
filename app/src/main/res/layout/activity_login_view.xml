@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_background"
-    tools:context=".LoginViewActivity">
+    android:background="@drawable/back"
+    tools:context="Login.LoginViewActivity">
 
 
     <TextView
@@ -13,23 +13,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="620dp"
-        android:text="Roomie"
-        android:textSize="60sp"
-        android:textAlignment="center"
-        android:textStyle="bold"
         android:fontFamily="sans-serif-black"
+        android:text="Roomie"
+
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textColorHighlight="@color/purple_200"
+        android:textColorHint="@color/black"
+        android:textColorLink="@android:color/holo_green_light"
+        android:textSize="60sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <EditText
         android:id="@+id/email"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:background="@drawable/costum_input"
-        android:drawableStart="@drawable/ic_email"
+        android:background="@drawable/edit"
+        android:drawableStart="@drawable/custom_email_icon"
+        android:paddingStart="5dp"
         android:drawablePadding="5dp"
         android:ems="10"
         android:hint=" Email"
@@ -44,18 +51,20 @@
     <EditText
         android:id="@+id/password"
         android:layout_width="380dp"
+        android:paddingStart="5dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:ems="10"
-        android:background="@drawable/costum_input"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/edit"
+        android:drawableStart="@drawable/custom_password_icon"
         android:drawablePadding="5dp"
+        android:ems="10"
         android:hint="Password"
-        android:drawableStart="@drawable/ic_password"
 
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
@@ -63,11 +72,12 @@
         android:id="@+id/signIn"
         android:layout_width="380dp"
         android:layout_height="70dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="88dp"
+        android:background="@null"
+        android:text="SIGN IN"
         android:textSize="26sp"
         android:textStyle="bold"
-        android:backgroundTint="#0E0D0D"
-        android:text="LOGIN"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
@@ -110,5 +120,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

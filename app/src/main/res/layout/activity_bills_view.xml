@@ -5,8 +5,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_background"
-    tools:context=".BillsViewActivity">
+    android:background="@drawable/money"
+    tools:context="Bills.BillsViewActivity">
+
+    <TextView
+        android:id="@+id/total"
+        android:layout_width="397dp"
+        android:layout_height="wrap_content"
+
+
+        android:background="#99FFFFFF"
+        android:fontFamily="serif"
+        android:paddingStart="15dp"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/owed" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -23,86 +40,86 @@
         />
 
 
-
-
-
-
-
-
-
-
-
-    <TextView
-        android:id="@+id/logo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="620dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Roomie"
-        android:textAlignment="center"
-        android:textSize="60sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.161" />
-
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Bills $"
+        android:layout_marginTop="4dp"
+        android:fontFamily="serif"
+        android:text="Bills"
         android:textAlignment="center"
+        android:textColor="@color/black"
         android:textSize="60sp"
         android:textStyle="bold"
-        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/showBills"
-        android:layout_width="384dp"
-        android:layout_height="257dp"
-        android:layout_marginTop="40dp"
-        android:fontFamily="sans-serif-black"
+        android:id="@+id/owe"
+        android:layout_width="397dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:paddingStart="15dp"
+
+        android:background="#99FFFFFF"
+        android:fontFamily="serif"
         android:text=""
 
-        android:textSize="20sp"
+
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintHorizontal_bias="0.407"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <TextView
+        android:id="@+id/owed"
+        android:layout_width="397dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="15dp"
+
+
+        android:background="#99FFFFFF"
+        android:fontFamily="serif"
+        android:text=""
+        android:textColor="@android:color/holo_green_light"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/owe" />
 
     <Button
         android:id="@+id/payment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="112dp"
         android:layout_marginEnd="68dp"
         android:text="PAYMENT\n"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/showBills" />
+        app:layout_constraintHorizontal_bias="0.731"
+        app:layout_constraintStart_toEndOf="@+id/newBill"
+        app:layout_constraintTop_toBottomOf="@+id/total" />
 
     <Button
         android:id="@+id/newBill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="112dp"
+        android:background="@color/black"
         android:text="ADD \nNEW BILL"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/showBills" />
+        app:layout_constraintTop_toBottomOf="@+id/total" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
         android:layout_width="411dp"
         android:layout_height="56dp"
-        android:background="@android:color/holo_blue_dark"
+        android:background="#D51973CD"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
         app:layout_constraintBottom_toBottomOf="parent"

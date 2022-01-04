@@ -122,7 +122,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_background"
+    android:background="@drawable/back"
     tools:context=".FirstRegisteredEntry">
 
     <TextView
@@ -166,7 +166,7 @@
         android:id="@+id/bottom_nav"
         android:layout_width="411dp"
         android:layout_height="56dp"
-        android:background="@android:color/holo_blue_dark"
+        android:background="#029840"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
         app:layout_constraintBottom_toBottomOf="parent"
