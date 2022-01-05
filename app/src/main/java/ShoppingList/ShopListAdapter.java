@@ -30,9 +30,11 @@ public class ShopListAdapter extends ArrayAdapter<ShopItem> {
 
         TextView textViewItemName = (TextView)
                 convertView.findViewById(R.id.curName);
+        TextView number = (TextView)
+                convertView.findViewById(R.id.itemNum);
         TextView textViewItemDescription = (TextView)
                 convertView.findViewById(R.id.curQty);
-
+        number.setText(""+(position+1)+".");
         textViewItemName.setText(curItem.name);
         String stringdouble = Float.toString(curItem.qty);
         textViewItemDescription.setText(stringdouble);

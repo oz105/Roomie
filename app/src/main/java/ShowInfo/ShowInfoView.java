@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Bills.BillsViewActivity;
+import ShoppingList.ShoppingListViewActivity;
 
 
 public class ShowInfoView extends AppCompatActivity implements View.OnClickListener {
@@ -86,7 +87,7 @@ public class ShowInfoView extends AppCompatActivity implements View.OnClickListe
                         return true;
                     case R.id.nav_shoppong:
                         Log.i("roomie_welcome","starting bills");
-                        startActivity(new Intent(ShowInfoView.this, ShoppingListActivity.class));
+                        startActivity(new Intent(ShowInfoView.this, ShoppingListViewActivity.class));
                         return true;
                     case R.id.nav_home:
                         startActivity(new Intent(ShowInfoView.this, WelcomeUserActivity.class));

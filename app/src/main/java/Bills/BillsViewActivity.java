@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import ShoppingList.ShoppingListViewActivity;
 import ShowInfo.ShowInfoView;
 
 public class BillsViewActivity extends AppCompatActivity implements View.OnClickListener {
@@ -30,7 +31,7 @@ public class BillsViewActivity extends AppCompatActivity implements View.OnClick
     public DatabaseReference rootUser,rootApartment;
     public FirebaseAuth auth;
 
-    public TextView total,owe,owed,paidBy;
+    public TextView total,owe,owed,paidBy,accept;
     public Button addBill,payment, doneAddBill,donePayment,cancelAdd;
     public EditText newBillAmount,paymentAmount;
     public TextView paymentPayBy;
@@ -79,11 +80,10 @@ public class BillsViewActivity extends AppCompatActivity implements View.OnClick
                         startActivity(new Intent(BillsViewActivity.this, ShowInfoView.class));
                         return true;
                     case R.id.nav_bills:
-
                         return true;
                     case R.id.nav_shoppong:
 
-                        startActivity(new Intent(BillsViewActivity.this, ShoppingListActivity.class));
+                        startActivity(new Intent(BillsViewActivity.this, ShoppingListViewActivity.class));
                         return true;
                     case R.id.nav_home:
                         startActivity(new Intent(BillsViewActivity.this, WelcomeUserActivity.class));

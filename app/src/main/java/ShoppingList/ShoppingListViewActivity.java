@@ -88,13 +88,13 @@ public class ShoppingListViewActivity extends AppCompatActivity implements View.
         //updateData = (Button)  findViewById(R.id.updateData);
         //updateData.setOnClickListener(this);
 
-        BackHome = (Button)  findViewById(R.id.backButton);
-        BackHome.setOnClickListener(this);
+//        BackHome = (Button)  findViewById(R.id.backButton);
+//        BackHome.setOnClickListener(this);
 
         addItem = (Button)  findViewById(R.id.addItem);
         addItem.setOnClickListener(this);
 
-        updateButton = (Button) editDialog.findViewById(R.id.ChangeQ);
+//        pudateButton = (Button) editDialog.findViewById(R.id.ChangeQ);
         deleteButton = (Button) editDialog.findViewById(R.id.itemDelete);
         cancelButton = (Button) editDialog.findViewById(R.id.cancelEdit);
         editQ = (EditText) editDialog.findViewById(R.id.inputQuantity);

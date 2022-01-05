@@ -7,6 +7,8 @@ import com.example.roomie_2.JoinApartmentActivity;
 import com.example.roomie_2.WelcomeAdminActivity;
 import com.example.roomie_2.WelcomeUserActivity;
 
+import AddApartment.AddApartmentView;
+
 public class LoginController {
 
     private LoginModel loginModel;
@@ -38,7 +40,7 @@ public class LoginController {
                 loginView.startActivity(intent);
                 break;
             case 2:
-                loginView.startActivity(new Intent(loginView, AddNewApartment.class));
+                loginView.startActivity(new Intent(loginView, AddApartmentView.class));
                 break;
             case 3:
                 loginView.startActivity(new Intent(loginView, WelcomeUserActivity.class));

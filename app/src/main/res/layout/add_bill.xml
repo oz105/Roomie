@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <TextView
@@ -17,17 +17,37 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:gravity="center">
         <TextView
-            android:id="@+id/paidBy"
-            android:layout_width="match_parent"
+
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
             android:padding="12dp"
-            android:textSize="14sp"
+
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:text="Paid by"
+            />
+        <TextView
+            android:id="@+id/paidBy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:fontFamily="monospace"
+
+            android:padding="12dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
             android:textAlignment="center"
             android:text="Paid by"
             />
+
+
+
+    </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,11 +60,12 @@
             <TextView
                 android:id="@+id/amountText"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:padding="12dp"
                 android:textSize="14sp"
+                android:background="@drawable/ic_money"
                 android:textAlignment="center"
-                android:text="amount"
+                android:text=""
 
                 />
             <EditText
@@ -55,72 +76,61 @@
                 android:hint="0"
                 android:inputType="number"
                 android:digits="0123456789"/>
-            <TextView
-                android:id="@+id/nis"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:textSize="14sp"
-                android:textAlignment="center"
-                android:text="NIS"
-                />
+
 
         </LinearLayout>
 
 
-    </LinearLayout>
+
 
 
 
 
     <LinearLayout android:id="@+id/participate"
 
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="150dp">
+        android:layout_height="150dp"
+        >
         <ListView
             android:id="@+id/participateList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:choiceMode="multipleChoice"
+            android:layout_gravity="center"
+            android:foregroundGravity="center"
             >
         </ListView>
 
     </LinearLayout>
 
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
-        >
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/doneParticipate"
-            android:outlineSpotShadowColor="@color/purple_200"
-            android:textColor="#00FF00"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:outlineSpotShadowColor="@color/purple_200"
             android:text="OK"
-            />
+            android:textColor="#00FF00" />
+
         <TextView
             android:layout_width="40dp"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
+
         <Button
-            android:outlineSpotShadowColor="@color/purple_200"
             android:id="@+id/cancelAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cancel"
-            />
+            android:outlineSpotShadowColor="@color/purple_200"
+            android:text="Cancel" />
     </LinearLayout>
-
-
-
 
 
 </LinearLayout>

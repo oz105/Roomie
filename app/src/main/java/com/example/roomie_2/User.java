@@ -2,11 +2,11 @@ package com.example.roomie_2;
 
 public class User {
 
-    protected String fullName, age, email,id;
-    protected Boolean hasApartment;
-    protected Boolean isAdmin;
-    protected long apartmentId;
-    private String profile;
+    public String fullName, age, email,id;
+    public Boolean hasApartment;
+    public Boolean isAdmin;
+    public long apartmentId;
+    public String profile;
 
     public User(){
 
