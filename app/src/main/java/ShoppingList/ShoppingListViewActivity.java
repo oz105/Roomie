@@ -120,6 +120,7 @@ public class ShoppingListViewActivity extends AppCompatActivity implements View.
                     case R.id.nav_info:
                         Log.i("roomie_welcome","starting bills");
                         startActivity(new Intent(ShoppingListViewActivity.this, ShowInfoView.class));
+                        break;
                     case R.id.nav_bills:
                         Log.i("roomie_welcome","starting bills");
                         startActivity(new Intent(ShoppingListViewActivity.this, BillsViewActivity.class));
@@ -142,9 +143,10 @@ public class ShoppingListViewActivity extends AppCompatActivity implements View.
 
     }
 
-    public void test(){
+    public void end_shop_animation(){
         shopContent.setVisibility(View.GONE);
         animation2.setVisibility(View.VISIBLE);
+        animation2.playAnimation();
         animation2.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -199,11 +201,13 @@ public class ShoppingListViewActivity extends AppCompatActivity implements View.
                 }
                 else{
                     ShopItem cur = new ShopItem(newN.getText().toString(),Float.valueOf(newQ.getText().toString()));
+                    newN.setText("");
+                    newQ.setText("");
                     ShopControl.ShopListModel.ListDB.add(cur);
                     Toast.makeText(ShoppingListViewActivity.this, "Item added Successfully :"+cur.name,
                             Toast.LENGTH_SHORT).show();
 //                    AddDialog.dismiss();
-                    test();
+                    end_shop_animation();
                     refresh_list();
                 }
                 break;

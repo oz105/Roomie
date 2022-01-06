@@ -26,9 +26,11 @@
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_notification.xml" value="0.24270833333333333" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_password.xml" value="0.22395833333333334" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_password_focus.xml" value="0.321875" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_phone.xml" value="0.30364583333333334" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_pre.xml" value="0.315625" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_room.xml" value="0.24270833333333333" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/photo_shape.xml" value="0.2942708333333333" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/profile_back.xml" value="0.264" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/round_shape.xml" value="0.2942708333333333" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/selector.xml" value="0.10833333333333334" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_add_apartment_view.xml" value="0.27943840579710144" />
@@ -58,13 +60,16 @@
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_welcome_admin.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_welcome_user.xml" value="0.264" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/add_bill.xml" value="0.264" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/add_bill2.xml" value="0.28125" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/add_bill_participate.xml" value="0.4" />
-        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/add_item.xml" value="0.1" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/add_item.xml" value="0.264" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/add_payment.xml" value="0.25769927536231885" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/add_payment2.xml" value="0.264" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/add_payment_participate.xml" value="0.25769927536231885" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/editbox.xml" value="0.30932971014492755" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/item_viewpager.xml" value="0.31927083333333334" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/profile.xml" value="0.30932971014492755" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/profile_photo.xml" value="0.31614583333333335" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/rount_shape.xml" value="0.278125" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/selector.xml" value="0.2341485507246377" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/updating_data_dialog.xml" value="0.36666666666666664" />

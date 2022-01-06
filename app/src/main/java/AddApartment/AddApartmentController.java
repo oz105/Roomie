@@ -3,7 +3,7 @@ package AddApartment;
 import android.content.Intent;
 import android.widget.Toast;
 
-import com.example.roomie_2.WelcomeAdminActivity;
+import WelcomeOwner.WelcomeAdminActivity;
 
 import java.util.HashMap;
 import java.util.Map;

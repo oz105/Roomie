@@ -71,7 +71,7 @@
             android:name=".WelcomeUserActivity"
             android:exported="false" />
         <activity
-            android:name=".WelcomeAdminActivity"
+            android:name="WelcomeOwner.WelcomeAdminActivity"
             android:exported="false" />
         <!-- <activity -->
         <!-- android:name=".LoginActivity" -->

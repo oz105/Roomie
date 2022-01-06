@@ -40,7 +40,9 @@ public class ShowInfoController {
             currentIndex = 0;
             this.photos = new Bitmap[size];
             this.photos[0] = bitmap;
+            showInfoView.wait.setVisibility(View.GONE);
             showInfoView.image.setImageBitmap(bitmap);
+
         }
     }
 

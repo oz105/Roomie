@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -36,13 +37,13 @@ public class ShowInfoView extends AppCompatActivity implements View.OnClickListe
     String apartmentId = "0";
     FirebaseDatabase db = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");
     List<String> photos ;
-    StorageReference storageRef = FirebaseStorage.getInstance().getReference("Profile");
+    StorageReference storageRef = FirebaseStorage.getInstance().getReference("uploads");
     List<Uri> links = new ArrayList<>();
     ImageButton pre,next;
     int currentIndex = 0;
     Bitmap [] bm;
     FrameLayout fl;
-
+    LinearLayout wait;
     ProgressBar progressBar;
     TextView details,rooms,price,address,noPhoto;
     ImageView image;
@@ -62,6 +63,7 @@ public class ShowInfoView extends AppCompatActivity implements View.OnClickListe
         showInfoController.init_info(userId);
         bn = (BottomNavigationView) findViewById(R.id.bottom_nav);
         details = findViewById(R.id.details);
+        wait = findViewById(R.id.waiting);
         rooms = findViewById(R.id.rooms);
         price = findViewById(R.id.rent);
         address = findViewById(R.id.address);

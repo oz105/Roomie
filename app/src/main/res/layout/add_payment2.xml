@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_height="450dp"  android:layout_width="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_height="wrap_content"  android:layout_width="wrap_content"
     android:orientation="vertical">
 
 
@@ -21,10 +21,9 @@
 
 
         <ImageView
-
             android:layout_width="308dp"
             android:layout_height="189dp"
-            android:src="@drawable/addnewbill" />
+            android:src="@drawable/payment" />
 
 
     </LinearLayout>
@@ -42,32 +41,53 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="110dp"
-                android:padding="12dp"
 
-                android:text="Paid by"
+                android:padding="8dp"
+                android:text="Payment from"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/paidBy"
+                android:id="@+id/howPay"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:padding="8dp"
+
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="monospace"
-                android:padding="12dp"
-
-                android:text="Paid by"
+                android:padding="8dp"
+                android:text="to"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="15sp"
+                 />
+            <TextView
+                android:id="@+id/payFor"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:padding="8dp"
+
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="17sp"
                 android:textStyle="bold" />
 
 
@@ -97,7 +117,7 @@
                 />
 
             <EditText
-                android:id="@+id/amount"
+                android:id="@+id/paymentAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:digits="0123456789"
@@ -117,7 +137,7 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="please choose participates"
+                android:text="Choose who you want to pay to"
                 android:textColor="@color/black"
                 android:textSize="18dp" />
 
@@ -133,14 +153,12 @@
             android:orientation="horizontal">
 
             <ListView
-                android:id="@+id/participateList"
+                android:id="@+id/payParticipateList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
                 android:choiceMode="multipleChoice"
-                android:foregroundGravity="center"
-
-                ></ListView>
+                >
+            </ListView>
 
         </LinearLayout>
 
@@ -153,7 +171,7 @@
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/doneParticipate"
+                android:id="@+id/donePayment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bottun_bills"
@@ -166,7 +184,7 @@
                 android:layout_height="match_parent" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/cancelAdd"
+                android:id="@+id/cancelPayment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bottun_bills"

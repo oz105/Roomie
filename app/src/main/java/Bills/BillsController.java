@@ -95,13 +95,13 @@ public class BillsController {
         }
         BillParticipateAdapter participateAdapter = new BillParticipateAdapter(billsView.getApplicationContext(),names,R.layout.add_payment_participate);
         billsView.paymentListView.setAdapter(participateAdapter);
-        billsView.paymentPayBy.setText("Payment from "+model.getApartmentUsers().get(model.getUserId()));
+        billsView.paymentPayBy.setText(model.getApartmentUsers().get(model.getUserId()));
         billsView.paymentDialog.show();
     }
 
     public void choose_pay_to(int position){
         payToIndex = position;
-        billsView.accept.setText(names.get(payToIndex).name);
+        billsView.payFor.setText(names.get(payToIndex).name);
     }
 
     public void finish_payment(){

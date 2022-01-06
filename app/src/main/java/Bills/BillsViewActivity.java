@@ -31,7 +31,7 @@ public class BillsViewActivity extends AppCompatActivity implements View.OnClick
     public DatabaseReference rootUser,rootApartment;
     public FirebaseAuth auth;
 
-    public TextView total,owe,owed,paidBy,accept;
+    public TextView total,owe,owed,paidBy,accept,cancelPayment,payFor;
     public Button addBill,payment, doneAddBill,donePayment,cancelAdd;
     public EditText newBillAmount,paymentAmount;
     public TextView paymentPayBy;
@@ -43,6 +43,7 @@ public class BillsViewActivity extends AppCompatActivity implements View.OnClick
     public BillsController billController;
     public BillParticipateAdapter participateAdapter,paymentAdapt;
     public ListView newBillListView,paymentListView;
+
 
 
     @Override
@@ -69,7 +70,7 @@ public class BillsViewActivity extends AppCompatActivity implements View.OnClick
         addBill.setOnClickListener(this);
         payment.setOnClickListener(this);
         billController = new BillsController(this);
-        billController.load_bills();
+
 
         bn.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -102,6 +103,7 @@ public class BillsViewActivity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onStart() {
         super.onStart();
+        billController.load_bills();
         bn.setSelectedItemId(R.id.nav_bills);
     }
 
@@ -125,14 +127,20 @@ public class BillsViewActivity extends AppCompatActivity implements View.OnClick
                 newBillAmount = (EditText) addBillDialog.findViewById(R.id.amount);
                 billController.finish_adding_new_bill();
                 break;
+            case R.id.cancelAdd:
+                addBillDialog.dismiss();
+                break;
 
             case R.id.payment :
                 paymentDialog = new Dialog(this);
-                paymentDialog.setContentView(R.layout.add_payment);
-                paymentPayBy = (TextView) paymentDialog.findViewById(R.id.PaimentPaidBy);
+                paymentDialog.setContentView(R.layout.add_payment2);
+                paymentPayBy = (TextView) paymentDialog.findViewById(R.id.howPay);
                 paymentAmount = (EditText)paymentDialog.findViewById(R.id.paymentAmount);
                 paymentListView = (ListView) paymentDialog.findViewById(R.id.payParticipateList);
                 donePayment = (Button) paymentDialog.findViewById(R.id.donePayment);
+                payFor = paymentDialog.findViewById(R.id.payFor);
+                cancelPayment = paymentDialog.findViewById(R.id.cancelPayment);
+                cancelPayment.setOnClickListener(this);
                 donePayment.setOnClickListener(this);
                 billController.open_payment();
                 paymentListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -147,8 +155,10 @@ public class BillsViewActivity extends AppCompatActivity implements View.OnClick
             case R.id.donePayment:
                 billController.finish_payment();
                 break;
-            case R.id.cancelAdd:
-                addBillDialog.dismiss();
+
+            case R.id.cancelPayment:
+                paymentDialog.dismiss();
+                break;
         }
     }
     public void Make_toast(String messege){

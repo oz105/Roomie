@@ -27,7 +27,7 @@ public class AddApartmentModel {
 
     public void add_apartment(Map<String,Object> details,String adminID){
         final Apartment[] newApartment = {null};
-        addApartController.addApartmentView.db.getReference().child("apartmendIds").addListenerForSingleValueEvent(new ValueEventListener() {
+        addApartController.addApartmentView.db.getReference().child("apartmentIds").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<Long> apartmentIdwList = null;
@@ -69,7 +69,7 @@ public class AddApartmentModel {
     }
 
     public void finish_addApartment(Apartment apartment){
-        addApartController.addApartmentView.rootApartmrnt.setValue(apartment).addOnCompleteListener(new OnCompleteListener<Void>() {
+        addApartController.addApartmentView.rootApartmrnt.child(String.valueOf(apartment.getApartmentId())).setValue(apartment).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){

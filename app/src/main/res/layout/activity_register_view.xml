@@ -4,25 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_background"
+    android:background="@drawable/back"
     tools:context="Register.RegisterViewActivity">
-
-    <TextView
-        android:id="@+id/banner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="620dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Roomie"
-        android:textAlignment="center"
-        android:textSize="60sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
@@ -30,8 +13,8 @@
         android:layout_height="117dp"
         android:src="@drawable/def_pic"
         app:civ_border_color="#FF000000"
+
         app:civ_border_width="2dp"
-        app:layout_constraintBottom_toTopOf="@+id/fullName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signUp"
@@ -41,7 +24,7 @@
         android:id="@+id/signUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="60dp"
         android:text="Sign Up"
         android:textAlignment="center"
         android:textSize="30dp"
@@ -50,73 +33,113 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/fullName"
-        android:layout_width="380dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="196dp"
-        android:background="@drawable/costum_input"
-        android:ems="10"
-        android:hint="Full Name"
-
-        android:inputType="text"
-        android:textSize="24sp"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUp" />
-
-    <EditText
-        android:id="@+id/age"
-        android:layout_width="380dp"
+    <LinearLayout
+        android:id="@+id/linearLayout10"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="Age"
-        android:background="@drawable/costum_input"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/profile_image"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp">
 
-        android:inputType="number"
-        android:textSize="24sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fullName" />
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="380dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="Email"
-        android:drawableStart="@drawable/ic_email"
-        android:background="@drawable/costum_input"
+        <EditText
+            android:id="@+id/fullName"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit"
+            android:drawablePadding="5dp"
+            android:ems="10"
+            android:hint="Full Name"
+            android:inputType="text"
+            android:minHeight="44dp"
+            android:paddingStart="5dp"
+            android:textSize="24sp"
+            app:layout_constraintHorizontal_bias="0.483"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/signUp" />
 
-        android:inputType="textEmailAddress"
-        android:textSize="24sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/age" />
+        <EditText
+            android:id="@+id/age"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit"
+            android:drawablePadding="5dp"
+            android:ems="10"
+            android:hint="Age"
+            android:inputType="number"
+            android:minHeight="44dp"
+            android:paddingStart="5dp"
+            android:textSize="24sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fullName" />
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="380dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:background="@drawable/costum_input"
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit"
+            android:drawableStart="@drawable/ic_phone"
+            android:drawablePadding="5dp"
+            android:ems="10"
+            android:hint="Phone"
+            android:minHeight="44dp"
+            android:paddingStart="5dp"
+            android:textSize="24sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fullName" />
 
-        android:textSize="24sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit"
+            android:drawableStart="@drawable/custom_email_icon"
+            android:drawablePadding="5dp"
+            android:ems="10"
+            android:hint=" Email"
+            android:inputType="textEmailAddress"
+            android:minHeight="44dp"
+            android:paddingStart="5dp"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.483"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/age" />
+
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit"
+            android:drawableStart="@drawable/custom_password_icon"
+            android:drawablePadding="5dp"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:minHeight="44dp"
+            android:textSize="24sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/registerUser"
         android:layout_width="380dp"
         android:layout_height="70dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="96dp"
         android:backgroundTint="#0E0D0D"
         android:text="Register"
         android:textSize="26sp"
@@ -124,7 +147,7 @@
         app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout10" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -147,7 +170,7 @@
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/registerUser"
-        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout10"
         app:layout_constraintVertical_bias="0.537"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="45dp">

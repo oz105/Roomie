@@ -7,12 +7,13 @@ public class User {
     public Boolean isAdmin;
     public long apartmentId;
     public String profile;
+    public String phone;
 
     public User(){
 
     }
 
-    public User(String fullName , String age , String email,String id,boolean isAdmin){
+    public User(String fullName , String age , String email,String id,String phone,boolean isAdmin){
         this.fullName = fullName;
         this.age = age;
         this.email = email;

@@ -20,11 +20,11 @@ public class BillsModel {
 
 
     BillsController billController;
-    long apartmentId;
+    long apartmentId = 2;
     private String userId;
     private List<Bill> owe,owed,allBills;
 
-    private Map<String,String> apartmentUsers;
+    private Map<String,String> apartmentUsers=null;
 
 
 
@@ -55,6 +55,7 @@ public class BillsModel {
         allBills = new ArrayList<>();
         owe = new ArrayList<>();
         owed = new ArrayList<>();
+
         billController.billsView.rootApartment.child(""+apartmentId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -186,7 +187,7 @@ public class BillsModel {
         billController.billsView.rootApartment.child(""+apartmentId).child("billsList").setValue(allBills).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                load_debt_and_names();
+                billController.load_bills();
             }
         });
 

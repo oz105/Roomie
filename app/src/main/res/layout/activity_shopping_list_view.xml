@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:lottie_url="REPLACE_JSON_URL"
-            app:lottie_autoPlay="true"
+            app:lottie_autoPlay="false"
             app:lottie_loop="false"
             app:lottie_rawRes="@raw/shop"
             tools:ignore="MissingConstraints"
@@ -60,7 +60,11 @@
                 android:layout_height="405dp"
                 android:dividerHeight="0.1dp"
                 android:paddingLeft="10dp"
-                android:paddingTop="10dp"></ListView>
+                android:paddingTop="10dp">
+
+
+
+            </ListView>
 
         </LinearLayout>
 

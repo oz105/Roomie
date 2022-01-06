@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.view.View;
 
 import com.example.roomie_2.JoinApartmentActivity;
-import com.example.roomie_2.WelcomeAdminActivity;
+import WelcomeOwner.WelcomeAdminActivity;
 import com.example.roomie_2.WelcomeUserActivity;
 
 import AddApartment.AddApartmentView;

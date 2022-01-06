@@ -26,7 +26,7 @@ public class RegisterViewActivity extends AppCompatActivity implements View.OnCl
 
     private TextView banner, registerUser;
     private RadioGroup type;
-    private EditText editTextFullName, editTextAge, editTextEmail, editTextPassword;
+    private EditText editTextFullName, editTextAge, editTextEmail, editTextPassword,phone;
     private ProgressBar progressBar;
     public CircleImageView profile;
     public StorageReference StorageRef;
@@ -43,20 +43,19 @@ public class RegisterViewActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_register_view);
 
         type = (RadioGroup) findViewById(R.id.type);
-        banner = (TextView) findViewById(R.id.banner);
         profile = (CircleImageView)findViewById(R.id.profile_image);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         editTextFullName = (EditText) findViewById(R.id.fullName);
         editTextPassword = (EditText) findViewById(R.id.password);
+        phone = findViewById(R.id.phone);
         registerUser = (Button) findViewById(R.id.registerUser);
         editTextEmail = (EditText) findViewById(R.id.email);
         editTextAge = (EditText) findViewById(R.id.age);
         StorageRef = FirebaseStorage.getInstance().getReference("Profile");
-
         profile.setOnClickListener(this);
         registerController = new RegisterController(this);
         registerUser.setOnClickListener(this);
-        banner.setOnClickListener(this);
+
 
         type.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -119,6 +118,7 @@ public class RegisterViewActivity extends AppCompatActivity implements View.OnCl
         return progressBar;
     }
 
-
-
+    public EditText getPhone() {
+        return phone;
+    }
 }

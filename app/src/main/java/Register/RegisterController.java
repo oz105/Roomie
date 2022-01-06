@@ -26,8 +26,9 @@ public class RegisterController {
         String password = registerView.getEditTextPassword().getText().toString().trim();
         String fullName = registerView.getEditTextFullName().getText().toString().trim();
         String age = registerView.getEditTextAge().getText().toString().trim();
+        String phone = registerView.getPhone().getText().toString().trim();
         registerView.getProgressBar().setVisibility(View.VISIBLE);
-        registerModel.registerUser(email, password, fullName, age ,isAdmin);
+        registerModel.registerUser(email, password, fullName, age,phone ,isAdmin);
 
     }
 

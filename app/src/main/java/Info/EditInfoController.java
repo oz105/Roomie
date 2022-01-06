@@ -1,13 +1,9 @@
 package Info;
 
 import android.content.Intent;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.roomie_2.R;
-import com.example.roomie_2.WelcomeAdminActivity;
+import WelcomeOwner.WelcomeAdminActivity;
 
 import java.util.HashMap;
 import java.util.Map;

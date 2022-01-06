@@ -41,7 +41,6 @@ public class ShoppingListController{
     }
 
     public void load_ShopList(){
-
         //billsView.progressBar.setVisibility(View.VISIBLE);
         ShopListView.LoadingDialog.show();
         ShopListModel.load_shop_list();

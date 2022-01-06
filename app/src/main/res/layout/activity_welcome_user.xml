@@ -1,120 +1,4 @@
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<LinearLayout-->
-<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    android:id="@+id/db1_root"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"-->
-<!--    android:background="@drawable/login_background"-->
-<!--    android:orientation="vertical" >-->
 
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Roomie"-->
-<!--        android:textSize="60sp"-->
-<!--        android:textAlignment="center"-->
-<!--        android:textStyle="bold"-->
-<!--        android:fontFamily="sans-serif-black"-->
-<!--        android:layout_marginTop="30dp"/>-->
-
-
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="100dp"-->
-<!--        android:gravity="center"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:padding="20dp">-->
-
-<!--        <Button-->
-<!--            android:id="@+id/shoppingList"-->
-<!--            android:layout_width="100dp"-->
-<!--            android:layout_height="100dp"-->
-<!--            style="?android:attr/buttonStyleSmall"-->
-<!--            android:layout_gravity="center_horizontal|center"-->
-<!--            android:layout_weight="1"-->
-<!--            android:drawableTop="@drawable/ic_shopping_cart"-->
-<!--            android:text="Shopping" />-->
-
-<!--        <Button-->
-<!--            android:id="@+id/tasks"-->
-<!--            style="?android:attr/buttonStyleSmall"-->
-<!--            android:layout_width="100dp"-->
-<!--            android:layout_height="100dp"-->
-<!--            android:layout_weight="1"-->
-<!--            android:layout_gravity="center_horizontal|center"-->
-<!--            android:drawableTop="@drawable/ic_task"-->
-<!--            android:text="tasks" />-->
-
-<!--        <Button-->
-<!--            android:id="@+id/bills"-->
-<!--            style="?android:attr/buttonStyleSmall"-->
-<!--            android:layout_width="100dp"-->
-<!--            android:layout_height="100dp"-->
-<!--            android:layout_weight="1"-->
-<!--            android:layout_gravity="center_horizontal|center"-->
-<!--            android:drawableTop="@drawable/ic_bills"-->
-<!--            android:text="bills" />-->
-<!--    </LinearLayout>-->
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:gravity="center"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:padding="20dp">-->
-
-<!--        <Button-->
-<!--            android:id="@+id/chat"-->
-<!--            style="?android:attr/buttonStyleSmall"-->
-<!--            android:layout_width="100dp"-->
-<!--            android:layout_height="100dp"-->
-<!--            android:layout_weight="1"-->
-<!--            android:layout_gravity="center_horizontal|center"-->
-<!--            android:drawableTop="@drawable/ic_chat"-->
-<!--            android:text="chat" />-->
-
-<!--        <Button-->
-<!--            android:id="@+id/alert"-->
-<!--            style="?android:attr/buttonStyleSmall"-->
-<!--            android:layout_width="100dp"-->
-<!--            android:layout_height="100dp"-->
-<!--            android:layout_weight="1"-->
-<!--            android:layout_gravity="center_horizontal|center"-->
-<!--            android:drawableTop="@drawable/ic_notification"-->
-<!--            android:text="alerts" />-->
-
-<!--        <Button-->
-<!--            android:id="@+id/info"-->
-<!--            style="?android:attr/buttonStyleSmall"-->
-<!--            android:layout_width="100dp"-->
-<!--            android:layout_height="100dp"-->
-<!--            android:layout_weight="1"-->
-<!--            android:layout_gravity="center_horizontal|center"-->
-<!--            android:textSize="12dp"-->
-<!--            android:text="Info" />-->
-<!--    </LinearLayout>-->
-
-<!--    <Button-->
-<!--        android:id="@+id/signOut"-->
-<!--        android:layout_width="100dp"-->
-<!--        android:layout_height="100dp"-->
-<!--        android:layout_gravity="center_horizontal|center"-->
-<!--        android:drawableTop="@drawable/ic_logout"-->
-<!--        android:text="Logout" />-->
-
-
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal">-->
-
-<!--        -->
-
-
-
-<!--    </LinearLayout>-->
-
-<!--</LinearLayout>-->
 
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -122,51 +6,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/back"
-    tools:context=".FirstRegisteredEntry">
+    tools:context=".WelcomeUserActivity">
 
-    <TextView
-        android:id="@+id/textView"
+    <LinearLayout
+        android:id="@+id/linearLayout6"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:text="Roomie"
-        android:textAlignment="center"
-        android:textSize="60sp"
-        android:textStyle="bold"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Welcome to your apartment"
-        android:textAlignment="center"
-        android:textSize="60sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:layout_height="221dp"
+        android:background="#00C853"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-16dp" />
+        tools:layout_editor_absoluteX="4dp">
 
-    <Button
-        android:id="@+id/signOut"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal|center"
-        android:layout_marginTop="132dp"
-        android:drawableTop="@drawable/ic_logout"
-        android:text="Logout"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        <ImageView
+
+            android:layout_width="308dp"
+            android:layout_height="189dp"
+
+            android:layout_marginLeft="55dp"
+            android:src="@drawable/logo" />
+
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="wrap_content"
+        android:layout_height="387dp"
+        android:layout_marginTop="160dp"
+        android:background="@drawable/half"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout6"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="155dp" />
+        tools:layout_editor_absoluteX="-1dp">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+
+            tools:layout_editor_absoluteX="9dp"
+            tools:layout_editor_absoluteY="370dp"
+            android:src="@drawable/roomates"/>
+
+
+    </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
         android:layout_width="411dp"
         android:layout_height="56dp"
-        android:background="#029840"
+        android:background="#00C853"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -175,6 +67,29 @@
         tools:layout_editor_absoluteX="0dp">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/signOut"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal|center"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/details2"
+        android:text="Logout"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7"
+        tools:ignore="MissingConstraints" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/welcom"
+        android:layout_marginTop="250dp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout6"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,58 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/db1_root"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/login_background"
-    android:orientation="vertical" >
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent" android:layout_width="match_parent">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/linearLayout6"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Roomie"
-        android:textSize="60sp"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        android:fontFamily="sans-serif-black"
-        android:layout_marginTop="30dp"/>
+        android:layout_height="221dp"
+        android:background="#B3356E"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="4dp">
+
+        <ImageView
+
+            android:layout_width="308dp"
+            android:layout_height="189dp"
+            android:layout_marginLeft="55dp"
+            android:src="@drawable/logo" />
+
+
+    </LinearLayout>
 
 
     <LinearLayout
+        android:id="@+id/linearLayout8"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="20dp">
+        android:layout_height="300dp"
+        android:layout_marginTop="164dp"
+        android:background="@drawable/half"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp">
 
-        <Button
-            android:id="@+id/notfication"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:layout_gravity="center_horizontal|center"
-            android:drawableTop="@drawable/ic_notification"
-            android:text="notfications" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="APARTMENT USERS"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
 
-        <Button
-            android:id="@+id/info"
-            style="?android:attr/buttonStyleSmall"
-            android:drawableTop="@drawable/ic_info"
+        <GridView
+            android:id="@+id/photos"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:numColumns="3"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp">
 
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:layout_gravity="center_horizontal|center"
-            android:textSize="12dp"
-            android:text="Info" />
+
+        </GridView>
+
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/logout"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal|center"
-        android:drawableTop="@drawable/ic_logout"
-        android:text="Logout" />
+    <LinearLayout
+        android:id="@+id/db1_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout8"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp">
 
-</LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/logout"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal|center"
+            android:drawableTop="@drawable/ic_logout"
+            android:text="Logout"
+            android:background="#B3356E"
+            tools:layout_editor_absoluteX="191dp"
+            tools:layout_editor_absoluteY="528dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/info"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="100dp"
+
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal|center"
+            android:layout_marginLeft="30dp"
+            android:background="#B3356E"
+            android:drawableTop="@drawable/ic_info"
+            android:text="Edit info"
+            android:textSize="12dp"
+            tools:layout_editor_absoluteX="94dp"
+            tools:layout_editor_absoluteY="528dp" />
+
+
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

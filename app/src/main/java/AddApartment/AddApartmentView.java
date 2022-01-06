@@ -33,7 +33,7 @@ public class AddApartmentView extends AppCompatActivity {
         AppPassword = (EditText) findViewById(R.id.password);
         numOfRooms = (EditText) findViewById(R.id.rooms);
         details = (EditText) findViewById(R.id.details);
-        price = (EditText) findViewById(R.id.priceRent);
+        price = (EditText) findViewById(R.id.rent);
         updateInfo = (Button) findViewById(R.id.updateData);
         addApartmentController = new AddApartmentController(this);
         updateInfo.setOnClickListener(new View.OnClickListener() {

@@ -29,7 +29,7 @@ public class RegisterModel {
 
     }
 
-    public void registerUser(String email, String password, String fullName, String age, boolean isAdmin) {
+    public void registerUser(String email, String password, String fullName, String age,String phone, boolean isAdmin) {
         if (!verifyDate(email, password, fullName, age)) {
             registerController.onlyGone();
             return;
@@ -40,7 +40,7 @@ public class RegisterModel {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     String id = mAuth.getCurrentUser().getUid();
-                    User user = new User(fullName, age, email, id, isAdmin);
+                    User user = new User(fullName, age, email, id,phone, isAdmin);
 
                     db.getReference().child("Users").child(id).setValue(user)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -100,15 +100,16 @@ public class RegisterModel {
     public void save_image_to_db(String id) {
         Uri uri = registerController.getRegisterView().resultUri;
         if (uri != null) {
-            StorageReference fileReference = registerController.getRegisterView().StorageRef.child(System.currentTimeMillis()
-                    + uri.toString().substring(uri.toString().lastIndexOf(".")));
+            String photoName = System.currentTimeMillis()
+                    + uri.toString().substring(uri.toString().lastIndexOf("."));
+            StorageReference fileReference = registerController.getRegisterView().StorageRef.child(photoName);
             fileReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     taskSnapshot.getStorage().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-                            db.getReference().child("Users").child(id).child("profile").setValue(uri.toString());
+                            db.getReference().child("Users").child(id).child("profile").setValue(photoName);
                         }
                     });
 
