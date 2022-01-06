@@ -34,21 +34,15 @@ import ShoppingList.ShoppingListViewActivity;
 
 public class ShowInfoView extends AppCompatActivity implements View.OnClickListener {
 
-    String apartmentId = "0";
-    FirebaseDatabase db = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");
-    List<String> photos ;
-    StorageReference storageRef = FirebaseStorage.getInstance().getReference("uploads");
-    List<Uri> links = new ArrayList<>();
+
+
     ImageButton pre,next;
-    int currentIndex = 0;
-    Bitmap [] bm;
     FrameLayout fl;
     LinearLayout wait;
     ProgressBar progressBar;
     TextView details,rooms,price,address,noPhoto;
     ImageView image;
     ShowInfoController showInfoController;
-    String userId;
     BottomNavigationView bn;
 
 
@@ -59,8 +53,7 @@ public class ShowInfoView extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         showInfoController = new ShowInfoController(this);
         setContentView(R.layout.activity_show_info_view);
-        userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        showInfoController.init_info(userId);
+        showInfoController.init_info();
         bn = (BottomNavigationView) findViewById(R.id.bottom_nav);
         details = findViewById(R.id.details);
         wait = findViewById(R.id.waiting);

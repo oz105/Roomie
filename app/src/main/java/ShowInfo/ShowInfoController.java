@@ -8,12 +8,12 @@ import java.util.Map;
 
 public class ShowInfoController {
 
-    ShowInfoView showInfoView;
-    ShowInfoModel showInfoModel;
-    Bitmap[] photos;
-    Map<String,Object> details;
-    int numOfPhotos;
-    int currentIndex;
+    private ShowInfoView showInfoView;
+    private ShowInfoModel showInfoModel;
+    private Bitmap[] photos;
+    private Map<String,Object> details;
+    private int numOfPhotos;
+    private int currentIndex;
 
 
     public ShowInfoController(ShowInfoView showInfoView){
@@ -22,8 +22,8 @@ public class ShowInfoController {
     }
 
 
-    public void init_info(String userId){
-        showInfoModel.get_info(userId);
+    public void init_info(){
+        showInfoModel.get_info();
     }
 
     public void init_photo(int size,Bitmap bitmap){

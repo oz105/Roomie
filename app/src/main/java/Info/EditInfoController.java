@@ -10,13 +10,13 @@ import java.util.Map;
 
 public class EditInfoController {
 
-    EditInfoView editInfoView;
-    EditInfoModel editInfoModel;
+    private EditInfoView editInfoView;
+    private EditInfoModel editInfoModel;
 
 
     public EditInfoController(EditInfoView editInfoView){
         this.editInfoView = editInfoView;
-        this.editInfoModel = new EditInfoModel(this,editInfoView.Auth.getCurrentUser().getUid());
+        this.editInfoModel = new EditInfoModel(this);
         this.editInfoModel.get_apartment_details();
     }
 

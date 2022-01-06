@@ -4,22 +4,31 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Map;
 
 public class EditInfoModel {
 
-    EditInfoController editInfoController;
-    String currentUserId;
-    long apartmentId;
-    Map<String,Object> details;
+    private FirebaseDatabase db = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");
+    private DatabaseReference apartmentRef = db.getReference().child("Apartments");
+    private DatabaseReference userRef = db.getReference().child("Users");
+    private FirebaseAuth Auth;
+    private EditInfoController editInfoController;
+    private String currentUserId;
+    private long apartmentId;
+    private Map<String,Object> details;
 
-    public EditInfoModel(EditInfoController editInfoController,String currentUserId){
+    public EditInfoModel(EditInfoController editInfoController){
+        Auth = FirebaseAuth.getInstance();
+
         this.editInfoController = editInfoController;
-        this.currentUserId = currentUserId;
+        this.currentUserId = Auth.getCurrentUser().getUid();
         apartmentId = -1;
     }
 
@@ -28,7 +37,7 @@ public class EditInfoModel {
             send_init_data();
         }
         else {
-            editInfoController.editInfoView.userRef.child(currentUserId).child("apartmentId").addListenerForSingleValueEvent(new ValueEventListener() {
+            userRef.child(currentUserId).child("apartmentId").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()) {
@@ -50,7 +59,7 @@ public class EditInfoModel {
     }
 
     private void send_init_data(){
-        editInfoController.editInfoView.apartmentRef.child(""+apartmentId).addListenerForSingleValueEvent(new ValueEventListener() {
+        apartmentRef.child(""+apartmentId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
@@ -71,7 +80,7 @@ public class EditInfoModel {
             editInfoController.finish(true);
         }
         else {
-            editInfoController.editInfoView.apartmentRef.child(""+apartmentId).child("details").setValue(apartmentInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
+            apartmentRef.child(""+apartmentId).child("details").setValue(apartmentInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if(task.isSuccessful()){

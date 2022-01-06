@@ -6,8 +6,11 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -19,21 +22,28 @@ public class BillsModel {
 
 
 
-    BillsController billController;
-    long apartmentId = 0;
+    private BillsController billController;
+    private long apartmentId = 0;
     private String userId;
     private List<Bill> owe,owed,allBills;
-
     private Map<String,String> apartmentUsers=null;
+
+    private FirebaseDatabase db;
+    private DatabaseReference rootUser,rootApartment;
+    private FirebaseAuth auth;
 
 
 
 
     public BillsModel(BillsController controller){
         this.billController = controller;
+        db = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");
+        rootUser = db.getReference().child("Users");
+        auth = FirebaseAuth.getInstance();
+        rootApartment = db.getReference().child("Apartments");
 
-        this.userId = billController.billsView.auth.getCurrentUser().getUid();
-        this.billController.billsView.rootUser.child(userId).child("apartmentId").addListenerForSingleValueEvent(new ValueEventListener() {
+        this.userId = auth.getCurrentUser().getUid();
+        this.rootUser.child(userId).child("apartmentId").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
@@ -56,7 +66,7 @@ public class BillsModel {
         owe = new ArrayList<>();
         owed = new ArrayList<>();
 
-        billController.billsView.rootApartment.child(""+apartmentId).addListenerForSingleValueEvent(new ValueEventListener() {
+        rootApartment.child(""+apartmentId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(apartmentUsers==null){
@@ -185,7 +195,7 @@ public class BillsModel {
             }
         }
         allBills.removeAll(billToRemove);
-        billController.billsView.rootApartment.child(""+apartmentId).child("billsList").setValue(allBills).addOnCompleteListener(new OnCompleteListener<Void>() {
+        rootApartment.child(""+apartmentId).child("billsList").setValue(allBills).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 billController.load_bills();
@@ -214,7 +224,7 @@ public class BillsModel {
         }
         allBills.addAll(owe);
         allBills.addAll(owed);
-        billController.billsView.rootApartment.child(""+apartmentId).child("billsList").setValue(allBills).addOnCompleteListener(new OnCompleteListener<Void>() {
+        rootApartment.child(""+apartmentId).child("billsList").setValue(allBills).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 load_debt_and_names();

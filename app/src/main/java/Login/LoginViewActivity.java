@@ -22,8 +22,6 @@ import Register.RegisterViewActivity;
 
 public class LoginViewActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public FirebaseDatabase db;
-    private FirebaseAuth mAuth;
 
 
     private TextView register, forgetPassword;
@@ -40,8 +38,7 @@ public class LoginViewActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_view);
-        db = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");
-        mAuth = FirebaseAuth.getInstance();
+
         signIn = (Button) findViewById(R.id.signIn);
         register = (TextView) findViewById(R.id.register);
         editTextEmail = (EditText) findViewById(R.id.email);
@@ -60,10 +57,7 @@ public class LoginViewActivity extends AppCompatActivity implements View.OnClick
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null && currentUser.isEmailVerified()){
-            startActivity(new Intent(LoginViewActivity.this, WelcomeUserActivity.class));
-        }
+
     }
 
 

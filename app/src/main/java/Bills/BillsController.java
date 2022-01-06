@@ -59,7 +59,7 @@ public class BillsController {
     public void init_names(){
         names =new ArrayList<>();
         for (Map.Entry<String, String> entry : model.getApartmentUsers().entrySet()) {
-            if(entry.getKey().equals(billsView.auth.getCurrentUser().getUid())) continue;
+            if(entry.getKey().equals(model.getUserId())) continue;
             NameAndUid temp = new NameAndUid(entry.getValue(), entry.getKey());
             names.add(temp);
         }

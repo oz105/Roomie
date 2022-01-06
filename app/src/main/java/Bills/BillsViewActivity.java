@@ -28,19 +28,15 @@ import ShoppingList.ShoppingListViewActivity;
 import ShowInfo.ShowInfoView;
 
 public class BillsViewActivity extends AppCompatActivity implements View.OnClickListener {
-    public FirebaseDatabase db;
-    public DatabaseReference rootUser,rootApartment;
-    public FirebaseAuth auth;
+
 
     public TextView total,owe,owed,paidBy,accept,cancelPayment,payFor;
     public Button addBill,payment, doneAddBill,donePayment,cancelAdd;
     public EditText newBillAmount,paymentAmount;
     public TextView paymentPayBy;
-
     public ProgressBar progressBar;
     public BottomNavigationView bn;
     public Dialog addBillDialog,paymentDialog;
-
     public BillsController billController;
     public BillParticipateAdapter participateAdapter,paymentAdapt;
     public ListView newBillListView,paymentListView;
@@ -52,10 +48,7 @@ public class BillsViewActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bills_view);
 
-        db = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");
-        rootUser = db.getReference().child("Users");
-        auth = FirebaseAuth.getInstance();
-        rootApartment = db.getReference().child("Apartments");
+
         bn = (BottomNavigationView) findViewById(R.id.bottom_nav);
 
         Log.i("Bills on create","ON CREATE");

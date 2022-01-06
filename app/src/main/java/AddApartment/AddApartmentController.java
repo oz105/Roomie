@@ -52,7 +52,7 @@ public class AddApartmentController {
         apartmentInfo.put("price",addApartmentView.price.getText().toString());
         apartmentInfo.put("password",addApartmentView.AppPassword.getText().toString());
         apartmentInfo.put("details",addApartmentView.details.getText().toString());
-       addApartmentModel.add_apartment(apartmentInfo,addApartmentView.Auth.getCurrentUser().getUid());
+       addApartmentModel.add_apartment(apartmentInfo);
 
     }
 

@@ -1,6 +1,8 @@
 package ShoppingList;
 
 
+import java.util.List;
+
 public class ShoppingListController{
 
     public ShoppingListModel ShopListModel;
@@ -12,19 +14,8 @@ public class ShoppingListController{
         this.ShopListModel = new ShoppingListModel(this);
     }
 
-    public void finish_adding_new_item() {
-        //billsView.progressBar.setVisibility(View.VISIBLE);
-        //List<String> participateUid = new ArrayList<>();
-        //for (int i = 0; i < billsView.newBillListView.getCount(); i++) {
-        //    CheckBox cb = (CheckBox) (billsView.newBillListView.getChildAt(i).findViewById(R.id.check));
-        //    if(cb.isChecked()){
-        //        participateUid.add(names.get(i).uid);
-        //    }
-        //}
-        //double amount = Double.valueOf(billsView.newBillAmount.getText().toString());
-        //model.calculate_new_bill(participateUid,amount);
-        // refresh db
-
+    public String get_item_at_index(int index) {
+        return ShopListModel.ListDB.get(index).qty.toString();
     }
 
     public void editItem(String oldItem, final int index){
@@ -34,16 +25,25 @@ public class ShoppingListController{
         ShopListView.editDialog.show();
     }
 
+    public void init_list_adapter(List<ShopItem> ListDB){
+        this.ShopListView.init_list(ListDB);
+
+    }
+
+    public void click_item(int position){
+
+        editItem(ShopListModel.ListDB.get(position).name,position);
+    }
+
     public void newItem(){
         ShopListView.AddDialog.show();
         ShopListView.init_item_add();
-        finish_adding_new_item();
     }
 
     public void load_ShopList(){
         //billsView.progressBar.setVisibility(View.VISIBLE);
         ShopListView.LoadingDialog.show();
-        ShopListModel.load_shop_list();
+        ShopListModel.init_sopping_list();
         ShopListView.LoadingDialog.dismiss();
 
     }

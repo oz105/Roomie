@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -34,9 +35,10 @@ import Bills.BillsViewActivity;
 import ShowInfo.ShowInfoView;
 
 public class ShoppingListViewActivity extends AppCompatActivity implements View.OnClickListener {
-    public FirebaseDatabase db;
-    public DatabaseReference root,userRoot,shopRoot;
-    public FirebaseAuth auth;
+
+
+
+
 
     public int aptNum;
     public int curPos;
@@ -67,11 +69,7 @@ public class ShoppingListViewActivity extends AppCompatActivity implements View.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_list_view);
 
-        db = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");
-        root = db.getReference();
-        userRoot = db.getReference().child("Users");
-        shopRoot = root.child("Apartments").child(""+aptNum).child("shoppingList");
-        auth = FirebaseAuth.getInstance();
+
 
         LoadingDialog = new Dialog(ShoppingListViewActivity.this);
         LoadingDialog.setContentView(R.layout.updating_data_dialog);
@@ -102,16 +100,12 @@ public class ShoppingListViewActivity extends AppCompatActivity implements View.
         animation2 = AddDialog.findViewById(R.id.shopAnimation);
 
         shopContent = AddDialog.findViewById(R.id.shopContent);
-        //Log.i("oncreate Shop","Shpinglis CREATE");
-        String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         ShopControl = new ShoppingListController(this); // now have apt
         ShopControl.load_ShopList(); // load from database and load listview.
 
 
-        // finish. now listen to: add (after update), edit (after update), delete (after update)
 
-        //loading list in controller.
 
         bn.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -133,7 +127,6 @@ public class ShoppingListViewActivity extends AppCompatActivity implements View.
             }
         });
 
-        Log.i("newRoot"," root contewnts are :"+root.child("Users").toString());
     }
 
     @Override
@@ -217,10 +210,8 @@ public class ShoppingListViewActivity extends AppCompatActivity implements View.
             case R.id.backButton:
                 refresh_list();
                 finish();
-                // ok
                 break;
             case R.id.ChangeQ:
-                //Button updateButton = (Button) editDialog.findViewById(R.id.ChangeQ);
                 if(Float.valueOf(editQ.getText().toString())<=0)
                 {
                     Toast.makeText(ShoppingListViewActivity.this, "cant set this to a Value!",
@@ -259,6 +250,15 @@ public class ShoppingListViewActivity extends AppCompatActivity implements View.
         sAdapter = new ShopListAdapter(getApplicationContext(),shopList);
         L = (ListView) findViewById(R.id.list);
         L.setAdapter(sAdapter);
+        AdapterView.OnItemClickListener tamir = new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                ShopControl.click_item(position);
+
+            }
+        };
+        L.setOnItemClickListener(tamir);
     }
 
     public void init_item_add(){
@@ -284,8 +284,9 @@ public class ShoppingListViewActivity extends AppCompatActivity implements View.
         updateButton.setOnClickListener(this);
         deleteButton.setOnClickListener(this);
         cancelButton.setOnClickListener(this);
-        final EditText editQ = (EditText) editDialog.findViewById(R.id.inputQuantity);
-        editQ.setText(ShoppingListModel.ListDB.get(index).qty.toString());
+        EditText editQ = (EditText) editDialog.findViewById(R.id.inputQuantity);
+        String quantity = ShopControl.get_item_at_index(index);
+        editQ.setText(quantity);
     }
 
 }

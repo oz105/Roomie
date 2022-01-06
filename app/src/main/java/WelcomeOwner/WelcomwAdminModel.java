@@ -31,7 +31,6 @@ public class WelcomwAdminModel {
     WelcomeAdminController welcomeAdminController;
     String ownerId ="",apartmentId="";
     List<String>usersId;
-//    List<Bitmap> photosBit;
     Bitmap [] photosBit;
 
     public WelcomwAdminModel(WelcomeAdminController welcomeAdminController){

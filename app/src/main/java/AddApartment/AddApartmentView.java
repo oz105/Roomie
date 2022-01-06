@@ -15,10 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import AddApartment.AddApartmentController;
 
 public class AddApartmentView extends AppCompatActivity {
-    public FirebaseDatabase db = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");
-    public DatabaseReference rootApartmrnt = db.getReference().child("Apartments");
-    public DatabaseReference rootUser = db.getReference().child("Users");
-    public FirebaseAuth Auth;
+
 
     public EditText AppAddress,AppPassword,details,numOfRooms,price;
     public Button updateInfo;
@@ -28,7 +25,7 @@ public class AddApartmentView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_apartment_view);
-        Auth = FirebaseAuth.getInstance();
+
         AppAddress = (EditText) findViewById(R.id.address);
         AppPassword = (EditText) findViewById(R.id.password);
         numOfRooms = (EditText) findViewById(R.id.rooms);

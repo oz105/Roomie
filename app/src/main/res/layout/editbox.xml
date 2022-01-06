@@ -68,9 +68,9 @@
         >
 
         <Button
+            android:id="@+id/itemDelete"
             android:outlineSpotShadowColor="@color/purple_200"
             android:textColor="#c5000c"
-            android:id="@+id/itemDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Delete"

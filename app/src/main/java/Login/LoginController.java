@@ -27,6 +27,9 @@ public class LoginController {
         loginModel.userLogin(email,password);
 
     }
+    public String get_user_id(){
+        return loginModel.getUserID();
+    }
 
 
     public void decide_screen(int state) {

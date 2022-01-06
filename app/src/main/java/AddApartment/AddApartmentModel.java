@@ -5,8 +5,11 @@ import androidx.annotation.NonNull;
 import com.example.roomie_2.Apartment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -17,17 +20,24 @@ import AddApartment.AddApartmentController;
 
 public class AddApartmentModel {
 
-
+    private FirebaseDatabase db = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");
+    private DatabaseReference rootApartmrnt = db.getReference().child("Apartments");
+    private DatabaseReference rootUser = db.getReference().child("Users");
+    private FirebaseAuth Auth;
     private AddApartmentController addApartController;
+
+
     public AddApartmentModel(AddApartmentController controller){
         this.addApartController = controller;
+        Auth = FirebaseAuth.getInstance();
     }
 
 
 
-    public void add_apartment(Map<String,Object> details,String adminID){
+    public void add_apartment(Map<String,Object> details){
+        String adminID = Auth.getCurrentUser().getUid();
         final Apartment[] newApartment = {null};
-        addApartController.addApartmentView.db.getReference().child("apartmentIds").addListenerForSingleValueEvent(new ValueEventListener() {
+        db.getReference().child("apartmentIds").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<Long> apartmentIdwList = null;
@@ -69,12 +79,12 @@ public class AddApartmentModel {
     }
 
     public void finish_addApartment(Apartment apartment){
-        addApartController.addApartmentView.rootApartmrnt.child(String.valueOf(apartment.getApartmentId())).setValue(apartment).addOnCompleteListener(new OnCompleteListener<Void>() {
+        rootApartmrnt.child(String.valueOf(apartment.getApartmentId())).setValue(apartment).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    addApartController.addApartmentView.rootUser.child(apartment.getAdminId()).child("hasApartment").setValue(true);
-                    addApartController.addApartmentView.rootUser.child(apartment.getAdminId()).child("apartmentId").setValue(apartment.getApartmentId());
+                    rootUser.child(apartment.getAdminId()).child("hasApartment").setValue(true);
+                    rootUser.child(apartment.getAdminId()).child("apartmentId").setValue(apartment.getApartmentId());
                     addApartController.finish_create_apartment(true,apartment.getApartmentId());
                 }
                 else{

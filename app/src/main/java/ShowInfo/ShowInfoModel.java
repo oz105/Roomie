@@ -6,30 +6,39 @@ import android.graphics.BitmapFactory;
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 import java.util.Map;
 
 public class ShowInfoModel {
 
-    String apartmentId,userId;
-    ShowInfoController showInfoController;
-    List<String> photos;
+    private String apartmentId,userId;
+    private List<String> photos;
+
+
+
+    private ShowInfoController showInfoController;
+    private FirebaseDatabase db = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");
+    private StorageReference storageRef = FirebaseStorage.getInstance().getReference("uploads");
 
     public ShowInfoModel(ShowInfoController showInfoController){
         this.showInfoController = showInfoController;
     }
 
-    public void get_info(String userId){
-        this.userId = userId;
-        showInfoController.showInfoView.db.getReference().child("Users").child(userId).child("apartmentId").addListenerForSingleValueEvent(new ValueEventListener() {
+    public void get_info(){
+        this.userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        db.getReference().child("Users").child(userId).child("apartmentId").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 apartmentId = String.valueOf(snapshot.getValue());
-                showInfoController.showInfoView.db.getReference().child("Apartments").child(apartmentId).addListenerForSingleValueEvent(new ValueEventListener() {
+                db.getReference().child("Apartments").child(apartmentId).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         List<String> photos;
@@ -59,7 +68,7 @@ public class ShowInfoModel {
 
     public void init_firs_photo(List<String> photos){
         this.photos = photos;
-        showInfoController.showInfoView.storageRef.child(photos.get(0)).getBytes(1024*1024*7).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+        storageRef.child(photos.get(0)).getBytes(1024*1024*7).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
                 Bitmap tempBitMap = BitmapFactory.decodeByteArray(bytes,0, bytes.length);
@@ -70,7 +79,7 @@ public class ShowInfoModel {
 
 
     public void get_photos(int index){
-        showInfoController.showInfoView.storageRef.child(photos.get(index)).getBytes(1024*1024*7).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+        storageRef.child(photos.get(index)).getBytes(1024*1024*7).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
                 Bitmap tempBitMap = BitmapFactory.decodeByteArray(bytes,0, bytes.length);

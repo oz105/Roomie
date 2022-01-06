@@ -16,14 +16,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Map;
 
 public class EditInfoView extends AppCompatActivity {
-    FirebaseDatabase db = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");
-    DatabaseReference apartmentRef = db.getReference().child("Apartments");
-    DatabaseReference userRef = db.getReference().child("Users");
+
 
     EditText AppAddress,AppPassword,details,numOfRooms,price;
     TextView id;
     Button updateInfo;
-    FirebaseAuth Auth;
+
     private String apartmentId="";
     private Map<String,Object> apartmentInfo;
     EditInfoController editInfoController;
@@ -32,7 +30,7 @@ public class EditInfoView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_info_view);
-        Auth = FirebaseAuth.getInstance();
+
         id = (TextView)findViewById(R.id.appartmentId) ;
         AppAddress = (EditText) findViewById(R.id.address);
         AppPassword = (EditText) findViewById(R.id.password);

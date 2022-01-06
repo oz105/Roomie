@@ -24,6 +24,7 @@ public class LoginModel {
     private FirebaseUser user;
     private User profileUser;
     private String userID;
+    private FirebaseDatabase db= FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app");;
 
 
     LoginController loginController;
@@ -138,5 +139,9 @@ public class LoginModel {
             return false;
         }
         return true;
+    }
+
+    public String getUserID() {
+        return userID;
     }
 }
