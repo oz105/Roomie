@@ -65,9 +65,6 @@
             android:name=".ForgetPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
-            android:exported="false" />
-        <activity
             android:name=".WelcomeUserActivity"
             android:exported="false" />
         <activity

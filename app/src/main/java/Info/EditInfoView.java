@@ -38,7 +38,7 @@ public class EditInfoView extends AppCompatActivity {
         AppPassword = (EditText) findViewById(R.id.password);
         numOfRooms = (EditText) findViewById(R.id.rooms);
         details = (EditText) findViewById(R.id.details);
-        price = (EditText) findViewById(R.id.priceRent);
+        price = (EditText) findViewById(R.id.rent);
         updateInfo = (Button) findViewById(R.id.updateData);
         editInfoController = new EditInfoController(this);
         updateInfo.setOnClickListener(new View.OnClickListener() {

@@ -20,7 +20,7 @@ public class BillsModel {
 
 
     BillsController billController;
-    long apartmentId = 2;
+    long apartmentId = 0;
     private String userId;
     private List<Bill> owe,owed,allBills;
 
@@ -91,6 +91,7 @@ public class BillsModel {
                     balance = get_current_bills_details(balance);
                 }
                 billController.show_bills(balance);
+
 
             }
             @Override

@@ -15,9 +15,7 @@
         android:layout_marginBottom="620dp"
         android:fontFamily="sans-serif-black"
         android:text="Roomie"
-
         android:textAlignment="center"
-        android:textColor="@android:color/holo_blue_dark"
         android:textColorHighlight="@color/purple_200"
         android:textColorHint="@color/black"
         android:textColorLink="@android:color/holo_green_light"
@@ -72,7 +70,7 @@
         android:id="@+id/signIn"
         android:layout_width="380dp"
         android:layout_height="70dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="30dp"
         android:background="@null"
         android:text="SIGN IN"
         android:textSize="26sp"

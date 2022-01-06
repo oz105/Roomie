@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -57,7 +58,7 @@ public class BillsViewActivity extends AppCompatActivity implements View.OnClick
         rootApartment = db.getReference().child("Apartments");
         bn = (BottomNavigationView) findViewById(R.id.bottom_nav);
 
-
+        Log.i("Bills on create","ON CREATE");
         addBill = (Button) findViewById(R.id.newBill);
         payment = (Button) findViewById(R.id.payment);
         bn = (BottomNavigationView) findViewById(R.id.bottom_nav);

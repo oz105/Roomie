@@ -35,7 +35,10 @@ public class LoginModel {
 
 
     public void userLogin(String email, String password){
-        verify_data(email, password);
+        if(!verify_data(email, password)){
+            loginController.goneProgressBar();
+            return;
+        }
 
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -113,26 +116,27 @@ public class LoginModel {
 
     }
 
-    private void verify_data(String email, String password) {
+    private boolean verify_data(String email, String password) {
         if (email.isEmpty()) {
             loginController.getLoginView().getEditTextEmail().setError("Email is required!");
             loginController.getLoginView().getEditTextEmail().requestFocus();
-            return;
+            return false;
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             loginController.getLoginView().getEditTextEmail().setError("Please enter valid Email!");
             loginController.getLoginView().getEditTextEmail().requestFocus();
-            return;
+            return false;
         }
         if (password.isEmpty()) {
             loginController.getLoginView().getEditTextPassword().setError("Password is required!");
             loginController.getLoginView().getEditTextPassword().requestFocus();
-            return;
+            return false;
         }
         if (password.length() < 6) {
             loginController.getLoginView().getEditTextPassword().setError("Password should be at least 6 characters");
             loginController.getLoginView().getEditTextPassword().requestFocus();
-            return;
+            return false;
         }
+        return true;
     }
 }

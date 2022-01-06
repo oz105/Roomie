@@ -24,7 +24,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RegisterViewActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView banner, registerUser;
+    private TextView registerUser;
     private RadioGroup type;
     private EditText editTextFullName, editTextAge, editTextEmail, editTextPassword,phone;
     private ProgressBar progressBar;
@@ -71,9 +71,7 @@ public class RegisterViewActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.banner:
-                startActivity(new Intent(this, LoginViewActivity.class));
-                break;
+
             case R.id.registerUser:
                 registerController.getDate(isAdmin);
                 break;

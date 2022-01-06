@@ -34,8 +34,8 @@ public class ShowInfoModel {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         List<String> photos;
                         Map<String,Object> details = (Map<String, Object>) snapshot.child("details").getValue();
-                        if(snapshot.child("imagesUploads").exists()){
-                            photos = (List<String>)snapshot.child("imagesUploads").getValue();
+                        if(snapshot.child("images").exists()){
+                            photos = (List<String>)snapshot.child("images").getValue();
                             init_firs_photo(photos);
                         }
                         else {
