@@ -36,7 +36,7 @@ public class BillParticipateAdapter  extends ArrayAdapter<NameAndUid> {
             textViewItemName.setText(name.name);
 
             // Return the completed view to render on screen
-            Log.i("Tamir check","get view adapter");
+
 //        convertView.findViewById(R.id.editB).setVisibility(View.INVISIBLE);
             return convertView;
         }

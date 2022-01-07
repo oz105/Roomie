@@ -47,7 +47,7 @@ public class BillsModel {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                    Log.i("BillsControler","c'tor - apartment id exist");
+
                     apartmentId = (long) snapshot.getValue();
                 }
                 else{

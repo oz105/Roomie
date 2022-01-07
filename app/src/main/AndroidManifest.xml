@@ -44,18 +44,6 @@
             android:name="Bills.BillsViewActivity"
             android:exported="false" />
         <activity
-            android:name=".AdminPhotosViewActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ApartmentView"
-            android:exported="false" />
-        <activity
-            android:name=".AdminUpdateInfo"
-            android:exported="false" />
-        <activity
-            android:name=".EditInfoActivity"
-            android:exported="false" />
-        <activity
             android:name=".JoinApartmentActivity"
             android:exported="false" />
         <activity

@@ -51,7 +51,7 @@ public class BillsViewActivity extends AppCompatActivity implements View.OnClick
 
         bn = (BottomNavigationView) findViewById(R.id.bottom_nav);
 
-        Log.i("Bills on create","ON CREATE");
+
         addBill = (Button) findViewById(R.id.newBill);
         payment = (Button) findViewById(R.id.payment);
         bn = (BottomNavigationView) findViewById(R.id.bottom_nav);

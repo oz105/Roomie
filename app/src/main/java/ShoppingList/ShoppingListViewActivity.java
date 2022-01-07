@@ -207,10 +207,7 @@ public class ShoppingListViewActivity extends AppCompatActivity implements View.
             case R.id.addItem:
                 ShopControl.newItem();
                 break;
-            case R.id.backButton:
-                refresh_list();
-                finish();
-                break;
+
             case R.id.ChangeQ:
                 if(Float.valueOf(editQ.getText().toString())<=0)
                 {
