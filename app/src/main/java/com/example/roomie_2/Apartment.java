@@ -16,10 +16,10 @@ public class Apartment {
     protected List<ShopItem> shoppingList;
     protected List<Bill> billsList = new ArrayList<>();
     protected Map<String,String> apartmentUsers = new HashMap<>();
+    private List<String> photos;
 
 
     public Apartment(Map<String,Object> details,long apartmentId){
-
         this.details = details;
         this.apartmentId=apartmentId;
         shoppingList = new LinkedList<ShopItem>();
@@ -75,5 +75,13 @@ public class Apartment {
 
     public void setApartmentUsers(Map<String, String> apartmentUsers) {
         this.apartmentUsers = apartmentUsers;
+    }
+
+    public List<String> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<String> photos) {
+        this.photos = photos;
     }
 }

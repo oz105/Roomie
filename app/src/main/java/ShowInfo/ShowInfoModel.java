@@ -43,9 +43,9 @@ public class ShowInfoModel {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         List<String> photos;
                         Map<String,Object> details = (Map<String, Object>) snapshot.child("details").getValue();
-                        if(snapshot.child("images").exists()){
-                            photos = (List<String>)snapshot.child("images").getValue();
-                            init_firs_photo(photos);
+                        if(snapshot.child("photos").exists()){
+                            photos = (List<String>)snapshot.child("photos").getValue();
+                            init_first_photo(photos);
                         }
                         else {
                             showInfoController.init_photo(0,null);
@@ -66,7 +66,7 @@ public class ShowInfoModel {
         });
     }
 
-    public void init_firs_photo(List<String> photos){
+    public void init_first_photo(List<String> photos){
         this.photos = photos;
         storageRef.child(photos.get(0)).getBytes(1024*1024*7).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override

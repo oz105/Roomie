@@ -15,6 +15,7 @@
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/edit.xml" value="0.4" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/half.xml" value="0.24479166666666666" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_bills.xml" value="0.24270833333333333" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_camera_photos.xml" value="0.2921875" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_email.xml" value="0.2205128205128205" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_email_focus.xml" value="0.321875" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_home.xml" value="0.24270833333333333" />
@@ -29,11 +30,12 @@
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_phone.xml" value="0.30364583333333334" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_pre.xml" value="0.315625" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_room.xml" value="0.24270833333333333" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/photo_frame.xml" value="0.2921875" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/photo_shape.xml" value="0.2942708333333333" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/profile_back.xml" value="0.264" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/round_shape.xml" value="0.2942708333333333" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/selector.xml" value="0.10833333333333334" />
-        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_add_apartment_view.xml" value="0.27943840579710144" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_add_apartment_view.xml" value="0.4" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_add_new_apartment.xml" value="0.4" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_add_new_appartment.xml" value="0.264" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/layout/activity_admin_photos_view.xml" value="0.35104166666666664" />

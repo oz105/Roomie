@@ -1,9 +1,13 @@
 package AddApartment;
 
+import android.net.Uri;
+
 import androidx.annotation.NonNull;
 
 import com.example.roomie_2.Apartment;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -11,10 +15,18 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Handler;
 
 import AddApartment.AddApartmentController;
 
@@ -26,10 +38,24 @@ public class AddApartmentModel {
     private FirebaseAuth Auth;
     private AddApartmentController addApartController;
 
+    private int currentIndex;
+    private List<String> nameList;
+    private String [] imageNames;
+    private Uri[] imageUris;
+    private int imgIndex;
+    private int numpics;
+    private int sumUpload;
+    private StorageReference StorageRef;
+    private StorageTask UploadTask;
+
+
 
     public AddApartmentModel(AddApartmentController controller){
         this.addApartController = controller;
         Auth = FirebaseAuth.getInstance();
+        this.StorageRef = FirebaseStorage.getInstance().getReference("uploads");
+        imageNames = new String[4];
+        imageUris = new Uri[4];
     }
 
 
@@ -54,7 +80,7 @@ public class AddApartmentModel {
                 }
                 newApartment[0] = new Apartment(details,newApartmentId);
                 newApartment[0].setAdminId(adminID);
-                finish_addApartment(newApartment[0]);
+                finish_add_apartment(newApartment[0]);
             }
 
             @Override
@@ -78,7 +104,8 @@ public class AddApartmentModel {
         return lastId+1;
     }
 
-    public void finish_addApartment(Apartment apartment){
+    public void finish_add_apartment(Apartment apartment){
+        apartment.setPhotos(Arrays.asList(this.imageNames.clone()));
         rootApartmrnt.child(String.valueOf(apartment.getApartmentId())).setValue(apartment).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -92,9 +119,84 @@ public class AddApartmentModel {
                 }
             }
         });
+    }
 
 
+    public void setCurrentIndex(int currentIndex) {
+        this.currentIndex = currentIndex;
+    }
 
+    public void add_new_photo(Uri result){
+
+
+        imageUris [currentIndex] = result;
+        imageNames [currentIndex] = System.currentTimeMillis()
+                + result.toString().substring(result.toString().lastIndexOf("."));
+        addApartController.set_image(currentIndex, result);
+    }
+
+    public void finish_edit_info(){
+
+        numpics=0;
+        sumUpload=0;
+        List <Uri> ImgList = new LinkedList<>();
+        List <String> ImgNamesList = new LinkedList<>();
+        for (int i = 0; i < 4; i++) {
+            if(imageNames[i]!=null)
+            {
+                numpics++;
+                ImgList.add(imageUris[i]);
+                ImgNamesList.add(imageNames[i]);
+            }
+        }
+        nameList = ImgNamesList;
+        for (int i =0; i< ImgNamesList.size();i++){
+            uploadFile(ImgNamesList.get(i),ImgList.get(i));
+        }
+
+    }
+
+    public void uploadFile(String fileName, Uri resultUri) {
+        StorageReference fileReference = StorageRef.child(fileName);
+        //String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        setUploadTask(
+                fileReference.putFile(resultUri).addOnSuccessListener(new OnSuccessListener<com.google.firebase.storage.UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                        Handler handler = new Handler();
+//
+//                        handler.postDelayed(new Runnable() {
+//                            @Override
+//                            public void run() { addApartmentView.progressBar.setProgress(0); }
+//                        }, 500);
+//                        make_toast("Upload successful "+ sumUpload);
+//                        if (taskSnapshot.getMetadata().getReference() != null) {
+//                            //Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
+//                        }
+                        sumUpload++;
+                        if(sumUpload==numpics)
+                        {
+                            addApartController.save_apartment_details();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                        double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+//                        addApartmentView.progressBar.setProgress((int) progress);
+                    }
+                }));
+    }
+
+
+    public void setUploadTask(StorageTask uploadTask) {
+        UploadTask = uploadTask;
     }
 
 }
