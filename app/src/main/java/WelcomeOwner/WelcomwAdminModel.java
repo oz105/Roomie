@@ -32,6 +32,7 @@ public class WelcomwAdminModel {
     String ownerId ="",apartmentId="";
     List<String>usersId;
     Bitmap [] photosBit;
+    int counter=0;
 
     public WelcomwAdminModel(WelcomeAdminController welcomeAdminController){
         this.welcomeAdminController = welcomeAdminController;
@@ -100,9 +101,11 @@ public class WelcomwAdminModel {
          storageRef.child(photoName).getBytes(1024*1024*7).addOnSuccessListener(new OnSuccessListener<byte[]>() {
              @Override
              public void onSuccess(byte[] bytes) {
+                 counter++;
                  Bitmap tempBitMap = BitmapFactory.decodeByteArray(bytes,0, bytes.length);
                  photosBit[index]= tempBitMap;
-                 if(index==usersId.size()-1){
+//                 if(index==usersId.size()-1){
+                 if(counter==usersId.size()){
                      welcomeAdminController.init_photo(photosBit);
                  }
              }

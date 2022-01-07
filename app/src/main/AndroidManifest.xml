@@ -56,7 +56,7 @@
             android:name=".WelcomeUserActivity"
             android:exported="false" />
         <activity
-            android:name="WelcomeOwner.WelcomeAdminActivity"
+            android:name="WelcomeOwner.WelcomeAdminView"
             android:exported="false" />
         <!-- <activity -->
         <!-- android:name=".LoginActivity" -->

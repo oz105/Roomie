@@ -8,10 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.roomie_2.R;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -19,7 +19,7 @@ import Info.EditInfoView;
 import Login.LoginViewActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class WelcomeAdminActivity extends AppCompatActivity implements View.OnClickListener {
+public class WelcomeAdminView extends AppCompatActivity implements View.OnClickListener {
     private Button info,logout;
 
     WelcomeAdminController controller;
@@ -27,6 +27,7 @@ public class WelcomeAdminActivity extends AppCompatActivity implements View.OnCl
     public Dialog profileDialog;
     public TextView name,mail,phone,age;
     public CircleImageView photo;
+    LottieAnimationView admin_wait;
 
 
     @Override
@@ -38,7 +39,7 @@ public class WelcomeAdminActivity extends AppCompatActivity implements View.OnCl
         info = (Button) findViewById(R.id.info);
         logout = (Button) findViewById(R.id.logout);
         info.setOnClickListener(this);
-
+        admin_wait = findViewById(R.id.admin_wait);
         logout.setOnClickListener(this);
 
 
@@ -46,7 +47,7 @@ public class WelcomeAdminActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                profileDialog = new Dialog(controller.welcomeAdminActivity);
+                profileDialog = new Dialog(controller.welcomeAdminView);
                 profileDialog.setContentView(R.layout.profile);
                 name = profileDialog.findViewById(R.id.profileName);
                 mail = profileDialog.findViewById(R.id.profileMail);
@@ -68,12 +69,12 @@ public class WelcomeAdminActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()){
             case (R.id.info):
-                Intent intent = new Intent(WelcomeAdminActivity.this, EditInfoView.class);
+                Intent intent = new Intent(WelcomeAdminView.this, EditInfoView.class);
                 startActivity(intent);
                 break;
             case (R.id.logout):
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(WelcomeAdminActivity.this, LoginViewActivity.class));
+                startActivity(new Intent(WelcomeAdminView.this, LoginViewActivity.class));
                 break;
         }
 

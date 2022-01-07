@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.view.View;
 
 import com.example.roomie_2.JoinApartmentActivity;
-import WelcomeOwner.WelcomeAdminActivity;
+import WelcomeOwner.WelcomeAdminView;
 import com.example.roomie_2.WelcomeUserActivity;
 
 import AddApartment.AddApartmentView;
@@ -38,7 +38,7 @@ public class LoginController {
             case 0:
                 break;
             case 1:
-                Intent intent = new Intent(loginView, WelcomeAdminActivity.class);
+                Intent intent = new Intent(loginView, WelcomeAdminView.class);
                 //Intent intent = new Intent(loginView, AdminPhotosViewActivity.class);
                 loginView.startActivity(intent);
                 break;

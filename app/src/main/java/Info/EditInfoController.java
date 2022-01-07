@@ -3,7 +3,7 @@ package Info;
 import android.content.Intent;
 import android.widget.Toast;
 
-import WelcomeOwner.WelcomeAdminActivity;
+import WelcomeOwner.WelcomeAdminView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -69,11 +69,11 @@ public class EditInfoController {
     public void finish(boolean isSeccess){
         if(isSeccess){
             Toast.makeText(editInfoView, "Update success :)", Toast.LENGTH_LONG).show();
-            editInfoView.startActivity(new Intent(editInfoView, WelcomeAdminActivity.class));
+            editInfoView.startActivity(new Intent(editInfoView, WelcomeAdminView.class));
         }
         else {
             Toast.makeText(editInfoView, "Update Faild :(", Toast.LENGTH_LONG).show();
-            editInfoView.startActivity(new Intent(editInfoView, WelcomeAdminActivity.class));
+            editInfoView.startActivity(new Intent(editInfoView, WelcomeAdminView.class));
         }
     }
 

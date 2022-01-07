@@ -6,7 +6,7 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import WelcomeOwner.WelcomeAdminActivity;
+import WelcomeOwner.WelcomeAdminView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -62,7 +62,7 @@ public class AddApartmentController {
     public void finish_create_apartment(boolean success, long apartmentId) {
         if (success) {
             make_toast("Congratulations, you have new apartment\n your apartment ID is" + apartmentId);
-            addApartmentView.startActivity(new Intent(addApartmentView, WelcomeAdminActivity.class));
+            addApartmentView.startActivity(new Intent(addApartmentView, WelcomeAdminView.class));
         } else {
             make_toast("Sorry, apartment create has been failed :( please try again" + apartmentId);
             addApartmentView.finish();

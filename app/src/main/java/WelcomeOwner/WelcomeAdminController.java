@@ -1,31 +1,30 @@
 package WelcomeOwner;
 
-import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.view.View;
 
 import com.example.roomie_2.User;
-
-import java.util.List;
 
 public class WelcomeAdminController {
 
 
 
 
-    WelcomeAdminActivity welcomeAdminActivity;
+    WelcomeAdminView welcomeAdminView;
     WelcomwAdminModel welcomwAdminModel;
 
-    public WelcomeAdminController(WelcomeAdminActivity welcomeAdminActivity){
-        this.welcomeAdminActivity = welcomeAdminActivity;
+    public WelcomeAdminController(WelcomeAdminView welcomeAdminView){
+        this.welcomeAdminView = welcomeAdminView;
         welcomwAdminModel = new WelcomwAdminModel(this);
+
     }
 
 
 
     public void init_photo(Bitmap[] photos){
-        ProfileAdapter adapter = new ProfileAdapter(welcomeAdminActivity,photos);
-        welcomeAdminActivity.photos.setAdapter(adapter);
+        welcomeAdminView.admin_wait.setVisibility(View.GONE);
+        ProfileAdapter adapter = new ProfileAdapter(welcomeAdminView,photos);
+        welcomeAdminView.photos.setAdapter(adapter);
     }
 
     public void click_profile(View view, int position){
@@ -33,12 +32,12 @@ public class WelcomeAdminController {
     }
 
     public void open_profile(User user,Bitmap profilePic){
-        welcomeAdminActivity.photo.setImageBitmap(profilePic);
-        welcomeAdminActivity.age.setText(user.age);
-        welcomeAdminActivity.phone.setText(user.phone);
-        welcomeAdminActivity.mail.setText(user.email);
-        welcomeAdminActivity.name.setText(user.fullName);
-        welcomeAdminActivity.profileDialog.show();
+        welcomeAdminView.photo.setImageBitmap(profilePic);
+        welcomeAdminView.age.setText(user.age);
+        welcomeAdminView.phone.setText(user.phone);
+        welcomeAdminView.mail.setText(user.email);
+        welcomeAdminView.name.setText(user.fullName);
+        welcomeAdminView.profileDialog.show();
 
         // dialog profilePicture
     }
