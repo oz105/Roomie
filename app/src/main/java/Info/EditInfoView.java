@@ -39,6 +39,7 @@ public class EditInfoView extends AppCompatActivity {
         price = (EditText) findViewById(R.id.rent);
         updateInfo = (Button) findViewById(R.id.updateData);
         editInfoController = new EditInfoController(this);
+
         updateInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

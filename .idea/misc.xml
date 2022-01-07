@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/admin_click.xml" value="0.30520833333333336" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/bottun_bills.xml" value="0.3671875" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/bottun_shopping.xml" value="0.34322916666666664" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/costum_input.xml" value="0.22395833333333334" />
@@ -20,8 +21,11 @@
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_email_focus.xml" value="0.321875" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_home.xml" value="0.24270833333333333" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_info.xml" value="0.24270833333333333" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_launcher_background.xml" value="0.30520833333333336" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_logout.xml" value="0.24270833333333333" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_mangement.xml" value="0.30520833333333336" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_money.xml" value="0.24270833333333333" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_money_bills.xml" value="0.30520833333333336" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_next.xml" value="0.315625" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_nophoto.xml" value="0.3229166666666667" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_notification.xml" value="0.24270833333333333" />
@@ -30,6 +34,8 @@
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_phone.xml" value="0.30364583333333334" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_pre.xml" value="0.315625" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_room.xml" value="0.24270833333333333" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_shopping_cart.xml" value="0.30520833333333336" />
+        <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/ic_task.xml" value="0.30520833333333336" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/photo_frame.xml" value="0.2921875" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/photo_shape.xml" value="0.2942708333333333" />
         <entry key="..\:/Users/hanan/AndroidStudioProjects/Roomie/app/src/main/res/drawable/profile_back.xml" value="0.264" />

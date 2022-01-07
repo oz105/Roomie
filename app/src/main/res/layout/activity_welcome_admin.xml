@@ -88,11 +88,11 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/logout"
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center"
-            android:drawableTop="@drawable/ic_logout"
             android:text="Logout"
-            android:background="#B3356E"
+            android:textColor="@color/black"
+            android:background="@drawable/admin_click"
             tools:layout_editor_absoluteX="191dp"
             tools:layout_editor_absoluteY="528dp" />
 
@@ -100,12 +100,10 @@
             android:id="@+id/info"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="100dp"
-
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center"
             android:layout_marginLeft="30dp"
-            android:background="#B3356E"
-            android:drawableTop="@drawable/ic_info"
+            android:background="@drawable/admin_click"
             android:text="Edit info"
             android:textSize="12dp"
             tools:layout_editor_absoluteX="94dp"

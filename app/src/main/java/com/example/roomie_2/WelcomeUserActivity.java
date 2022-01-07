@@ -70,32 +70,7 @@ public class WelcomeUserActivity extends AppCompatActivity implements View.OnCli
             }
         });
 
-//        bills = (Button) findViewById(R.id.bills);
-//        bills.setOnClickListener(this);
-//
-//        ShoppingBut = (Button) findViewById(R.id.shoppingList);
-//        ShoppingBut.setOnClickListener(this);
-//
-//        info = (Button) findViewById(R.id.info);
-//        info.setOnClickListener(this);
-//
-//        logout = (Button) findViewById(R.id.signOut);
-//        logout.setOnClickListener(this);
-//
-//        user = FirebaseAuth.getInstance().getCurrentUser();
-//        reference = FirebaseDatabase.getInstance("https://roomie-f420f-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Users");
-//        userID = user.getUid();
-//        reference.child(userID).child("apartmentId").addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                currentApartmetId = (long)snapshot.getValue();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+
 
 
 
@@ -106,7 +81,6 @@ public class WelcomeUserActivity extends AppCompatActivity implements View.OnCli
     protected void onStart() {
         super.onStart();
         bn.setSelectedItemId(R.id.nav_home);
-        Toast.makeText(this,"welcon START",Toast.LENGTH_SHORT).show();
     }
 
     @Override
